@@ -1,0 +1,612 @@
+{
+  "LANDING": {
+    "prompt": "Welcome to Disha Sarathi — AI Voice Skilling Counsellor.",
+    "simplified": "Tap below to begin your livelihood counselling.",
+    "chips": [
+      {
+        "value": "start",
+        "label": "Start Conversation",
+        "icon": "🎙️"
+      },
+      {
+        "value": "about",
+        "label": "About Disha Sarathi",
+        "icon": "ℹ️"
+      }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "Please select your preferred language.",
+    "simplified": "Which language do you prefer to speak in?",
+    "chips": [
+      {
+        "value": "hi",
+        "label": "हिंदी (Hindi)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "mr",
+        "label": "मराठी (Marathi)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "bn",
+        "label": "বাংলা (Bengali)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "ta",
+        "label": "தமிழ் (Tamil)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "te",
+        "label": "తెలుగు (Telugu)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "kn",
+        "label": "ಕನ್ನಡ (Kannada)",
+        "icon": "🇮🇳"
+      },
+      {
+        "value": "en",
+        "label": "English",
+        "icon": "🌐"
+      }
+    ]
+  },
+  "GREETING": {
+    "prompt": "Hello! I am here to help you discover the best skilling and livelihood opportunities.",
+    "simplified": "Shall we start mapping your skill plan?",
+    "chips": [
+      {
+        "value": "continue",
+        "label": "Yes, let's begin",
+        "icon": "👍"
+      },
+      {
+        "value": "help",
+        "label": "How does this work?",
+        "icon": "❓"
+      }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "Do you agree to share a few general details to receive personalized skill recommendations?",
+    "simplified": "Your details stay private on your phone. Do you agree?",
+    "chips": [
+      {
+        "value": "yes",
+        "label": "Yes, I agree",
+        "icon": "✅"
+      },
+      {
+        "value": "no",
+        "label": "No, not right now",
+        "icon": "❌"
+      }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "Which district and state do you live in?",
+    "simplified": "Tell us your district so we can locate the nearest training center.",
+    "chips": [
+      {
+        "value": "gps_detect",
+        "label": "Use my GPS location",
+        "icon": "📍"
+      },
+      {
+        "value": "manual_select",
+        "label": "Select district manually",
+        "icon": "🔍"
+      }
+    ]
+  },
+  "LOCATION_MANUAL": {
+    "prompt": "Please select your district.",
+    "simplified": "Pick your district from the list below.",
+    "chips": [
+      {
+        "value": "Varanasi",
+        "label": "Varanasi (Uttar Pradesh)",
+        "icon": "📍"
+      },
+      {
+        "value": "Lucknow",
+        "label": "Lucknow (Uttar Pradesh)",
+        "icon": "📍"
+      },
+      {
+        "value": "Pune",
+        "label": "Pune (Maharashtra)",
+        "icon": "📍"
+      },
+      {
+        "value": "Patna",
+        "label": "Patna (Bihar)",
+        "icon": "📍"
+      },
+      {
+        "value": "Kolkata",
+        "label": "Kolkata (West Bengal)",
+        "icon": "📍"
+      },
+      {
+        "value": "Madurai",
+        "label": "Madurai (Tamil Nadu)",
+        "icon": "📍"
+      },
+      {
+        "value": "Bhopal",
+        "label": "Bhopal (Madhya Pradesh)",
+        "icon": "📍"
+      },
+      {
+        "value": "Jaipur",
+        "label": "Jaipur (Rajasthan)",
+        "icon": "📍"
+      },
+      {
+        "value": "other",
+        "label": "Search other district...",
+        "icon": "🔍"
+      }
+    ],
+    "allowFreeText": true
+  },
+  "BACKGROUND": {
+    "prompt": "What is your highest level of schooling?",
+    "simplified": "How far did you study in school or college?",
+    "chips": [
+      {
+        "value": "none",
+        "label": "Did not attend school",
+        "icon": "📖"
+      },
+      {
+        "value": "primary",
+        "label": "Up to 5th (Primary)",
+        "icon": "🎒"
+      },
+      {
+        "value": "middle",
+        "label": "Up to 8th (Middle school)",
+        "icon": "📚"
+      },
+      {
+        "value": "secondary",
+        "label": "10th Pass (High school)",
+        "icon": "🏫"
+      },
+      {
+        "value": "higher_secondary",
+        "label": "12th Pass (Intermediate)",
+        "icon": "🎓"
+      },
+      {
+        "value": "iti_diploma",
+        "label": "ITI / Polytechnic Diploma",
+        "icon": "🛠️"
+      },
+      {
+        "value": "graduate",
+        "label": "Graduate Degree",
+        "icon": "🏛️"
+      }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "What work has your family or community traditionally been engaged in?",
+    "simplified": "What kind of work do your elders or family members do?",
+    "chips": [
+      {
+        "value": "tailoring",
+        "label": "Tailoring & Garments",
+        "icon": "✂️"
+      },
+      {
+        "value": "farming",
+        "label": "Farming & Animal Husbandry",
+        "icon": "🌾"
+      },
+      {
+        "value": "construction",
+        "label": "Masonry & Construction",
+        "icon": "🧱"
+      },
+      {
+        "value": "mechanic",
+        "label": "Vehicle & Cycle Repairs",
+        "icon": "🔧"
+      },
+      {
+        "value": "shop",
+        "label": "Small Retail / Vending",
+        "icon": "🏪"
+      },
+      {
+        "value": "handicraft",
+        "label": "Handicraft & Weaving",
+        "icon": "🎨"
+      },
+      {
+        "value": "other",
+        "label": "Other traditional work",
+        "icon": "✍️"
+      }
+    ],
+    "allowFreeText": true
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "What work are you currently doing to earn your livelihood?",
+    "simplified": "What is your current source of daily income?",
+    "chips": [
+      {
+        "value": "daily_wage",
+        "label": "Daily Wage Labour",
+        "icon": "🔨"
+      },
+      {
+        "value": "farming_helper",
+        "label": "Agricultural Helper",
+        "icon": "🌱"
+      },
+      {
+        "value": "small_tailoring",
+        "label": "Home Tailoring / Stitching",
+        "icon": "🧵"
+      },
+      {
+        "value": "street_vendor",
+        "label": "Street Vendor / Hawking",
+        "icon": "🛒"
+      },
+      {
+        "value": "homemaker",
+        "label": "Homemaker / Caregiver",
+        "icon": "🏠"
+      },
+      {
+        "value": "student_unemployed",
+        "label": "Student / Seeking First Job",
+        "icon": "⏳"
+      },
+      {
+        "value": "other",
+        "label": "Other livelihood",
+        "icon": "✍️"
+      }
+    ],
+    "allowFreeText": true
+  },
+  "SKILLS_INTERESTS": {
+    "prompt": "Which practical trade or skill are you most excited to learn?",
+    "simplified": "Select one or more skills that interest you most.",
+    "allowMultiple": true,
+    "chips": [
+      {
+        "value": "stitching",
+        "label": "Sewing & Tailoring",
+        "icon": "👗"
+      },
+      {
+        "value": "beauty",
+        "label": "Beauty Parlour & Salon",
+        "icon": "💄"
+      },
+      {
+        "value": "electrical",
+        "label": "Electrician & House Wiring",
+        "icon": "💡"
+      },
+      {
+        "value": "cctv",
+        "label": "CCTV & Security Tech",
+        "icon": "📹"
+      },
+      {
+        "value": "mobile_repair",
+        "label": "Smartphone Repairing",
+        "icon": "📱"
+      },
+      {
+        "value": "solar",
+        "label": "Solar Panel Technician",
+        "icon": "☀️"
+      },
+      {
+        "value": "plumbing",
+        "label": "Plumbing & Sanitation",
+        "icon": "🚰"
+      },
+      {
+        "value": "dairy",
+        "label": "Dairy & Livestock Farming",
+        "icon": "🐄"
+      },
+      {
+        "value": "computer",
+        "label": "Data Entry & Citizen Services",
+        "icon": "💻"
+      },
+      {
+        "value": "bikes",
+        "label": "Two-Wheeler Mechanics",
+        "icon": "🛵"
+      },
+      {
+        "value": "cooking",
+        "label": "Food Processing & Snacks",
+        "icon": "🍲"
+      }
+    ],
+    "allowFreeText": true
+  },
+  "CONSTRAINTS": {
+    "prompt": "Do you have any specific scheduling or mobility constraints for training?",
+    "simplified": "Any timing or movement limitations? If none, pick no constraints.",
+    "allowMultiple": true,
+    "chips": [
+      {
+        "value": "none",
+        "label": "No special constraints",
+        "icon": "🟢"
+      },
+      {
+        "value": "evening_only",
+        "label": "Evenings only",
+        "icon": "🌙"
+      },
+      {
+        "value": "home_proximity",
+        "label": "Must be very close to home",
+        "icon": "🏡"
+      },
+      {
+        "value": "locomotor_difficulty",
+        "label": "Difficulty climbing stairs / walking",
+        "icon": "♿"
+      },
+      {
+        "value": "part_time",
+        "label": "Part-time only",
+        "icon": "⏰"
+      }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "How far are you able to travel daily to attend training?",
+    "simplified": "What is the maximum travel distance you can manage?",
+    "chips": [
+      {
+        "value": "2",
+        "label": "Up to 2 km (Walking)",
+        "icon": "🚶"
+      },
+      {
+        "value": "5",
+        "label": "Up to 5 km (Bicycle)",
+        "icon": "🚲"
+      },
+      {
+        "value": "10",
+        "label": "Up to 10 km (Bus / Auto)",
+        "icon": "🚌"
+      },
+      {
+        "value": "25",
+        "label": "Up to 25 km (Nearby town)",
+        "icon": "🛵"
+      },
+      {
+        "value": "50",
+        "label": "Up to 50 km (District HQ)",
+        "icon": "🚆"
+      }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "After training, do you prefer to start your own business or take up employment?",
+    "simplified": "Are you aiming for self-employment or a salaried job?",
+    "chips": [
+      {
+        "value": "self_employment",
+        "label": "Own Business / Self-Employed",
+        "icon": "🏬"
+      },
+      {
+        "value": "wage_employment",
+        "label": "Salaried Job",
+        "icon": "💼"
+      },
+      {
+        "value": "either",
+        "label": "Open to either opportunity",
+        "icon": "🤝"
+      }
+    ]
+  },
+  "CONFIRM_SUMMARY": {
+    "prompt": "Thank you! We have captured your profile. Ready to see your top NSQF skilling matches?",
+    "simplified": "Shall we present your personalized recommendations now?",
+    "chips": [
+      {
+        "value": "confirm",
+        "label": "Yes, show recommendations",
+        "icon": "✨"
+      },
+      {
+        "value": "revise",
+        "label": "Let me adjust an answer",
+        "icon": "✏️"
+      }
+    ]
+  },
+  "RECOMMENDATION": {
+    "prompt": "Here are your top 3 NSQF-aligned skilling recommendations.",
+    "simplified": "Select a trade to see its nearest center and government schemes.",
+    "chips": [
+      {
+        "value": "select_1",
+        "label": "Choose Trade 1",
+        "icon": "1️⃣"
+      },
+      {
+        "value": "select_2",
+        "label": "Choose Trade 2",
+        "icon": "2️⃣"
+      },
+      {
+        "value": "select_3",
+        "label": "Choose Trade 3",
+        "icon": "3️⃣"
+      }
+    ]
+  },
+  "BENEFICIARY_CHOICE": {
+    "prompt": "Great choice! Would you like to view the training center and scheme linkages?",
+    "simplified": "Proceed to view nearest center and financial support details.",
+    "chips": [
+      {
+        "value": "view_center",
+        "label": "View Center & Schemes",
+        "icon": "🏢"
+      }
+    ]
+  },
+  "CENTER_AND_NEXT_STEPS": {
+    "prompt": "Here is your nearest training center. Would you like to explore self-employment credit schemes (e.g. PM-SVANidhi, NSFDC)?",
+    "simplified": "Explore loan schemes or proceed to generate your Aspiration Card.",
+    "chips": [
+      {
+        "value": "yes_finance",
+        "label": "Yes, view loan schemes",
+        "icon": "💰"
+      },
+      {
+        "value": "no_finance",
+        "label": "Proceed to Aspiration Card",
+        "icon": "🪪"
+      }
+    ]
+  },
+  "FINANCE_TRACK": {
+    "prompt": "Under PM-AJAY and NSFDC, concessional credit is available for SC entrepreneurs.",
+    "simplified": "Review schemes below or generate your Aspiration Card.",
+    "chips": [
+      {
+        "value": "generate_card",
+        "label": "Generate Aspiration Card",
+        "icon": "🪪"
+      },
+      {
+        "value": "contact_advisor",
+        "label": "Contact Financial Advisor",
+        "icon": "📞"
+      }
+    ]
+  },
+  "ASPIRATION_CARD": {
+    "prompt": "Your PM-AJAY Aspiration Card is ready! You can save it to your phone gallery.",
+    "simplified": "Download your card or share feedback.",
+    "chips": [
+      {
+        "value": "download",
+        "label": "Download Card (PNG)",
+        "icon": "📥"
+      },
+      {
+        "value": "feedback",
+        "label": "Give Session Feedback",
+        "icon": "⭐"
+      }
+    ]
+  },
+  "SESSION_FEEDBACK": {
+    "prompt": "How was your experience using Disha Sarathi today?",
+    "simplified": "Please rate your counselling session.",
+    "chips": [
+      {
+        "value": "5",
+        "label": "⭐⭐⭐⭐⭐ Excellent",
+        "icon": "😍"
+      },
+      {
+        "value": "4",
+        "label": "⭐⭐⭐⭐ Good",
+        "icon": "😊"
+      },
+      {
+        "value": "3",
+        "label": "⭐⭐⭐ Fair",
+        "icon": "😐"
+      },
+      {
+        "value": "2",
+        "label": "⭐⭐ Needs Improvement",
+        "icon": "😕"
+      },
+      {
+        "value": "1",
+        "label": "⭐ Poor",
+        "icon": "😞"
+      }
+    ]
+  },
+  "END": {
+    "prompt": "Thank you for using Disha Sarathi! Wishing you great success in your skilling journey.",
+    "simplified": "Session completed. You can start again whenever you wish.",
+    "chips": [
+      {
+        "value": "restart",
+        "label": "Start New Session",
+        "icon": "🔄"
+      },
+      {
+        "value": "dashboard",
+        "label": "Open Coordinator Dashboard",
+        "icon": "📊"
+      }
+    ]
+  },
+  "DECLINED_END": {
+    "prompt": "Understood. No data has been collected without your consent.",
+    "simplified": "You can return whenever you wish.",
+    "chips": [
+      {
+        "value": "restart",
+        "label": "Start Over",
+        "icon": "🔄"
+      }
+    ]
+  },
+  "DELETED_END": {
+    "prompt": "Your session data has been completely erased from this device.",
+    "simplified": "All local data has been purged.",
+    "chips": [
+      {
+        "value": "restart",
+        "label": "Start Fresh Session",
+        "icon": "🔄"
+      }
+    ]
+  },
+  "ESCALATE_TO_HUMAN": {
+    "prompt": "We are connecting you directly with your local PM-AJAY District Coordinator.",
+    "simplified": "Call your coordinator directly using the contact below.",
+    "chips": [
+      {
+        "value": "call_coordinator",
+        "label": "Call District Coordinator",
+        "icon": "📞"
+      },
+      {
+        "value": "restart",
+        "label": "Return to Main Menu",
+        "icon": "🏠"
+      }
+    ]
+  }
+}

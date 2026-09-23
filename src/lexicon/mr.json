@@ -1,0 +1,235 @@
+{
+  "controls": {
+    "repeat": [
+      "repeat",
+      "again",
+      "phir se",
+      "dobara",
+      "purna sanga",
+      "punha sanga",
+      "पुन्हा सांगा",
+      "परत सांगा",
+      "सांगा",
+      "marupadiyum",
+      "malli cheppandi",
+      "mattonme heli",
+      "ek aur baar",
+      "parath sanga"
+    ],
+    "simplify": [
+      "i don't understand",
+      "samajh nahi aaya",
+      "saral bhasha",
+      "nahi samjha",
+      "samajla nahi",
+      "समजले नाही",
+      "सोपे सांगा",
+      "sopa sanga",
+      "puriyala",
+      "ardham kaledu",
+      "arthavagilla",
+      "what does this mean"
+    ],
+    "escalate": [
+      "talk to a person",
+      "human",
+      "coordinator",
+      "adhikari se baat",
+      "adhikari",
+      "अधिकारी",
+      "अधिकार्यांशी बोला",
+      "kisi insaan se baat",
+      "phone helpline",
+      "help me talk to someone",
+      "manasashi bola",
+      "officer"
+    ],
+    "delete_data": [
+      "delete my data",
+      "mera data mitao",
+      "delete",
+      "erase",
+      "sarva data kadha",
+      "डेटा मिटवा",
+      "data kadhun taka",
+      "en thagavala alikka",
+      "na data delete cheyyandi",
+      "nanna data alisi"
+    ],
+    "yes": [
+      "yes",
+      "ha",
+      "haan",
+      "sahi",
+      "ho",
+      "हो",
+      "होय",
+      "aam",
+      "om",
+      "avunu",
+      "haudu",
+      "theek",
+      "shuru karo",
+      "chalu kara",
+      "सुरू करा",
+      "agree",
+      "manzoor",
+      "sammat",
+      "मान्य"
+    ],
+    "no": [
+      "no",
+      "nahi",
+      "na",
+      "nako",
+      "नाही",
+      "नको",
+      "nahi nako",
+      "vendam",
+      "odhu",
+      "beda",
+      "mat karo",
+      "stop"
+    ]
+  },
+  "slots": {
+    "education_level": {
+      "none": [
+        "none",
+        "never went to school",
+        "anpadh",
+        "shikshan nahi",
+        "शिक्षण नाही",
+        "शाळा शिकलो नाही",
+        "shala shiklo nahi",
+        "nirakshar",
+        "निरक्षर",
+        "kahi nahi"
+      ],
+      "primary": [
+        "primary",
+        "5th",
+        "5th pass",
+        "panchvi",
+        "पाचवी",
+        "5 vi",
+        "5 vi pass",
+        "प्राथमिक",
+        "prathamik"
+      ],
+      "middle": [
+        "middle",
+        "8th",
+        "8th pass",
+        "aathvi",
+        "आठवी",
+        "8 vi",
+        "8 vi pass",
+        "माध्यमिक",
+        "madhyamik"
+      ],
+      "secondary": [
+        "secondary",
+        "10th",
+        "10th pass",
+        "10वी",
+        "10 वी",
+        "१०वी",
+        "१० वी",
+        "matric",
+        "dasvi",
+        "दहावी",
+        "दहावी पास",
+        "10 vi",
+        "10 vi pass",
+        "ssc"
+      ],
+      "higher_secondary": [
+        "higher_secondary",
+        "12th",
+        "12th pass",
+        "12वी",
+        "12 वी",
+        "१२वी",
+        "१२ वी",
+        "barahvi",
+        "बारावी",
+        "बारावी पास",
+        "12 vi",
+        "12 vi pass",
+        "hsc"
+      ],
+
+      "iti_diploma": [
+        "iti",
+        "diploma",
+        "आयटीआय",
+        "डिप्लोमा",
+        "polytechnic",
+        "iti pass",
+        "tantrik diploma"
+      ],
+      "graduate": [
+        "graduate",
+        "degree",
+        "पदवीधर",
+        "ba",
+        "bcom",
+        "bsc",
+        "btech",
+        "padavidhar",
+        "graduation"
+      ]
+    },
+    "family_occupation": {
+      "tailoring": ["tailoring", "shilai", "darji", "kapde shivane", "shimpi", "stitching", "शिलाई", "शिंपी", "कपडे शिवणे", "टेलरिंग"],
+      "agriculture": ["agriculture", "farming", "shetkari", "sheti", "kisan", "krishi", "majoori", "शेती", "शेतकरी", "कृषी"],
+      "electrical": ["electrical", "electrician", "wireman", "power", "line man", "इलेक्ट्रिकल", "वायरमन", "विद्युत"],
+      "carpentry": ["carpentry", "sutar", "lakud kaam", "badhai", "सुतार", "लाकूड काम"],
+      "masonry": ["masonry", "gawandi", "bandhkam", "mistri", "construction", "गवंडी", "बांधकाम"],
+      "leather_craft": ["leather", "chambhar", "jode banavne", "chappal kaam", "चांभार", "चर्मकार", "जोडे बनवणे"],
+      "handicraft": ["handicraft", "hastakala", "vankar", "weaving", "vinkam", "हस्तकला", "विणकाम", "हातमाग"],
+      "small_business": ["business", "dukaan", "kirana", "dhanda", "vyapar", "दुकान", "किराणा", "व्यवसाय", "धंदा"]
+    },
+    "current_livelihood": {
+      "agriculture": ["sheti", "farming", "kisan", "shetmajur", "agriculture", "sheti kam", "sheti karto", "शेती", "शेती करतो", "शेतकरी", "शेती काम", "शेतमजूर"],
+      "daily_wage": ["daily wage", "rojandari", "majoori", "majur", "labor", "kamgar", "रोजंदारी", "मजुरी", "मजूर", "कामगार"],
+      "tailoring": ["shilai", "tailoring", "kapde shivne", "darji", "shimpi kaam", "शिलाई", "शिंपी काम", "कपडे शिवतो"],
+      "shop_work": ["shop", "dukaan", "sales", "helper", "dukanat kam", "दुकान", "दुकानात काम"],
+      "electrical": ["electrician", "wiring", "repair", "electrical kaam", "इलेक्ट्रिशियन", "इलेक्ट्रिकल काम", "वायरिंग"],
+      "auto_repair": ["garage", "mechanic", "gaadi repair", "auto rickshaw", "गॅरेज", "मेकॅनिक", "गाडी रिपेअर"],
+      "unemployed": ["unemployed", "kahi karat nahi", "bekar", "kam shodhat aahe", "काही करत नाही", "बेरोजगार", "काम शोधत आहे"]
+    },
+    "skills_interests": {
+      "stitching": ["stitching", "shilai", "tailoring", "kapde", "sewing", "cutting", "fashion", "शिलाई", "टेलरिंग", "कटिंग", "कपडे"],
+      "electrical": ["electrical", "wireman", "electrician", "wiring", "light fitting", "motor", "इलेक्ट्रिकल", "वायरमन", "इलेक्ट्रिशियन", "वायरिंग"],
+      "solar": ["solar", "solar panel", "saur urja", "rooftop solar", "सोलर", "सौर ऊर्जा", "सोलर पॅनेल"],
+      "auto_repair": ["auto", "bike repair", "garage", "two wheeler", "motorcycle", "car repair", "ऑटो", "बाइक रिपेअर", "गॅरेज", "मेकॅनिक"],
+      "mobile_repair": ["mobile", "phone repair", "screen replace", "smart phone", "मोबाईल रिपेअर", "फोन दुरुस्ती"],
+      "healthcare": ["nursing", "hospital", "patient care", "gda", "arogya", "first aid", "आरोग्य", "रुग्ण सेवा", "नर्सिंग", "हॉस्पिटल"],
+      "beauty": ["beauty", "parlour", "makeup", "hair styling", "beautician", "ब्यूटी पार्लर", "मेकअप", "केशभूषा"],
+      "computers": ["computer", "data entry", "excel", "typing", "it", "संगणक", "कॉम्प्यूटर", "डेटा एंट्री", "टायपिंग"],
+      "agriculture": ["organic farming", "drip irrigation", "sheti", "nursery", "polyhouse", "सेंद्रिय शेती", "ठिबक सिंचन", "रोपवाटिका"],
+      "masonry": ["masonry", "gawandi", "plumbing", "construction", "pipe fitting", "गवंडी", "प्लम्बिंग", "बांधकाम", "पाइप फिटिंग"]
+    },
+    "constraints": {
+      "locomotor_difficulty": ["locomotor", "chalayla tras", "divyang", "handicap", "walking difficulty", "paay tras", "दिव्यांग", "चालण्यास त्रास", "पायात त्रास"],
+      "hearing_impairment": ["hearing", "aikayla kami", "deaf", "hard of hearing", "ऐकण्यास त्रास", "बधिर"],
+      "vision_difficulty": ["vision", "dolayanche tras", "sight difficulty", "डोळ्यांचा त्रास", "कमी दृष्टी"],
+      "family_care": ["family care", "gharat mulanchi kalji", "caregiving", "vruddha kalji", "घरगुती जबाबदारी", "मुलांची काळजी"],
+      "none": ["none", "kahi adchan nahi", "no problem", "sarva theek", "fit", "काही अडचण नाही", "सर्व ठीक"]
+    },
+    "travel_radius_km": {
+      "2": ["2", "2 km", "don km", "paaychal", "walking", "javal", "दोन किमी", "जवळ", "पायदळ"],
+      "5": ["5", "5 km", "paach km", "cycle", "bicycle", "पाच किमी", "सायकल"],
+      "10": ["10", "10 km", "daha km", "auto", "bus", "st stand", "दहा किमी", "ऑटो", "बस"],
+      "25": ["25", "25 km", "panchvis km", "25 kilometre", "taluka", "पंचवीस किमी", "तालुका"],
+      "50": ["50", "50 km", "pannas km", "jilha kendra", "train", "50 kilometre", "पन्नास किमी", "जिल्हा केंद्र"]
+    },
+    "employment_preference": {
+      "self_employment": ["self employment", "swarojgar", "swatahche dukaan", "business", "dhanda", "khud ka kaam", "स्वयंरोजगार", "स्वतःचे दुकान", "व्यवसाय", "धंदा"],
+      "wage_employment": ["wage employment", "naukri", "job", "company", "vetan", "salaried", "karyalay", "नोकरी", "वेतन रोजगार", "जॉब", "कंपनी"],
+      "either": ["either", "dono", "doghi", "kahihi", "kontehi", "both", "दोन्ही", "काहीही चालणारे", "कोणतेही"]
+    }
+  }
+}

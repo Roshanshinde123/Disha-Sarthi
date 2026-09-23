@@ -1,0 +1,189 @@
+{
+  "source": "synthetic_seed_v1",
+  "pilot_districts": {
+    "Varanasi": {
+      "Apparel, Made-Ups & Home Furnishing": {
+        "demand_score": 0.95,
+        "seat_capacity": 450
+      },
+      "Beauty & Wellness": {
+        "demand_score": 0.88,
+        "seat_capacity": 320
+      },
+      "Electronics & Hardware": {
+        "demand_score": 0.85,
+        "seat_capacity": 280
+      },
+      "Construction & Plumbing": {
+        "demand_score": 0.82,
+        "seat_capacity": 350
+      },
+      "Agriculture & Allied": {
+        "demand_score": 0.7,
+        "seat_capacity": 200
+      },
+      "Food Processing": {
+        "demand_score": 0.78,
+        "seat_capacity": 180
+      },
+      "Automotive": {
+        "demand_score": 0.76,
+        "seat_capacity": 220
+      },
+      "IT-ITeS": {
+        "demand_score": 0.84,
+        "seat_capacity": 380
+      },
+      "Retail": {
+        "demand_score": 0.8,
+        "seat_capacity": 260
+      },
+      "Healthcare": {
+        "demand_score": 0.79,
+        "seat_capacity": 210
+      },
+      "Tourism & Hospitality": {
+        "demand_score": 0.92,
+        "seat_capacity": 340
+      }
+    },
+    "Pune": {
+      "Automotive": {
+        "demand_score": 0.96,
+        "seat_capacity": 650
+      },
+      "Electronics & Hardware": {
+        "demand_score": 0.92,
+        "seat_capacity": 480
+      },
+      "IT-ITeS": {
+        "demand_score": 0.94,
+        "seat_capacity": 700
+      },
+      "Construction & Plumbing": {
+        "demand_score": 0.86,
+        "seat_capacity": 400
+      },
+      "Beauty & Wellness": {
+        "demand_score": 0.84,
+        "seat_capacity": 350
+      },
+      "Apparel, Made-Ups & Home Furnishing": {
+        "demand_score": 0.75,
+        "seat_capacity": 280
+      },
+      "Agriculture & Allied": {
+        "demand_score": 0.65,
+        "seat_capacity": 180
+      },
+      "Food Processing": {
+        "demand_score": 0.72,
+        "seat_capacity": 220
+      },
+      "Retail": {
+        "demand_score": 0.88,
+        "seat_capacity": 420
+      },
+      "Healthcare": {
+        "demand_score": 0.85,
+        "seat_capacity": 300
+      },
+      "Logistics": {
+        "demand_score": 0.9,
+        "seat_capacity": 500
+      }
+    },
+    "Patna": {
+      "Construction & Plumbing": {
+        "demand_score": 0.92,
+        "seat_capacity": 420
+      },
+      "IT-ITeS": {
+        "demand_score": 0.88,
+        "seat_capacity": 380
+      },
+      "Electronics & Hardware": {
+        "demand_score": 0.86,
+        "seat_capacity": 310
+      },
+      "Apparel, Made-Ups & Home Furnishing": {
+        "demand_score": 0.84,
+        "seat_capacity": 300
+      },
+      "Beauty & Wellness": {
+        "demand_score": 0.8,
+        "seat_capacity": 250
+      },
+      "Agriculture & Allied": {
+        "demand_score": 0.85,
+        "seat_capacity": 290
+      },
+      "Automotive": {
+        "demand_score": 0.8,
+        "seat_capacity": 240
+      },
+      "Retail": {
+        "demand_score": 0.82,
+        "seat_capacity": 270
+      },
+      "Healthcare": {
+        "demand_score": 0.84,
+        "seat_capacity": 260
+      }
+    },
+    "default": {
+      "Apparel, Made-Ups & Home Furnishing": {
+        "demand_score": 0.8,
+        "seat_capacity": 250
+      },
+      "Beauty & Wellness": {
+        "demand_score": 0.78,
+        "seat_capacity": 200
+      },
+      "Electronics & Hardware": {
+        "demand_score": 0.82,
+        "seat_capacity": 220
+      },
+      "Construction & Plumbing": {
+        "demand_score": 0.84,
+        "seat_capacity": 280
+      },
+      "Agriculture & Allied": {
+        "demand_score": 0.75,
+        "seat_capacity": 190
+      },
+      "Food Processing": {
+        "demand_score": 0.7,
+        "seat_capacity": 150
+      },
+      "Automotive": {
+        "demand_score": 0.78,
+        "seat_capacity": 200
+      },
+      "IT-ITeS": {
+        "demand_score": 0.8,
+        "seat_capacity": 260
+      },
+      "Retail": {
+        "demand_score": 0.76,
+        "seat_capacity": 210
+      },
+      "Healthcare": {
+        "demand_score": 0.8,
+        "seat_capacity": 200
+      },
+      "Tourism & Hospitality": {
+        "demand_score": 0.72,
+        "seat_capacity": 180
+      },
+      "Logistics": {
+        "demand_score": 0.75,
+        "seat_capacity": 190
+      },
+      "Media & Entertainment": {
+        "demand_score": 0.7,
+        "seat_capacity": 140
+      }
+    }
+  }
+}

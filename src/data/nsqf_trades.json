@@ -1,0 +1,1659 @@
+[
+  {
+    "id": "app_sewing_machine_op",
+    "qp_code": "AMH/Q0301",
+    "name_en": "Self Employed Tailor / Sewing Machine Operator",
+    "name_local": {
+      "hi": "सिलाई मशीन ऑपरेटर / दर्जी",
+      "mr": "शिलाई मशीन ऑपरेटर / शिंपी",
+      "bn": "সেলাই মেশিন অপারেটর / দর্জি",
+      "ta": "தையல் இயந்திர ஆபரேட்டர் / தையல்காரர்",
+      "te": "కుట్టు మిషన్ ఆపరేటర్ / టైలర్",
+      "kn": "ಹೊಲಿಗೆ ಯಂತ್ರ ಆಪರೇಟರ್ / ಟೈಲರ್",
+      "en": "Self Employed Tailor / Sewing Machine Operator"
+    },
+    "sector": "Apparel, Made-Ups & Home Furnishing",
+    "ssc": "Apparel Made-Ups & Home Furnishing Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "middle",
+    "interest_tags": [
+      "stitching",
+      "tailoring",
+      "design",
+      "clothing",
+      "textile",
+      "handicraft",
+      "embroidery"
+    ],
+    "related_occupations": [
+      "tailoring",
+      "weaver",
+      "stitching",
+      "garment work",
+      "handloom",
+      "homemaker"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity",
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "12,000 - 22,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc",
+      "stand_up_india"
+    ]
+  },
+  {
+    "id": "app_hand_embroiderer",
+    "qp_code": "AMH/Q1001",
+    "name_en": "Hand Embroiderer",
+    "name_local": {
+      "hi": "हस्त कढ़ाई कारीगर (Hand Embroiderer)",
+      "mr": "हात कशिदाकारी कारागीर",
+      "bn": "হাতের সূচিকর্ম শিল্পী",
+      "ta": "கை எம்பிராய்டரி கைவினைஞர்",
+      "te": "చేతి ఎంబ్రాయిడరీ నిపుణుడు",
+      "kn": "ಕೈ ಕಸೂತಿ ಕರಕುಶಲಕರ್ಮಿ",
+      "en": "Hand Embroiderer"
+    },
+    "sector": "Apparel, Made-Ups & Home Furnishing",
+    "ssc": "Apparel Made-Ups & Home Furnishing Sector Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 240,
+    "min_education": "primary",
+    "interest_tags": [
+      "embroidery",
+      "handicraft",
+      "design",
+      "textile",
+      "stitching"
+    ],
+    "related_occupations": [
+      "tailoring",
+      "embroidery",
+      "handloom",
+      "artisan",
+      "homemaker"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity",
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "10,000 - 18,000 / month",
+    "scheme_links": [
+      "nsfdc",
+      "pm_svanidhi"
+    ]
+  },
+  {
+    "id": "app_sampling_tailor",
+    "qp_code": "AMH/Q0701",
+    "name_en": "Sampling Tailor",
+    "name_local": {
+      "hi": "सैंपलिंग टेलर (Sampling Tailor)",
+      "mr": "सॅम्पलिंग टेलर",
+      "bn": "স্যাম্পলিং দর্জি",
+      "ta": "மாதிரி தையல்காரர்",
+      "te": "శాంప్లింగ్ టైలర్",
+      "kn": "ಮಾದರಿ ಟೈಲರ್",
+      "en": "Sampling Tailor"
+    },
+    "sector": "Apparel, Made-Ups & Home Furnishing",
+    "ssc": "Apparel Made-Ups & Home Furnishing Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 360,
+    "min_education": "secondary",
+    "interest_tags": [
+      "pattern_making",
+      "tailoring",
+      "design",
+      "clothing",
+      "garments"
+    ],
+    "related_occupations": [
+      "tailoring",
+      "garment master",
+      "fashion worker"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 28,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "app_fashion_designer_asst",
+    "qp_code": "AMH/Q1201",
+    "name_en": "Assistant Fashion Designer",
+    "name_local": {
+      "hi": "सहायक फैशन डिजाइनर",
+      "mr": "सहाय्यक फॅशन डिझायनर",
+      "bn": "সহকারী ফ্যাশন ডিজাইনার",
+      "ta": "உதவி பேஷன் டிசைனர்",
+      "te": "అసిస్టెంట్ ఫ్యాషన్ డిజైనర్",
+      "kn": "ಸಹಾಯಕ ಫ್ಯಾಷನ್ ಡಿಸೈನರ್",
+      "en": "Assistant Fashion Designer"
+    },
+    "sector": "Apparel, Made-Ups & Home Furnishing",
+    "ssc": "Apparel Made-Ups & Home Furnishing Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "higher_secondary",
+    "interest_tags": [
+      "design",
+      "fashion",
+      "sketching",
+      "styling",
+      "textile"
+    ],
+    "related_occupations": [
+      "boutique owner",
+      "tailoring",
+      "artist"
+    ],
+    "physical_demands": [
+      "creative_visual"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "16,000 - 30,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "app_fabric_checker",
+    "qp_code": "AMH/Q0102",
+    "name_en": "Fabric Checker / Quality Inspector",
+    "name_local": {
+      "hi": "फैब्रिक चेकर व क्वालिटी इंस्पेक्टर",
+      "mr": "कापड तपासणी व गुणवत्ता निरीक्षक",
+      "bn": "কাপড় পরীক্ষক ও গুণমান পরিদর্শক",
+      "ta": "துணி பரிசோதகர்",
+      "te": "ఫ్యాబ్రిక్ చెకర్",
+      "kn": "ಬಟ್ಟೆ ಪರಿಶೀಲಕ",
+      "en": "Fabric Checker / Quality Inspector"
+    },
+    "sector": "Apparel, Made-Ups & Home Furnishing",
+    "ssc": "Apparel Made-Ups & Home Furnishing Sector Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 200,
+    "min_education": "middle",
+    "interest_tags": [
+      "quality_check",
+      "garments",
+      "factory",
+      "textile"
+    ],
+    "related_occupations": [
+      "garment worker",
+      "factory laborer",
+      "textile helper"
+    ],
+    "physical_demands": [
+      "standing_moderate"
+    ],
+    "self_employment_viable": false,
+    "typical_wage_band_inr": "12,000 - 18,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "bw_assistant_beautician",
+    "qp_code": "BWP/Q0101",
+    "name_en": "Assistant Beauty Therapist / Parlour Specialist",
+    "name_local": {
+      "hi": "ब्यूटी थेरेपिस्ट / ब्यूटी पार्लर विशेषज्ञ",
+      "mr": "ब्युटी थेरपिस्ट / पार्लर तज्ज्ञ",
+      "bn": "বিউটি থেরাপিস্ট / পার্লার বিশেষজ্ঞ",
+      "ta": "பியூட்டி தெரபிஸ்ட் / அழகுக்கலை நிபுணர்",
+      "te": "బ్యూటీ థెరపిస్ట్ / పార్లర్ నిపుణుడు",
+      "kn": "ಬ್ಯೂಟಿ ಥೆರಪಿಸ್ಟ್ / ಸೌಂದರ್ಯ ತಜ್ಞ",
+      "en": "Assistant Beauty Therapist / Parlour Specialist"
+    },
+    "sector": "Beauty & Wellness",
+    "ssc": "Beauty & Wellness Sector Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 300,
+    "min_education": "primary",
+    "interest_tags": [
+      "skincare",
+      "haircare",
+      "makeup",
+      "beauty",
+      "grooming",
+      "salon"
+    ],
+    "related_occupations": [
+      "hairdresser",
+      "homemaker",
+      "mehendi artist",
+      "beautician"
+    ],
+    "physical_demands": [
+      "standing_moderate",
+      "fine_hand_dexterity"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "12,000 - 25,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "bw_pedicurist_manicurist",
+    "qp_code": "BWP/Q0401",
+    "name_en": "Pedicurist and Manicurist",
+    "name_local": {
+      "hi": "मेनिक्योर व पेडिक्योर विशेषज्ञ",
+      "mr": "मॅनिक्युअर व पेडिक्युअर तज्ज्ञ",
+      "bn": "ম্যানিকিউর ও পেডিকিউর বিশেষজ্ঞ",
+      "ta": "மெனிக்யூர் மற்றும் பெடிக்யூர் நிபுணர்",
+      "te": "మేనిక్యూర్ మరియు పెడిక్యూర్ స్పెషలిస్ట్",
+      "kn": "ಮ್ಯಾನಿಕ್ಯೂರ್ ಮತ್ತು ಪೆಡಿಕ್ಯೂರ್ ತಜ್ಞ",
+      "en": "Pedicurist and Manicurist"
+    },
+    "sector": "Beauty & Wellness",
+    "ssc": "Beauty & Wellness Sector Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 200,
+    "min_education": "primary",
+    "interest_tags": [
+      "nail_care",
+      "beauty",
+      "spa",
+      "grooming"
+    ],
+    "related_occupations": [
+      "beautician",
+      "salon assistant"
+    ],
+    "physical_demands": [
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "10,000 - 20,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "bw_bridal_makeup_artist",
+    "qp_code": "BWP/Q0301",
+    "name_en": "Bridal Makeup & Hair Styling Artist",
+    "name_local": {
+      "hi": "ब्राइडल मेकअप एवं हेयर स्टाइलिंग कलाकार",
+      "mr": "ब्राइडल मेकअप आणि हेअर स्टाईल कलाकार",
+      "bn": "ব্রাইডাল মেকআপ ও হেয়ার স্টাইলিং শিল্পী",
+      "ta": "மணப்பெண் ஒப்பனை மற்றும் சிகை அலங்காரக் கலைஞர்",
+      "te": "బ్రైడల్ మేకప్ & హెయిర్ స్టైలింగ్ ఆర్టిస్ట్",
+      "kn": "ವಧುವಿನ ಮೇಕಪ್ ಮತ್ತು ಹೇರ್ ಸ್ಟೈಲಿಂಗ್ ಕಲಾವಿದ",
+      "en": "Bridal Makeup & Hair Styling Artist"
+    },
+    "sector": "Beauty & Wellness",
+    "ssc": "Beauty & Wellness Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 360,
+    "min_education": "secondary",
+    "interest_tags": [
+      "makeup",
+      "bridal",
+      "hairstyling",
+      "cosmetics",
+      "fashion"
+    ],
+    "related_occupations": [
+      "beautician",
+      "mehendi artist",
+      "salon owner"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity",
+      "standing_moderate"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "18,000 - 45,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "bw_yoga_wellness_trainer",
+    "qp_code": "BWP/Q2201",
+    "name_en": "Yoga Wellness Trainer",
+    "name_local": {
+      "hi": "योग एवं वेलनेस ट्रेनर",
+      "mr": "योग आणि वेलनेस प्रशिक्षक",
+      "bn": "যোগ ও সুস্থতা প্রশিক্ষক",
+      "ta": "யோகா மற்றும் ஆரோக்கிய பயிற்சியாளர்",
+      "te": "యోగా మరియు వెల్‌నెస్ ట్రైనర్",
+      "kn": "ಯೋಗ ಮತ್ತು ಕ್ಷೇಮ ತರಬೇತುದಾರ",
+      "en": "Yoga Wellness Trainer"
+    },
+    "sector": "Beauty & Wellness",
+    "ssc": "Beauty & Wellness Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "higher_secondary",
+    "interest_tags": [
+      "fitness",
+      "yoga",
+      "health",
+      "exercise",
+      "wellness"
+    ],
+    "related_occupations": [
+      "gym trainer",
+      "sports instructor",
+      "health worker"
+    ],
+    "physical_demands": [
+      "high_physical_mobility",
+      "stamina"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 35,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "bw_spa_therapist",
+    "qp_code": "BWP/Q0202",
+    "name_en": "Spa Therapist",
+    "name_local": {
+      "hi": "स्पा थेरेपिस्ट (Spa Therapist)",
+      "mr": "स्पा थेरपिस्ट",
+      "bn": "স্পা থেরাপিস্ট",
+      "ta": "ஸ்பா தெரபிஸ்ட்",
+      "te": "స్పా థెరపిస్ట్",
+      "kn": "ಸ್ಪಾ ಥೆರಪಿಸ್ಟ್",
+      "en": "Spa Therapist"
+    },
+    "sector": "Beauty & Wellness",
+    "ssc": "Beauty & Wellness Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 320,
+    "min_education": "secondary",
+    "interest_tags": [
+      "massage",
+      "wellness",
+      "therapy",
+      "hospitality"
+    ],
+    "related_occupations": [
+      "caregiver",
+      "nursing aide",
+      "salon worker"
+    ],
+    "physical_demands": [
+      "moderate_physical_activity"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 28,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "el_cctv_technician",
+    "qp_code": "ELE/Q4605",
+    "name_en": "CCTV Installation and Security Technician",
+    "name_local": {
+      "hi": "सीसीटीवी कैमरा इंस्टॉलेशन व सुरक्षा तकनीशियन",
+      "mr": "सीसीटीव्ही कॅमेरा इंस्टॉलेशन व तंत्रज्ञ",
+      "bn": "সিসিটিভি ইনস্টলেশন ও সুরক্ষা টেকনিশিয়ান",
+      "ta": "சிசிடிவி நிறுவுதல் மற்றும் பாதுகாப்பு தொழில்நுட்ப வல்லுநர்",
+      "te": "సిసిటివి ఇన్‌స్టాలేషన్ మరియు సెక్యూరిటీ టెక్నీషియన్",
+      "kn": "ಸಿಸಿಟಿವಿ ಸ್ಥಾಪನೆ ಮತ್ತು ಭದ್ರತಾ ತಂತ್ರಜ್ಞ",
+      "en": "CCTV Installation and Security Technician"
+    },
+    "sector": "Electronics & Hardware",
+    "ssc": "Electronics Sector Skills Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 360,
+    "min_education": "secondary",
+    "interest_tags": [
+      "cctv",
+      "wiring",
+      "security",
+      "electronics",
+      "cameras",
+      "repairs"
+    ],
+    "related_occupations": [
+      "electrician",
+      "cable operator",
+      "hardware repairer"
+    ],
+    "physical_demands": [
+      "climbing_ladders",
+      "outdoor_mobility"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 30,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "el_smartphone_repair",
+    "qp_code": "ELE/Q8104",
+    "name_en": "Smartphone and Mobile Device Repair Technician",
+    "name_local": {
+      "hi": "स्मार्टफोन व मोबाइल मरम्मत तकनीशियन",
+      "mr": "स्मार्टफोन आणि मोबाईल दुरुस्ती तंत्रज्ञ",
+      "bn": "স্মার্টফোন ও মোবাইল মেরামত টেকনিশিয়ান",
+      "ta": "ஸ்மார்ட்போன் மற்றும் மொபைல் பழுதுபார்க்கும் தொழில்நுட்ப வல்லுநர்",
+      "te": "స్మార్ట్‌ఫోన్ మరియు మొబైల్ రిపేర్ టెక్నీషియన్",
+      "kn": "ಸ್ಮಾರ್ಟ್‌ಫೋನ್ ಮತ್ತು ಮೊಬೈಲ್ ರಿಪೇರಿ ತಂತ್ರಜ್ಞ",
+      "en": "Smartphone and Mobile Device Repair Technician"
+    },
+    "sector": "Electronics & Hardware",
+    "ssc": "Electronics Sector Skills Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 320,
+    "min_education": "secondary",
+    "interest_tags": [
+      "mobile_repair",
+      "gadgets",
+      "soldering",
+      "electronics",
+      "smartphones"
+    ],
+    "related_occupations": [
+      "electronics helper",
+      "shop assistant",
+      "computer technician"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity",
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 35,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "el_home_appliance_technician",
+    "qp_code": "ELE/Q3101",
+    "name_en": "Field Technician - Other Home Appliances",
+    "name_local": {
+      "hi": "घरेलू उपकरण मरम्मत तकनीशियन (Home Appliances)",
+      "mr": "घरगुती उपकरणे दुरुस्ती तंत्रज्ञ",
+      "bn": "গৃহস্থালী যন্ত্রপাতি মেরামত টেকনিশিয়ান",
+      "ta": "வீട്ടു உபயோகப் பொருட்கள் பழுதுபார்க்கும் தொழில்நுட்ப வல்லுநர்",
+      "te": "గృహోపకరణాల రిపేర్ టెక్నీషియన్",
+      "kn": "ಗೃಹೋಪಯೋಗಿ ವಸ್ತುಗಳ ದುರಸ್ತಿ ತಂತ್ರಜ್ಞ",
+      "en": "Field Technician - Other Home Appliances"
+    },
+    "sector": "Electronics & Hardware",
+    "ssc": "Electronics Sector Skills Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 360,
+    "min_education": "middle",
+    "interest_tags": [
+      "appliances",
+      "refrigerator",
+      "washing_machine",
+      "mixer",
+      "electrical_repair"
+    ],
+    "related_occupations": [
+      "electrician",
+      "motor mechanic",
+      "repairman"
+    ],
+    "physical_demands": [
+      "outdoor_travel",
+      "lifting_light_loads"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 32,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc",
+      "stand_up_india"
+    ]
+  },
+  {
+    "id": "el_solar_panel_installer",
+    "qp_code": "ELE/Q5901",
+    "name_en": "Solar Panel Installation Technician (Suryamitra)",
+    "name_local": {
+      "hi": "सोलर पैनल इंस्टॉलेशन तकनीशियन (सूर्यमित्र)",
+      "mr": "सौर पॅनेल इंस्टॉलेशन तंत्रज्ञ (सूर्यमित्र)",
+      "bn": "সৌর প্যানেল ইনস্টলেশন টেকনিশিয়ান (সূর্যমিত্র)",
+      "ta": "சூரிய ஒளி தகடு நிறுவும் தொழில்நுட்ப வல்லுநர் (சூர்யமித்ரா)",
+      "te": "సోలార్ ప్యానెల్ ఇన్‌స్టాలేషన్ టెక్నీషియన్ (సూర్యమిత్ర)",
+      "kn": "ಸೌರ ಫಲಕ ಸ್ಥಾಪನಾ ತಂತ್ರಜ್ಞ (ಸೂರ್ಯಮಿತ್ರ)",
+      "en": "Solar Panel Installation Technician (Suryamitra)"
+    },
+    "sector": "Electronics & Hardware",
+    "ssc": "Electronics Sector Skills Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "secondary",
+    "interest_tags": [
+      "solar",
+      "renewable_energy",
+      "electricity",
+      "roof_work",
+      "green_energy"
+    ],
+    "related_occupations": [
+      "electrician",
+      "wireman",
+      "construction worker"
+    ],
+    "physical_demands": [
+      "outdoor_sun_exposure",
+      "climbing_roofs",
+      "heavy_lifting"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "16,000 - 32,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "el_led_light_repair",
+    "qp_code": "ELE/Q9301",
+    "name_en": "LED Light Repair & Assembly Technician",
+    "name_local": {
+      "hi": "एलईडी लाइट मरम्मत एवं असेंबली तकनीशियन",
+      "mr": "एलईडी लाईट दुरुस्ती व जोडणी तंत्रज्ञ",
+      "bn": "এলইডি লাইট মেরামত ও সংযোজন টেকনিশিয়ান",
+      "ta": "எல்இடி விளக்கு பழுதுபார்ப்பு தொழில்நுட்ப வல்லுநர்",
+      "te": "ఎల్ఈడీ లైట్ రిపేరింగ్ & అసెంబ్లింగ్ టెక్నీషియన్",
+      "kn": "ಎಲ್‌ಇಡಿ ಲೈಟ್ ರಿಪೇರಿ ಮತ್ತು ಜೋಡಣೆ ತಂತ್ರಜ್ಞ",
+      "en": "LED Light Repair & Assembly Technician"
+    },
+    "sector": "Electronics & Hardware",
+    "ssc": "Electronics Sector Skills Council of India",
+    "nsqf_level": 3,
+    "duration_hours": 240,
+    "min_education": "primary",
+    "interest_tags": [
+      "led",
+      "lighting",
+      "assembly",
+      "soldering",
+      "electrical"
+    ],
+    "related_occupations": [
+      "electrician helper",
+      "assembly worker"
+    ],
+    "physical_demands": [
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "11,000 - 22,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "con_general_plumber",
+    "qp_code": "PSC/Q0104",
+    "name_en": "Plumber (General)",
+    "name_local": {
+      "hi": "प्लंबर (सामान्य पाइप व सेनेटरी तकनीशियन)",
+      "mr": "प्लंबर (पाईप व सॅनिटरी तज्ज्ञ)",
+      "bn": "প্লাম্বার (পাইপ ও স্যানিটারি মিস্ত্রি)",
+      "ta": "பிளம்பர் (பொது குழாய் பொருத்துநர்)",
+      "te": "ప్లంబర్ (పైపు మరియు శానిటరీ మెకానిక్)",
+      "kn": "ಪ್ಲಂಬರ್ (ಪೈಪ್ ಮತ್ತು ನೈರ್ಮಲ್ಯ ತಂತ್ರಜ್ಞ)",
+      "en": "Plumber (General)"
+    },
+    "sector": "Construction & Plumbing",
+    "ssc": "Indian Plumbing Skills Council",
+    "nsqf_level": 3,
+    "duration_hours": 320,
+    "min_education": "primary",
+    "interest_tags": [
+      "plumbing",
+      "pipe_fitting",
+      "sanitary",
+      "water_supply",
+      "repairs"
+    ],
+    "related_occupations": [
+      "construction helper",
+      "mason",
+      "laborer",
+      "welder"
+    ],
+    "physical_demands": [
+      "heavy_lifting",
+      "bending_kneeling",
+      "physical_labor"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 30,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "con_general_electrician",
+    "qp_code": "CON/Q0602",
+    "name_en": "Assistant Electrician (Construction / Domestic)",
+    "name_local": {
+      "hi": "इलेक्ट्रीशियन (घरेलू व भवन वायरिंग)",
+      "mr": "इलेक्ट्रिशियन (घरगुती व इमारत वायरिंग)",
+      "bn": "ইলেকট্রিশিয়ান (গৃহস্থালী ও নির্মাণ ওয়্যারিং)",
+      "ta": "எலக்ட்ரீஷியன் (வீட்டு வயரிங் தொழில்நுட்ப வல்லுநர்)",
+      "te": "ఎలక్ట్రీషియన్ (హౌస్ వైరింగ్ టెక్నీషియన్)",
+      "kn": "ಎಲೆಕ್ಟ್ರಿಷಿಯನ್ (ಮನೆ ವೈರಿಂಗ್ ತಂತ್ರಜ್ಞ)",
+      "en": "Assistant Electrician (Construction / Domestic)"
+    },
+    "sector": "Construction & Plumbing",
+    "ssc": "Construction Skill Development Council of India",
+    "nsqf_level": 3,
+    "duration_hours": 350,
+    "min_education": "middle",
+    "interest_tags": [
+      "electrical",
+      "wiring",
+      "switches",
+      "house_wiring",
+      "repairs"
+    ],
+    "related_occupations": [
+      "wireman",
+      "electrician helper",
+      "line worker"
+    ],
+    "physical_demands": [
+      "climbing_ladders",
+      "outdoor_activity"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 32,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc",
+      "stand_up_india"
+    ]
+  },
+  {
+    "id": "con_mason_general",
+    "qp_code": "CON/Q0102",
+    "name_en": "Mason (General Brick and Concrete Work)",
+    "name_local": {
+      "hi": "राजमिस्त्री (भवन निर्माण एवं चिनाई)",
+      "mr": "गवंडी (इमारत बांधकाम व चिनाई)",
+      "bn": "রাজমিস্ত্রি (ইঁট ও সিমেন্ট নির্মাণ)",
+      "ta": "கொத்தனார் (கட்டிட வேலை)",
+      "te": "మేస్త్రీ (భవన నిర్మాణం)",
+      "kn": "ಮೇಸ್ತ್ರಿ (ಕಟ್ಟಡ ನಿರ್ಮಾಣ)",
+      "en": "Mason (General Brick and Concrete Work)"
+    },
+    "sector": "Construction & Plumbing",
+    "ssc": "Construction Skill Development Council of India",
+    "nsqf_level": 3,
+    "duration_hours": 300,
+    "min_education": "none",
+    "interest_tags": [
+      "masonry",
+      "brickwork",
+      "construction",
+      "plastering",
+      "tiling"
+    ],
+    "related_occupations": [
+      "construction laborer",
+      "daily wage worker",
+      "helper"
+    ],
+    "physical_demands": [
+      "heavy_physical_labor",
+      "lifting_loads",
+      "outdoor_sun_exposure"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "16,000 - 35,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "con_tile_layer",
+    "qp_code": "CON/Q0201",
+    "name_en": "Tile and Stone Layer",
+    "name_local": {
+      "hi": "टाइल्स एवं मार्बल फिटिंग कारीगर",
+      "mr": "टाईल्स आणि मार्बल बसवणारा कारागीर",
+      "bn": "টাইলস ও মার্বেল মিস্ত্রি",
+      "ta": "டைல்ஸ் மற்றும் மார்பிள் பொருத்துநர்",
+      "te": "టైల్స్ మరియు మార్బుల్ ఫిట్టర్",
+      "kn": "ಟೈಲ್ಸ್ ಮತ್ತು ಮಾರ್ಬಲ್ ಫಿಟ್ಟಿಂಗ್ ಕುಶಲಕರ್ಮಿ",
+      "en": "Tile and Stone Layer"
+    },
+    "sector": "Construction & Plumbing",
+    "ssc": "Construction Skill Development Council of India",
+    "nsqf_level": 3,
+    "duration_hours": 280,
+    "min_education": "primary",
+    "interest_tags": [
+      "tiling",
+      "flooring",
+      "marble",
+      "renovation",
+      "construction"
+    ],
+    "related_occupations": [
+      "mason",
+      "flooring worker",
+      "construction laborer"
+    ],
+    "physical_demands": [
+      "kneeling_bending",
+      "lifting_moderate_weights"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "18,000 - 40,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "con_painter_decorator",
+    "qp_code": "CON/Q0501",
+    "name_en": "Construction Painter and Decorator",
+    "name_local": {
+      "hi": "भवन पेंटर एवं पुट्टी कारीगर",
+      "mr": "इमारत पेंटर आणि रंगकाम कारागीर",
+      "bn": "বাড়ি রঙমিস্ত্রি",
+      "ta": "கட்டிட பெயிண்டர்",
+      "te": "పెయింటర్ (భవనాల రంగులు వేయు నిపుణుడు)",
+      "kn": "ಕಟ್ಟಡ ಪೇಂಟರ್ ಮತ್ತು ಅಲಂಕಾರಿಕ",
+      "en": "Construction Painter and Decorator"
+    },
+    "sector": "Construction & Plumbing",
+    "ssc": "Construction Skill Development Council of India",
+    "nsqf_level": 3,
+    "duration_hours": 260,
+    "min_education": "none",
+    "interest_tags": [
+      "painting",
+      "putty",
+      "decorating",
+      "color_matching",
+      "renovation"
+    ],
+    "related_occupations": [
+      "whitewashing worker",
+      "laborer",
+      "artist"
+    ],
+    "physical_demands": [
+      "climbing_scaffolding",
+      "standing_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 32,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "agr_dairy_farmer",
+    "qp_code": "AGR/Q4101",
+    "name_en": "Dairy Farmer / Milk Production Specialist",
+    "name_local": {
+      "hi": "डेयरी किसान / दुग्ध उत्पादक उद्यमी",
+      "mr": "डेअरी शेतकरी / दुग्ध व्यवसाय उद्योजक",
+      "bn": "দুগ্ধ খামারি / দুগ্ধ উৎপাদক",
+      "ta": "பால் பண்ணையாளர் / பால் உற்பத்தியாளர்",
+      "te": "పాడి రైతు / పాల ఉత్పత్తి నిపుణుడు",
+      "kn": "ಡೈರಿ ರೈತ / ಹಾಲು ಉತ್ಪಾದಕ",
+      "en": "Dairy Farmer / Milk Production Specialist"
+    },
+    "sector": "Agriculture & Allied",
+    "ssc": "Agriculture Skill Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "primary",
+    "interest_tags": [
+      "dairy",
+      "cattle",
+      "milking",
+      "animal_husbandry",
+      "rural_business"
+    ],
+    "related_occupations": [
+      "farming",
+      "livestock rearer",
+      "agricultural laborer"
+    ],
+    "physical_demands": [
+      "animal_handling",
+      "early_morning_work"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "18,000 - 45,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc",
+      "pm_svanidhi"
+    ]
+  },
+  {
+    "id": "agr_poultry_farmer",
+    "qp_code": "AGR/Q4301",
+    "name_en": "Small Poultry Farmer (Broiler / Layer)",
+    "name_local": {
+      "hi": "मुर्गी पालन उद्यमी (Poultry Farmer)",
+      "mr": "कुक्कुटपालन उद्योजक (पोल्ट्री फार्मर)",
+      "bn": "পোল্ট্রি খামারি",
+      "ta": "கோழிப் பண்ணையாளர்",
+      "te": "కోళ్ల పెంపకందారు",
+      "kn": "ಕೋಳಿ ಸಾಕಣೆದಾರ",
+      "en": "Small Poultry Farmer (Broiler / Layer)"
+    },
+    "sector": "Agriculture & Allied",
+    "ssc": "Agriculture Skill Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 280,
+    "min_education": "primary",
+    "interest_tags": [
+      "poultry",
+      "birds",
+      "meat",
+      "eggs",
+      "farming"
+    ],
+    "related_occupations": [
+      "farming",
+      "livestock",
+      "rural worker"
+    ],
+    "physical_demands": [
+      "farm_maintenance",
+      "standing_moderate"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "16,000 - 40,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "agr_micro_irrigation",
+    "qp_code": "AGR/Q1002",
+    "name_en": "Micro Irrigation Technician (Drip & Sprinkler)",
+    "name_local": {
+      "hi": "ड्रिप व स्प्रिंकलर सिंचाई तकनीशियन",
+      "mr": "ठिबक व तुषार सिंचन तंत्रज्ञ",
+      "bn": "ড্রিপ ও স্প্রিংকলার সেচ টেকনিশিয়ান",
+      "ta": "சொட்டு நீர் பாசன தொழில்நுட்ப வல்லுநர்",
+      "te": "మైక్రో ఇరిగేషన్ టెక్నీషియన్",
+      "kn": "ಹನಿ ನೀರಾವರಿ ತಂತ್ರಜ್ಞ",
+      "en": "Micro Irrigation Technician (Drip & Sprinkler)"
+    },
+    "sector": "Agriculture & Allied",
+    "ssc": "Agriculture Skill Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 320,
+    "min_education": "middle",
+    "interest_tags": [
+      "irrigation",
+      "water_saving",
+      "farming_equipment",
+      "agriculture"
+    ],
+    "related_occupations": [
+      "farmer",
+      "plumber",
+      "pump mechanic"
+    ],
+    "physical_demands": [
+      "outdoor_field_work"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 28,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "agr_fruit_vegetable_processor",
+    "qp_code": "FIC/Q0103",
+    "name_en": "Fruit and Vegetable Processing Technician (Pickle, Jam, Pulp)",
+    "name_local": {
+      "hi": "फल व सब्जी प्रसंस्करण (अचार, जैम, पापड़ निर्माण)",
+      "mr": "फळे व भाजीपाला प्रक्रिया (लोणचे, जॅम निर्मिती)",
+      "bn": "ফল ও শাকসবজি প্রক্রিয়াকরণ (আচার, জ্যাম)",
+      "ta": "பழங்கள் மற்றும் காய்கறிகள் பதப்படுத்துபவர் (ஊறுகாய், ஜாம்)",
+      "te": "పండ్లు & కూరగాయల ప్రాసెసింగ్ టెక్నీషియన్",
+      "kn": "ಹಣ್ಣು ಮತ್ತು ತರಕಾರಿ ಸಂಸ್ಕರಣಾ ತಂತ್ರಜ್ಞ",
+      "en": "Fruit and Vegetable Processing Technician (Pickle, Jam, Pulp)"
+    },
+    "sector": "Food Processing",
+    "ssc": "Food Industry Capacity & Skill Initiative",
+    "nsqf_level": 3,
+    "duration_hours": 240,
+    "min_education": "primary",
+    "interest_tags": [
+      "cooking",
+      "food_processing",
+      "pickles",
+      "preservation",
+      "homemade_products"
+    ],
+    "related_occupations": [
+      "cook",
+      "homemaker",
+      "agricultural worker",
+      "sweet maker"
+    ],
+    "physical_demands": [
+      "kitchen_hygiene",
+      "standing_moderate"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "12,000 - 25,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc",
+      "stand_up_india"
+    ]
+  },
+  {
+    "id": "agr_mushroom_grower",
+    "qp_code": "AGR/Q7803",
+    "name_en": "Mushroom Cultivator / Spawns Specialist",
+    "name_local": {
+      "hi": "मशरूम उत्पादक किसान (Mushroom Cultivator)",
+      "mr": "मशरूम उत्पादक शेतकरी",
+      "bn": "মাশরুম চাষি",
+      "ta": "காளான் வளர்ப்பாளர்",
+      "te": "పుట్టగొడుగుల పెంపకందారు",
+      "kn": "ಅಣಬೆ ಬೆಳೆಗಾರ",
+      "en": "Mushroom Cultivator / Spawns Specialist"
+    },
+    "sector": "Agriculture & Allied",
+    "ssc": "Agriculture Skill Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 200,
+    "min_education": "primary",
+    "interest_tags": [
+      "mushrooms",
+      "organic_farming",
+      "indoor_cultivation",
+      "horticulture"
+    ],
+    "related_occupations": [
+      "farming",
+      "gardener",
+      "homemaker"
+    ],
+    "physical_demands": [
+      "indoor_monitoring"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 35,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "aut_two_wheeler_mechanic",
+    "qp_code": "ASC/Q1411",
+    "name_en": "Two-Wheeler Service & Repair Technician",
+    "name_local": {
+      "hi": "दोपहिया वाहन सर्विस एवं मरम्मत मैकेनिक",
+      "mr": "दुचाकी सेवा व दुरुस्ती मेकॅनिक",
+      "bn": "টু-হুইলার সার্ভিস ও মেরামত মেকানিক",
+      "ta": "இருசக்கர வாகன பழுதுபார்க்கும் மெக்கானிக்",
+      "te": "టూ-వీలర్ సర్వీస్ & రిపేర్ మెకానిక్",
+      "kn": "ದ್ವಿಚಕ್ರ ವಾಹನ ಸೇವೆ ಮತ್ತು ದುರಸ್ತಿ ಮೆಕ್ಯಾನಿಕ್",
+      "en": "Two-Wheeler Service & Repair Technician"
+    },
+    "sector": "Automotive",
+    "ssc": "Automotive Skills Development Council",
+    "nsqf_level": 4,
+    "duration_hours": 380,
+    "min_education": "middle",
+    "interest_tags": [
+      "bikes",
+      "two_wheeler",
+      "engine",
+      "mechanics",
+      "vehicles",
+      "oil_change"
+    ],
+    "related_occupations": [
+      "garage helper",
+      "cycle repairer",
+      "mechanic"
+    ],
+    "physical_demands": [
+      "bending_kneeling",
+      "grease_oil_handling",
+      "heavy_parts"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "16,000 - 38,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "aut_ev_service_technician",
+    "qp_code": "ASC/Q1424",
+    "name_en": "Electric Vehicle (EV) Service Technician",
+    "name_local": {
+      "hi": "इलेक्ट्रिक वाहन (EV) सर्विस व बैटरी तकनीशियन",
+      "mr": "इलेक्ट्रिक वाहन (EV) सेवा व बॅटरी तंत्रज्ञ",
+      "bn": "বৈদ্যুতিক গাড়ি (ইভি) সার্ভিস ও ব্যাটারি টেকনিশিয়ান",
+      "ta": "மின்சார வாகன (EV) சேவை மற்றும் பேட்டரி தொழில்நுட்ப வல்லுநர்",
+      "te": "ఎలక్ట్రిక్ వెహికల్ (ఈవీ) సర్వీస్ టెక్నీషియన్",
+      "kn": "ಎಲೆಕ್ಟ್ರಿಕ್ ವಾಹನ (ಇವಿ) ಸೇವಾ ತಂತ್ರಜ್ಞ",
+      "en": "Electric Vehicle (EV) Service Technician"
+    },
+    "sector": "Automotive",
+    "ssc": "Automotive Skills Development Council",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "secondary",
+    "interest_tags": [
+      "ev",
+      "electric_scooter",
+      "batteries",
+      "motor_repair",
+      "green_tech"
+    ],
+    "related_occupations": [
+      "electrician",
+      "auto mechanic",
+      "battery technician"
+    ],
+    "physical_demands": [
+      "fine_hand_dexterity",
+      "moderate_lifting"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "18,000 - 40,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "aut_commercial_driver",
+    "qp_code": "ASC/Q9702",
+    "name_en": "Commercial Vehicle Driver (LCV / Truck / Bus)",
+    "name_local": {
+      "hi": "कमर्शियल वाहन चालक (ड्राइवर)",
+      "mr": "व्यावसायिक वाहन चालक (ड्रायव्हर)",
+      "bn": "বাণিজ্যিক যানবাহন চালক",
+      "ta": "வணிக வாகன ஓட்டுநர்",
+      "te": "కమర్షియల్ వెహికల్ డ్రైవర్",
+      "kn": "ವಾಣಿಜ್ಯ ವಾಹನ ಚಾಲಕ",
+      "en": "Commercial Vehicle Driver (LCV / Truck / Bus)"
+    },
+    "sector": "Automotive",
+    "ssc": "Automotive Skills Development Council",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "middle",
+    "interest_tags": [
+      "driving",
+      "logistics",
+      "transport",
+      "travel",
+      "vehicles"
+    ],
+    "related_occupations": [
+      "auto driver",
+      "taxi driver",
+      "delivery driver",
+      "tractor driver"
+    ],
+    "physical_demands": [
+      "long_hours_sitting",
+      "alert_eyesight",
+      "night_driving"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "18,000 - 35,000 / month",
+    "scheme_links": [
+      "stand_up_india",
+      "nsfdc",
+      "pm_svanidhi"
+    ]
+  },
+  {
+    "id": "log_warehouse_picker",
+    "qp_code": "LSC/Q0102",
+    "name_en": "Warehouse Associate / Picker & Packer",
+    "name_local": {
+      "hi": "वेयरहाउस एसोसिएट / पैकर एवं पिकर",
+      "mr": "वेअरहाऊस असोसिएट / पॅकर आणि पिकर",
+      "bn": "গুদাম সহযোগী / পিকার ও প্যাকার",
+      "ta": "கிடங்கு உதவியாளர் / பேக்கர்",
+      "te": "వేర్‌హౌస్ అసోసియేట్ / ప్యాకర్",
+      "kn": "ಗೋದಾಮು ಸಹವರ್ತಿ / ಪ್ಯಾಕರ್",
+      "en": "Warehouse Associate / Picker & Packer"
+    },
+    "sector": "Logistics",
+    "ssc": "Logistics Sector Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 220,
+    "min_education": "primary",
+    "interest_tags": [
+      "warehouse",
+      "packaging",
+      "inventory",
+      "e_commerce",
+      "delivery"
+    ],
+    "related_occupations": [
+      "delivery boy",
+      "store helper",
+      "loader"
+    ],
+    "physical_demands": [
+      "standing_walking",
+      "lifting_boxes"
+    ],
+    "self_employment_viable": false,
+    "typical_wage_band_inr": "13,000 - 22,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "aut_auto_body_painter",
+    "qp_code": "ASC/Q1405",
+    "name_en": "Automotive Paint Technician / Denter",
+    "name_local": {
+      "hi": "ऑटोमोबाइल डेंटिंग एवं पेंटिंग तकनीशियन",
+      "mr": "ऑटोमोबाईल डेंटिंग आणि पेंटिंग तंत्रज्ञ",
+      "bn": "অটোমোবাইল ডেন্টিং ও পেইন্টিং টেকনিশিয়ান",
+      "ta": "வாகன பெயிண்டிங் மற்றும் டெண்டிங் தொழில்நுட்ப வல்லுநர்",
+      "te": "ఆటోమోటివ్ డెంటింగ్ & పెయింటింగ్ టెక్నీషియన్",
+      "kn": "ವಾಹನ ಡೆಂಟಿಂಗ್ ಮತ್ತು ಪೇಂಟಿಂಗ್ ತಂತ್ರಜ್ಞ",
+      "en": "Automotive Paint Technician / Denter"
+    },
+    "sector": "Automotive",
+    "ssc": "Automotive Skills Development Council",
+    "nsqf_level": 4,
+    "duration_hours": 350,
+    "min_education": "middle",
+    "interest_tags": [
+      "denting",
+      "painting",
+      "spray_paint",
+      "body_repair",
+      "automobiles"
+    ],
+    "related_occupations": [
+      "painter",
+      "welder",
+      "garage worker"
+    ],
+    "physical_demands": [
+      "fumes_mask_usage",
+      "standing_long_hours"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 32,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "it_data_entry_operator",
+    "qp_code": "SSC/Q2212",
+    "name_en": "Domestic Data Entry Operator (DDEO)",
+    "name_local": {
+      "hi": "घरेलू डाटा एंट्री ऑपरेटर (Computer Typing & Data)",
+      "mr": "डेटा एंट्री ऑपरेटर (कॉम्प्युटर टायपिंग)",
+      "bn": "ডাটা এন্ট্রি অপারেটর (কম্পিউটার টাইপিং)",
+      "ta": "டேட்டா என்ட்ரி ஆபரேட்டர் (கணினி தட்டச்சு)",
+      "te": "డేటా ఎంట్రీ ఆపరేటర్ (కంప్యూటర్ టైపింగ్)",
+      "kn": "ಡೇಟಾ ಎಂಟ್ರಿ ಆಪರೇಟರ್ (ಕಂಪ್ಯೂಟರ್ ಟೈಪಿಂಗ್)",
+      "en": "Domestic Data Entry Operator (DDEO)"
+    },
+    "sector": "IT-ITeS",
+    "ssc": "IT-ITeS Sector Skills Council NASSCOM",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "secondary",
+    "interest_tags": [
+      "computer",
+      "typing",
+      "data_entry",
+      "ms_office",
+      "documentation",
+      "keyboard"
+    ],
+    "related_occupations": [
+      "clerk",
+      "student",
+      "cyber cafe worker",
+      "typist"
+    ],
+    "physical_demands": [
+      "desk_sitting",
+      "screen_usage"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "12,000 - 24,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "it_csc_vle_operator",
+    "qp_code": "SSC/Q0110",
+    "name_en": "CSC / Citizen Digital Service Facilitator (VLE)",
+    "name_local": {
+      "hi": "जन सेवा केंद्र / सीएससी डिजिटल सेवा संचालक",
+      "mr": "आपले सरकार / सीएससी डिजिटल केंद्र संचालक",
+      "bn": "সিএসসি ডিজিটাল পরিষেবা পরিচালক (ভিএলই)",
+      "ta": "பொது சேவை மையம் / சிஎஸ்சி டிஜிட்டல் ஆபரேட்டர்",
+      "te": "మీసేవ / సిఎస్‌సి డిజిటల్ సేవా ఆపరేటర్",
+      "kn": "ಗ್ರಾಮ ಒನ್ / ಸಿಎಸ್‌ಸಿ ಡಿಜಿಟಲ್ ಸೇವಾ ಆಪರೇಟರ್",
+      "en": "CSC / Citizen Digital Service Facilitator (VLE)"
+    },
+    "sector": "IT-ITeS",
+    "ssc": "IT-ITeS Sector Skills Council NASSCOM",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "higher_secondary",
+    "interest_tags": [
+      "csc",
+      "online_forms",
+      "banking_point",
+      "digital_india",
+      "printing",
+      "photocopy"
+    ],
+    "related_occupations": [
+      "cyber cafe operator",
+      "computer teacher",
+      "clerk"
+    ],
+    "physical_demands": [
+      "desk_sitting",
+      "customer_interaction"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 35,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "it_crm_domestic_voice",
+    "qp_code": "SSC/Q2210",
+    "name_en": "CRM Domestic Voice Associate (Call Center)",
+    "name_local": {
+      "hi": "कॉल सेंटर एग्जीक्यूटिव / ग्राहक सेवा प्रतिनिधि",
+      "mr": "कॉल सेंटर एक्झिक्युटिव्ह / ग्राहक सेवा प्रतिनिधी",
+      "bn": "কল সেন্টার এক্সিকিউটিভ / গ্রাহক পরিষেবা প্রতিনিধি",
+      "ta": "கால் சென்டர் எக்ஸிகியூட்டிவ் / வாடிக்கையாளர் சேவை",
+      "te": "కాల్ సెంటర్ ఎగ్జిక్యూటివ్ / కస్టమర్ కేర్",
+      "kn": "ಕಾಲ್ ಸೆಂಟರ್ ಎಕ್ಸಿಕ್ಯೂಟಿವ್ / ಗ್ರಾಹಕ ಸೇವಾ ಪ್ರತಿನಿಧಿ",
+      "en": "CRM Domestic Voice Associate (Call Center)"
+    },
+    "sector": "IT-ITeS",
+    "ssc": "IT-ITeS Sector Skills Council NASSCOM",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "higher_secondary",
+    "interest_tags": [
+      "communication",
+      "calling",
+      "customer_support",
+      "languages",
+      "headset"
+    ],
+    "related_occupations": [
+      "receptionist",
+      "telecaller",
+      "salesperson"
+    ],
+    "physical_demands": [
+      "voice_clarity",
+      "sitting_long_hours"
+    ],
+    "self_employment_viable": false,
+    "typical_wage_band_inr": "14,000 - 28,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "it_graphic_design_asst",
+    "qp_code": "MES/Q0601",
+    "name_en": "Digital Graphic Designer & Print Assistant",
+    "name_local": {
+      "hi": "ग्राफिक डिजाइन व फ्लेक्स प्रिंटिंग सहायक",
+      "mr": "ग्राफिक डिझाईन आणि फ्लेक्स प्रिंटिंग सहाय्यक",
+      "bn": "গ্রাফিক ডিজাইনার ও ফ্লেক্স প্রিন্টিং সহকারী",
+      "ta": "கிராஃபிக் டிசைனர் மற்றும் பிரிண்டிங் உதவியாளர்",
+      "te": "గ్రాఫిక్ డిజైనర్ & ఫ్లెక్స్ ప్రింటింగ్ అసిస్టెంట్",
+      "kn": "ಗ್ರಾಫಿಕ್ ಡಿಸೈನರ್ ಮತ್ತು ಫ್ಲೆಕ್ಸ್ ಪ್ರಿಂಟಿಂಗ್ ಸಹಾಯಕ",
+      "en": "Digital Graphic Designer & Print Assistant"
+    },
+    "sector": "Media & Entertainment",
+    "ssc": "Media & Entertainment Skills Council",
+    "nsqf_level": 4,
+    "duration_hours": 360,
+    "min_education": "secondary",
+    "interest_tags": [
+      "photoshop",
+      "design",
+      "banners",
+      "flex_print",
+      "photo_studio",
+      "drawing"
+    ],
+    "related_occupations": [
+      "photographer",
+      "artist",
+      "computer operator"
+    ],
+    "physical_demands": [
+      "desk_sitting",
+      "visual_creativity"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 32,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "stand_up_india",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "it_hardware_networking_asst",
+    "qp_code": "SSC/Q7001",
+    "name_en": "Hardware and Network Support Assistant",
+    "name_local": {
+      "hi": "कंप्यूटर हार्डवेयर एवं नेटवर्क सपोर्ट सहायक",
+      "mr": "संगणक हार्डवेअर आणि नेटवर्क सपोर्ट सहाय्यक",
+      "bn": "কম্পিউটার হার্ডওয়্যার ও নেটওয়ার্ক টেকনিশিয়ান",
+      "ta": "கணினி வன்பொருள் மற்றும் நெட்வொர்க் உதவியாளர்",
+      "te": "కంప్యూటర్ హార్డ్‌వేర్ & నెట్‌వర్కింగ్ అసిస్టెంట్",
+      "kn": "ಕಂಪ್ಯೂಟರ್ ಹಾರ್ಡ್‌ವೇರ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕಿಂಗ್ ಸಹಾಯಕ",
+      "en": "Hardware and Network Support Assistant"
+    },
+    "sector": "IT-ITeS",
+    "ssc": "IT-ITeS Sector Skills Council NASSCOM",
+    "nsqf_level": 4,
+    "duration_hours": 380,
+    "min_education": "secondary",
+    "interest_tags": [
+      "computer_hardware",
+      "lan_wifi",
+      "desktop_repair",
+      "troubleshooting"
+    ],
+    "related_occupations": [
+      "computer technician",
+      "electronics repairer"
+    ],
+    "physical_demands": [
+      "desk_and_field_mobility"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 30,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "ret_retail_sales_associate",
+    "qp_code": "RAS/Q0104",
+    "name_en": "Retail Sales Associate / Counter Sales",
+    "name_local": {
+      "hi": "रिटेल सेल्स एसोसिएट / दुकान व मॉल काउंटर सेल्स",
+      "mr": "रिटेल सेल्स असोसिएट / स्टोअर सेल्स प्रतिनिधी",
+      "bn": "রিটেল সেলস অ্যাসোসিয়েট / দোকান বিক্রয় কর্মী",
+      "ta": "சில்லறை விற்பனை உதவியாளர் (ரீடெய்ல் சேல்ஸ்)",
+      "te": "రిటైల్ సేల్స్ అసోసియేట్ / కౌంటర్ సేల్స్",
+      "kn": "ಚಿಲ್ಲರೆ ಮಾರಾಟ ಸಹವರ್ತಿ / ಕೌಂಟರ್ ಸೇಲ್ಸ್",
+      "en": "Retail Sales Associate / Counter Sales"
+    },
+    "sector": "Retail",
+    "ssc": "Retailers Association's Skill Council of India",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "secondary",
+    "interest_tags": [
+      "sales",
+      "shop",
+      "customer_handling",
+      "billing",
+      "mall",
+      "supermarket"
+    ],
+    "related_occupations": [
+      "shop boy",
+      "cashier",
+      "marketing helper"
+    ],
+    "physical_demands": [
+      "standing_long_hours",
+      "customer_interaction"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "12,000 - 22,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "hsp_food_beverage_steward",
+    "qp_code": "THC/Q0301",
+    "name_en": "Food and Beverage Service Steward (Waiter / Hospitality)",
+    "name_local": {
+      "hi": "होटल व रेस्टोरेंट सर्विस स्टीवर्ड (Food & Beverage)",
+      "mr": "हॉटेल व रेस्टॉरंट सर्व्हिस स्टीवर्ड",
+      "bn": "ফুড অ্যান্ড বেভারেজ সার্ভিস স্টুয়ার্ড (রেস্তোরাঁ)",
+      "ta": "உணவு மற்றும் பான சேவை பணியாளர் (ஸ்டீவர்ட்)",
+      "te": "ఫుడ్ & బెవరేజ్ సర్వీస్ స్టీవర్డ్ (హోటల్ సర్వీస్)",
+      "kn": "ಆಹಾರ ಮತ್ತು ಪಾನೀಯ ಸೇವಾ ಸ್ಟೀವರ್ಡ್ (ಹೋಟೆಲ್)",
+      "en": "Food and Beverage Service Steward (Waiter / Hospitality)"
+    },
+    "sector": "Tourism & Hospitality",
+    "ssc": "Tourism and Hospitality Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 300,
+    "min_education": "middle",
+    "interest_tags": [
+      "hospitality",
+      "hotel",
+      "restaurant",
+      "food_service",
+      "catering"
+    ],
+    "related_occupations": [
+      "waiter",
+      "dhaba worker",
+      "catering helper"
+    ],
+    "physical_demands": [
+      "standing_walking",
+      "carrying_trays"
+    ],
+    "self_employment_viable": false,
+    "typical_wage_band_inr": "12,000 - 24,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "hlth_general_duty_assistant",
+    "qp_code": "HSS/Q5101",
+    "name_en": "General Duty Assistant (Nursing Aide / Patient Care)",
+    "name_local": {
+      "hi": "जनरल ड्यूटी असिस्टेंट (नर्सिंग सहायक व मरीज देखभाल)",
+      "mr": "जनरल ड्युटी असिस्टंट (रुग्ण सेवा व नर्सिंग मदतनीस)",
+      "bn": "জেনারেল ডিউটি অ্যাসিস্ট্যান্ট (নার্সিং সহকারী ও রোগী সেবা)",
+      "ta": "பொது பணி உதவியாளர் (நர்சிங் உதவியாளர் மற்றும் நோயாளி பராமரிப்பு)",
+      "te": "జనరల్ డ్యూటీ అసిస్టెంట్ (నర్సింగ్ సహాయకుడు)",
+      "kn": "ಜನರಲ್ ಡ್ಯೂಟಿ ಅಸಿಸ್ಟೆಂಟ್ (ನರ್ಸಿಂಗ್ ಸಹಾಯಕ)",
+      "en": "General Duty Assistant (Nursing Aide / Patient Care)"
+    },
+    "sector": "Healthcare",
+    "ssc": "Healthcare Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 400,
+    "min_education": "secondary",
+    "interest_tags": [
+      "healthcare",
+      "nursing",
+      "patient_care",
+      "hospital",
+      "clinic",
+      "elderly_care"
+    ],
+    "related_occupations": [
+      "caregiver",
+      "ward boy",
+      "clinic assistant",
+      "asha worker"
+    ],
+    "physical_demands": [
+      "patient_lifting",
+      "standing_long_hours",
+      "night_shifts"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 28,000 / month",
+    "scheme_links": [
+      "nsfdc",
+      "stand_up_india"
+    ]
+  },
+  {
+    "id": "hsp_street_food_vendor",
+    "qp_code": "THC/Q0403",
+    "name_en": "Street Food Vendor / Snack Corner Entrepreneur",
+    "name_local": {
+      "hi": "स्ट्रीट फूड वेंडर / फास्ट फूड एवं नाश्ता कार्नर संचालक",
+      "mr": "स्ट्रीट फूड विक्रेता / फास्ट फूड व नाश्ता केंद्र संचालक",
+      "bn": "স্ট্রিট ফুড ভেন্ডর / ফাস্ট ফুড ও জলখাবার প্রস্তুতকারক",
+      "ta": "தெருவோர உணவு விற்பனையாளர் (Street Food)",
+      "te": "స్ట్రీట్ ఫుడ్ వెండర్ / ఫాస్ట్ ఫుడ్ సెంటర్ యజమాని",
+      "kn": "ಬೀದಿ ಆಹಾರ ಮಾರಾಟಗಾರ / ತಿಂಡಿ ಕೇಂದ್ರ ಮಾಲೀಕ",
+      "en": "Street Food Vendor / Snack Corner Entrepreneur"
+    },
+    "sector": "Tourism & Hospitality",
+    "ssc": "Tourism and Hospitality Skill Council",
+    "nsqf_level": 3,
+    "duration_hours": 200,
+    "min_education": "none",
+    "interest_tags": [
+      "cooking",
+      "snacks",
+      "tea_stall",
+      "fast_food",
+      "chaat",
+      "food_cart"
+    ],
+    "related_occupations": [
+      "cook",
+      "tea seller",
+      "cart vendor",
+      "daily laborer"
+    ],
+    "physical_demands": [
+      "standing_hot_environment"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "15,000 - 45,000 / month",
+    "scheme_links": [
+      "pm_svanidhi",
+      "nsfdc"
+    ]
+  },
+  {
+    "id": "hlth_emergency_medical_tech",
+    "qp_code": "HSS/Q2301",
+    "name_en": "Emergency Medical Technician (Basic Ambulance Care)",
+    "name_local": {
+      "hi": "इमरजेंसी मेडिकल तकनीशियन (एम्बुलेंस स्वास्थ्य कर्मी)",
+      "mr": "आपत्कालीन वैद्यकीय तंत्रज्ञ (रुग्णवाहिका आरोग्य कर्मचारी)",
+      "bn": "জরুরী মেডিকেল টেকনিশিয়ান (অ্যাম্বুলেন্স স্বাস্থ্যকর্মী)",
+      "ta": "அவசர மருத்துவ தொழில்நுட்ப வல்லுநர் (ஆம்புலன்ஸ்)",
+      "te": "ఎమర్జెన్సీ మెడికల్ టెక్నీషియన్ (అంబులెన్స్)",
+      "kn": "ತುರ್ತು ವೈದ್ಯಕೀಯ ತಂತ್ರಜ್ಞ (ಆಂಬ್ಯುಲೆನ್ಸ್)",
+      "en": "Emergency Medical Technician (Basic Ambulance Care)"
+    },
+    "sector": "Healthcare",
+    "ssc": "Healthcare Sector Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 450,
+    "min_education": "higher_secondary",
+    "interest_tags": [
+      "emergency",
+      "ambulance",
+      "first_aid",
+      "medical",
+      "rescue"
+    ],
+    "related_occupations": [
+      "paramedic",
+      "driver",
+      "caregiver"
+    ],
+    "physical_demands": [
+      "high_stamina",
+      "lifting_stretchers",
+      "shift_work"
+    ],
+    "self_employment_viable": false,
+    "typical_wage_band_inr": "16,000 - 32,000 / month",
+    "scheme_links": [
+      "nsfdc"
+    ]
+  }
+]

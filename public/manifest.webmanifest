@@ -1,0 +1,17 @@
+{
+  "name": "Disha Sarathi - PM-AJAY Skilling Counsellor",
+  "short_name": "Disha Sarathi",
+  "description": "Multilingual Voice Livelihood & Skilling Counsellor for PM-AJAY Beneficiaries",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F4EF",
+  "theme_color": "#1F6F4A",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

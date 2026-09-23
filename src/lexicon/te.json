@@ -1,0 +1,221 @@
+{
+  "controls": {
+    "repeat": [
+      "repeat",
+      "again",
+      "phir se",
+      "dobara",
+      "purna sanga",
+      "marupadiyum",
+      "malli cheppandi",
+      "mattonme heli",
+      "ek aur baar"
+    ],
+    "simplify": [
+      "i don't understand",
+      "samajh nahi aaya",
+      "saral bhasha",
+      "nahi samjha",
+      "puriyala",
+      "ardham kaledu",
+      "arthavagilla",
+      "what does this mean"
+    ],
+    "escalate": [
+      "talk to a person",
+      "human",
+      "coordinator",
+      "adhikari se baat",
+      "kisi insaan se baat",
+      "phone helpline",
+      "help me talk to someone",
+      "officer"
+    ],
+    "delete_data": [
+      "delete my data",
+      "mera data mitao",
+      "delete",
+      "erase",
+      "sarva data kadha",
+      "en thagavala alikka",
+      "na data delete cheyyandi",
+      "nanna data alisi"
+    ],
+    "yes": [
+      "yes",
+      "ha",
+      "haan",
+      "sahi",
+      "ho",
+      "aam",
+      "om",
+      "avunu",
+      "haudu",
+      "theek",
+      "shuru karo",
+      "agree",
+      "manzoor"
+    ],
+    "no": [
+      "no",
+      "nahi",
+      "na",
+      "nako",
+      "vendam",
+      "odhu",
+      "beda",
+      "mat karo",
+      "stop"
+    ]
+  },
+  "slots": {
+    "education_level": {
+      "none": [
+        "none",
+        "never went to school",
+        "anpadh",
+        "school nahi gaye",
+        "shikshan nahi",
+        "paddikavillai",
+        "chaduvukoledu",
+        "odhilla",
+        "nirakshar"
+      ],
+      "primary": [
+        "primary",
+        "5th",
+        "5th pass",
+        "panchvi",
+        "5 vi",
+        "primary school",
+        "panchvi pass",
+        "5th standard"
+      ],
+      "middle": [
+        "middle",
+        "8th",
+        "8th pass",
+        "aathvi",
+        "8 vi",
+        "middle school",
+        "aathvi pass",
+        "8th standard"
+      ],
+      "secondary": [
+        "secondary",
+        "10th",
+        "10th pass",
+        "matric",
+        "highschool",
+        "dasvi",
+        "10 vi",
+        "ssc",
+        "sslc",
+        "dasvi pass"
+      ],
+      "higher_secondary": [
+        "higher_secondary",
+        "12th",
+        "12th pass",
+        "inter",
+        "intermediate",
+        "barahvi",
+        "12 vi",
+        "hsc",
+        "plus two"
+      ],
+      "iti_diploma": [
+        "iti",
+        "diploma",
+        "polytechnic",
+        "iti pass",
+        "technical diploma"
+      ],
+      "graduate": [
+        "graduate",
+        "degree",
+        "ba",
+        "bcom",
+        "bsc",
+        "btech",
+        "graduation",
+        "snatak",
+        "padavidhara"
+      ]
+    },
+    "travel_radius_km": {
+      "2": [
+        "2",
+        "2 km",
+        "do km",
+        "pedal",
+        "walking",
+        "paas me",
+        "2 kilometre"
+      ],
+      "5": [
+        "5",
+        "5 km",
+        "paanch km",
+        "cycle",
+        "bicycle",
+        "5 kilometre"
+      ],
+      "10": [
+        "10",
+        "10 km",
+        "das km",
+        "auto",
+        "bus",
+        "10 kilometre"
+      ],
+      "25": [
+        "25",
+        "25 km",
+        "pachhis km",
+        "bike",
+        "town",
+        "25 kilometre"
+      ],
+      "50": [
+        "50",
+        "50 km",
+        "pachaas km",
+        "district hq",
+        "train",
+        "50 kilometre"
+      ]
+    },
+    "employment_preference": {
+      "self_employment": [
+        "self employment",
+        "business",
+        "own work",
+        "dukaan",
+        "swarojgar",
+        "khud ka kaam",
+        "vyavasayam",
+        "swayan rojgar"
+      ],
+      "wage_employment": [
+        "wage employment",
+        "job",
+        "naukri",
+        "salaried",
+        "private company",
+        "vetan",
+        "udyogam",
+        "kelsa"
+      ],
+      "either": [
+        "either",
+        "both",
+        "dono",
+        "kuch bhi",
+        "koi bhi",
+        "rendu",
+        "yavudhadharu"
+      ]
+    }
+  }
+}

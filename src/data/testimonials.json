@@ -1,0 +1,82 @@
+[
+  {
+    "id": "t_sewing_01",
+    "trade_id": "app_sewing_machine_op",
+    "beneficiary_name": "Sunita Devi",
+    "district": "Varanasi",
+    "lang": "hi",
+    "quote": "सिलाई ट्रेनिंग के बाद मुझे पीएम-स्वनिधि से सिलाई मशीन का लोन मिला। अब मैं घर से ही कपड़े सिलकर हर महीने ₹16,000 कमा रही हूँ।",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_electrician_01",
+    "trade_id": "con_general_electrician",
+    "beneficiary_name": "Ramesh Sonawane",
+    "district": "Pune",
+    "lang": "mr",
+    "quote": "वायरिंग कोर्स पूर्ण केल्यावर मला लगेच पुण्यात काम मिळाले. आता मी स्वतःचे छोटे कंत्राट घेतो आणि दरमहा ₹25,000 कमावतो.",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_beauty_01",
+    "trade_id": "bw_assistant_beautician",
+    "beneficiary_name": "Priyanka Mondal",
+    "district": "South 24 Parganas",
+    "lang": "bn",
+    "quote": "বিউটিশিয়ান কোর্স করে আমি নিজের পাড়ায় ছোট পার্লার খুলেছি। নিজের পায়ে দাঁড়াতে পেরে আমি গর্বিত।",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_cctv_01",
+    "trade_id": "el_cctv_technician",
+    "beneficiary_name": "Murugan K.",
+    "district": "Madurai",
+    "lang": "ta",
+    "quote": "சிசிடிவி கேமரா பயிற்சி முடித்ததும், எனக்கு உள்ளூரிலேயே அதிக வேலை கிடைத்தது. வருமானம் மிகவும் சீராக உள்ளது.",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_dairy_01",
+    "trade_id": "agr_dairy_farmer",
+    "beneficiary_name": "Venkatesh Rao",
+    "district": "Guntur",
+    "lang": "te",
+    "quote": "పాడి పరిశ్రమ శిక్షణ మరియు ఎన్‌ఎస్‌ఎఫ్‌డిసి రుణం సహాయంతో రెండు ఆవులు కొన్నాను. నా ఆదాయం రెట్టింపు అయ్యింది.",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_mobile_01",
+    "trade_id": "el_smartphone_repair",
+    "beneficiary_name": "Manjunatha",
+    "district": "Mysuru",
+    "lang": "kn",
+    "quote": "ಮೊಬೈಲ್ ರಿಪೇರಿ ತರಬೇತಿಯ ನಂತರ ನಾನು ಬಸ್ ನಿಲ್ದಾಣದ ಬಳಿ ಅಂಗಡಿ ಹಾಕಿದೆ. ದಿನಕ್ಕೆ ₹800 ರಿಂದ ₹1200 ಸುಲಭವಾಗಿ ಸಿಗುತ್ತದೆ.",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_plumbing_01",
+    "trade_id": "con_general_plumber",
+    "beneficiary_name": "Santosh Kumar",
+    "district": "Patna",
+    "lang": "hi",
+    "quote": "प्लंबिंग कोर्स के बाद मुझे सरकारी निर्माण साइटों और घरों में लगातार काम मिल रहा है। मेरी कमाई स्थिर हो गई है।",
+    "duration_sec": 12,
+    "consent_on_file": true
+  },
+  {
+    "id": "t_csc_01",
+    "trade_id": "it_csc_vle_operator",
+    "beneficiary_name": "Deepak Khare",
+    "district": "Bhopal",
+    "lang": "hi",
+    "quote": "डिजिटल सेवा प्रशिक्षण के बाद मैंने गांव में जन सेवा केंद्र शुरू किया। अब पूरे गांव के फॉर्म और ऑनलाइन काम यहीं होते हैं।",
+    "duration_sec": 12,
+    "consent_on_file": true
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "c_varanasi_01",
+    "name": "Anand Verma",
+    "district": "Varanasi",
+    "state": "Uttar Pradesh",
+    "phone": "+91 94501 23456",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_varanasi_02",
+    "name": "Sneha Shukla",
+    "district": "Varanasi",
+    "state": "Uttar Pradesh",
+    "phone": "+91 94501 23457",
+    "role": "financial_consultant"
+  },
+  {
+    "id": "c_pune_01",
+    "name": "Prakash Jadhav",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "phone": "+91 98220 12345",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_pune_02",
+    "name": "Meena Kulkarni",
+    "district": "Pune",
+    "state": "Maharashtra",
+    "phone": "+91 98220 12346",
+    "role": "financial_consultant"
+  },
+  {
+    "id": "c_patna_01",
+    "name": "Ravi Shankar Prasad",
+    "district": "Patna",
+    "state": "Bihar",
+    "phone": "+91 94310 98765",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_kolkata_01",
+    "name": "Subhasis Roy",
+    "district": "Kolkata",
+    "state": "West Bengal",
+    "phone": "+91 98300 45678",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_madurai_01",
+    "name": "Selvamurugan P.",
+    "district": "Madurai",
+    "state": "Tamil Nadu",
+    "phone": "+91 94430 65432",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_guntur_01",
+    "name": "K. Satyanarayana",
+    "district": "Guntur",
+    "state": "Andhra Pradesh",
+    "phone": "+91 98480 32109",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_mysuru_01",
+    "name": "Nagarajaiah B.S.",
+    "district": "Mysuru",
+    "state": "Karnataka",
+    "phone": "+91 94480 11223",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_bhopal_01",
+    "name": "Vikram Bundela",
+    "district": "Bhopal",
+    "state": "Madhya Pradesh",
+    "phone": "+91 94250 88990",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_jaipur_01",
+    "name": "Harish Meena",
+    "district": "Jaipur",
+    "state": "Rajasthan",
+    "phone": "+91 94140 77889",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_lucknow_01",
+    "name": "Rajeshwar Dayal",
+    "district": "Lucknow",
+    "state": "Uttar Pradesh",
+    "phone": "+91 94150 33445",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_ahmedabad_01",
+    "name": "Bhavesh Parmar",
+    "district": "Ahmedabad",
+    "state": "Gujarat",
+    "phone": "+91 98250 66778",
+    "role": "district_coordinator"
+  },
+  {
+    "id": "c_ranchi_01",
+    "name": "Birsa Oraon",
+    "district": "Ranchi",
+    "state": "Jharkhand",
+    "phone": "+91 94311 55667",
+    "role": "district_coordinator"
+  }
+]
