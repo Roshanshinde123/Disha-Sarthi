@@ -22,24 +22,11 @@ export class SarvamSpeechEngine {
   }
 
   async checkHealth(): Promise<boolean> {
-    const key = (import.meta as any).env?.VITE_SARVAM_API_KEY || this.apiKey;
-    if (key && key.startsWith('sk_')) return true;
-
-    // Check if backend /api/tts is reachable
-    try {
-      if (typeof window !== 'undefined') {
-        const res = await fetch('http://localhost:8080/api/voice/exotel/health', { method: 'GET' });
-        return res.ok;
-      }
-    } catch {
-      return false;
-    }
-    return false;
+    return true;
   }
 
   isAvailable(): boolean {
-    const key = (import.meta as any).env?.VITE_SARVAM_API_KEY || this.apiKey;
-    return Boolean(key && key.startsWith('sk_'));
+    return true;
   }
 
   async speak(text: string, lang: LanguageCode, onEnd?: () => void, onStart?: () => void): Promise<void> {
@@ -51,8 +38,7 @@ export class SarvamSpeechEngine {
     try {
       let audioBase64 = '';
 
-      if (key) {
-        console.log(`[TTS] TTS_REQUEST_STARTED: provider=SARVAM lang=${targetLang}`);
+      if (key && key.startsWith('sk_')) {
         const response = await fetch('https://api.sarvam.ai/text-to-speech', {
           method: 'POST',
           headers: {
@@ -72,51 +58,94 @@ export class SarvamSpeechEngine {
           })
         });
 
-        if (!response.ok) {
-          throw new Error(`Sarvam TTS API returned status: ${response.status}`);
+        if (response.ok) {
+          const data = await response.json();
+          audioBase64 = data.audios?.[0] || '';
         }
+      }
 
-        const data = await response.json();
-        audioBase64 = data.audios?.[0] || '';
-      } else {
-        // Fetch from backend TTS proxy
-        const res = await fetch('http://localhost:8080/api/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text, lang, sampleRate: 16000 })
-        });
-        if (res.ok) {
-          const data = await res.json();
-          audioBase64 = data.base64Payload || '';
+      // If no direct key or direct call failed, use backend /api/tts proxy
+      if (!audioBase64) {
+        try {
+          const res = await fetch('/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, lang, sampleRate: 16000 })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            audioBase64 = data.base64Payload || '';
+          }
+        } catch {
+          try {
+            const res = await fetch('http://localhost:8080/api/tts', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ text, lang, sampleRate: 16000 })
+            });
+            if (res.ok) {
+              const data = await res.json();
+              audioBase64 = data.base64Payload || '';
+            }
+          } catch {}
         }
       }
 
       if (audioBase64) {
-        console.log(`[TTS] TTS_PLAYBACK_STARTED: lang=${lang} bytes=${audioBase64.length}`);
         if (onStart) onStart();
         const audio = new Audio(`data:audio/wav;base64,${audioBase64}`);
         this.currentAudio = audio;
         audio.onended = () => {
-          console.log(`[TTS] TTS_PLAYBACK_ENDED`);
           this.currentAudio = null;
           if (onEnd) onEnd();
         };
-        audio.onerror = (e) => {
-          console.warn('[TTS] Audio playback error:', e);
+        audio.onerror = () => {
           this.currentAudio = null;
-          if (onEnd) onEnd();
+          this.speakFallbackWebSpeech(text, lang, onEnd, onStart);
         };
-        await audio.play().catch((err) => {
-          console.warn('[TTS] Autoplay blocked or playback failed:', err);
-          if (onEnd) onEnd();
+        await audio.play().catch(() => {
+          this.speakFallbackWebSpeech(text, lang, onEnd, onStart);
         });
-      } else {
-        if (onEnd) onEnd();
+        return;
       }
     } catch (err: any) {
-      console.warn('[TTS] TTS_ERROR in SarvamSpeechEngine:', err?.message || err);
-      if (onEnd) onEnd();
+      console.warn('[TTS] Neural TTS failed, fallback to WebSpeech:', err);
     }
+
+    this.speakFallbackWebSpeech(text, lang, onEnd, onStart);
+  }
+
+  private speakFallbackWebSpeech(text: string, lang: LanguageCode, onEnd?: () => void, onStart?: () => void): void {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+      if (onEnd) onEnd();
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    const langTags: Record<LanguageCode, string> = {
+      mr: 'mr-IN',
+      hi: 'hi-IN',
+      en: 'en-IN',
+      bn: 'bn-IN',
+      ta: 'ta-IN',
+      te: 'te-IN',
+      kn: 'kn-IN'
+    };
+    utterance.lang = langTags[lang] || 'mr-IN';
+    utterance.rate = 0.95;
+
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.slice(0, 2)));
+    if (voice) {
+      utterance.voice = voice;
+    }
+
+    if (onStart) utterance.onstart = () => onStart();
+    if (onEnd) utterance.onend = () => onEnd();
+    utterance.onerror = () => { if (onEnd) onEnd(); };
+
+    window.speechSynthesis.speak(utterance);
   }
 
   stop(): void {

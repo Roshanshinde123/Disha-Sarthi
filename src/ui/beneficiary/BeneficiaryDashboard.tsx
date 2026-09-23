@@ -284,12 +284,12 @@ export const BeneficiaryDashboard: React.FC<BeneficiaryDashboardProps> = ({
                 <div className="card-top-icon">🏫</div>
                 <h3 className="card-title">{t('tabTraining', lang)}</h3>
                 <div className="card-status-pill training-status">
-                  {profile.training_status || 'RECOMMENDED'}
+                  {profile.training_status || (lang === 'mr' ? 'शिफारस केलेले' : lang === 'hi' ? 'सिफारिश की गई' : 'RECOMMENDED')}
                 </div>
                 <p className="card-desc">
                   {profile.selected_trade_id
-                    ? `निवडलेला ट्रेड: ${profile.selected_trade_id.replace(/_/g, ' ').toUpperCase()}`
-                    : 'जवळपासचे PMKK केंद्र'}
+                    ? `${lang === 'mr' ? 'निवडलेला ट्रेड:' : lang === 'hi' ? 'चयनित ट्रेड:' : 'Selected Trade:'} ${profile.selected_trade_id.replace(/_/g, ' ').toUpperCase()}`
+                    : (lang === 'mr' ? 'जवळपासचे PMKK केंद्र' : lang === 'hi' ? 'निकटतम PMKK केंद्र' : 'Nearby PMKK Training Center')}
                 </p>
                 <button
                   type="button"

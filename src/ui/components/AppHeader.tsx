@@ -303,9 +303,9 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       <div className="gov-top-authority-bar">
         <div className="gov-top-container">
           <span className="gov-top-title">
-            🏛️ PM-AJAY GIA Component • AI Voice Skilling & Livelihood Assistance
+            🏛️ Ministry of Social Justice & Empowerment • PM-AJAY
           </span>
-          <span className="gov-top-badge">{labels.prototypeLabel}</span>
+          <span className="gov-top-badge">AI Skilling & Livelihood</span>
         </div>
       </div>
 
@@ -326,7 +326,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                 दिशा सारथी <span className="gov-brand-en">• Disha Sarathi</span>
               </div>
               <div className="gov-brand-desc">
-                PM-AJAY GIA Component • Voice-first Skilling & Livelihood Platform
+                {selectedLanguage === 'mr' ? 'एआय व्हॉईस कौशल्य व रोजगार मार्गदर्शन प्रणाली' : selectedLanguage === 'hi' ? 'एआई वॉयस कौशल एवं रोजगार मार्गदर्शन प्रणाली' : 'Multilingual AI Skilling & Livelihood Guidance'}
               </div>
             </div>
           </div>

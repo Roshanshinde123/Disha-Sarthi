@@ -238,7 +238,7 @@ export const AppRouter: React.FC = () => {
     if (currentPath === '/beneficiary/journey' && activeSession) {
       return (
         <MyJourneyView
-          session={activeSession}
+          session={{ ...activeSession, lang: selectedLanguage }}
           onNavigate={navigateTo}
           onStartVoice={() => navigateTo('/talk')}
         />
@@ -248,7 +248,7 @@ export const AppRouter: React.FC = () => {
     if (currentPath === '/beneficiary/voice' && activeSession) {
       return (
         <VoiceConversationView
-          session={activeSession}
+          session={{ ...activeSession, lang: selectedLanguage }}
           onEvent={(_e) => {}}
           onSwitchLang={handleLanguageChange}
           onNavigate={navigateTo}
@@ -272,13 +272,14 @@ export const AppRouter: React.FC = () => {
 
       return (
         <BeneficiaryDashboard
-          session={activeSession}
+          session={{ ...activeSession, lang: selectedLanguage }}
           initialTab={initialTab}
           onStartVoice={() => navigateTo('/talk')}
           onLogout={handleLogout}
           onUpdateSession={(updated) => {
-            setActiveSession(updated);
-            saveCurrentSession(updated);
+            const synced = { ...updated, lang: selectedLanguage };
+            setActiveSession(synced);
+            saveCurrentSession(synced);
           }}
           onNavigateTab={(tab) => {
             const tabToPath: Record<BeneficiaryTab, string> = {

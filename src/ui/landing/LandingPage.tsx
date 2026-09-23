@@ -102,7 +102,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {/* Left Column: Heading, Subheading & CTAs */}
           <div className="gov-hero-content">
             <div className="gov-scheme-tag">
-              🏛️ {t('authorityBanner', lang)}
+              ✨ {lang === 'mr' ? 'कौशल्य व उपजीविका सहाय्य' : lang === 'hi' ? 'कौशल एवं आजीविका सहायता' : 'AI Skilling & Livelihood Platform'}
             </div>
 
             <h1 className="gov-hero-heading" style={{ whiteSpace: 'pre-line' }}>
@@ -137,11 +137,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="gov-helpline-strip">
               <span className="helpline-icon">📞</span>
               <div className="helpline-text" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                <span className="helpline-label">{t('helplineLabel', lang)}:</span>
+                <span className="helpline-label">{t('helplineLabel', lang)}</span>
                 <strong className="helpline-number">+91 80 4718 2609</strong>
-                <span className="helpline-badge" style={{ marginLeft: '6px', background: 'rgba(255,255,255,0.2)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem' }}>
-                  {t('helplinePill', lang)}
-                </span>
               </div>
             </div>
           </div>
@@ -154,13 +151,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <span className="visual-status-text">
                   {lang === 'mr' ? 'AI व्हॉईस संवाद प्रणाली' : lang === 'hi' ? 'AI वॉयस संवाद प्रणाली' : 'AI Voice Assistance'}
                 </span>
-                <span className="visual-prototype-tag">
-                  {t('prototypeBadge', lang).split('•')[1] || 'Prototype'}
-                </span>
-              </div>
-
-              <div className="visual-mic-orb">
-                <div className="visual-orb-icon">🎙️</div>
               </div>
 
               <div className="visual-sample-transcript">
@@ -174,22 +164,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
 
               <div className="visual-extracted-slots" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
-                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '6px 12px', borderRadius: '6px', fontSize: '0.85rem' }}>
+                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '8px 12px', borderRadius: '8px', fontSize: '0.85rem' }}>
                   <span className="slot-icon">🎓</span>
                   <span className="slot-key" style={{ color: '#64748B', fontWeight: 600 }}>{lang === 'mr' ? 'शिक्षण:' : lang === 'hi' ? 'शिक्षा:' : 'Education:'}</span>
                   <span className="slot-val" style={{ color: '#0F172A', fontWeight: 700 }}>10th Pass</span>
                 </div>
-                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '6px 12px', borderRadius: '6px', fontSize: '0.85rem' }}>
+                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '8px 12px', borderRadius: '8px', fontSize: '0.85rem' }}>
                   <span className="slot-icon">🌾</span>
                   <span className="slot-key" style={{ color: '#64748B', fontWeight: 600 }}>{lang === 'mr' ? 'कौटुंबिक व्यवसाय:' : lang === 'hi' ? 'पारिवारिक व्यवसाय:' : 'Family Occupation:'}</span>
                   <span className="slot-val" style={{ color: '#0F172A', fontWeight: 700 }}>Agriculture</span>
                 </div>
-                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '6px 12px', borderRadius: '6px', fontSize: '0.85rem' }}>
+                <div className="slot-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F8FAFC', padding: '8px 12px', borderRadius: '8px', fontSize: '0.85rem' }}>
                   <span className="slot-icon">⚡</span>
                   <span className="slot-key" style={{ color: '#64748B', fontWeight: 600 }}>{lang === 'mr' ? 'आवड / कौशल्य:' : lang === 'hi' ? 'रुचि / कौशल:' : 'Interest / Skill:'}</span>
                   <span className="slot-val" style={{ color: '#0F172A', fontWeight: 700 }}>Electrical</span>
                 </div>
-                <div className="slot-item recommended" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F0FDF4', border: '1px solid #86EFAC', padding: '6px 12px', borderRadius: '6px', fontSize: '0.85rem' }}>
+                <div className="slot-item recommended" style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#F0FDF4', border: '1px solid #86EFAC', padding: '8px 12px', borderRadius: '8px', fontSize: '0.85rem' }}>
                   <span className="slot-icon">🎯</span>
                   <span className="slot-key" style={{ color: '#166534', fontWeight: 700 }}>{lang === 'mr' ? 'शिफारस:' : lang === 'hi' ? 'सिफारिश:' : 'Recommendation:'}</span>
                   <span className="slot-val highlight" style={{ color: '#15803D', fontWeight: 800 }}>Electrician (NSQF Level 4)</span>

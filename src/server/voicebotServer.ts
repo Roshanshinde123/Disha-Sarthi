@@ -72,20 +72,17 @@ export function startVoicebotServer(port: number = PORT) {
     // WhatsApp Webhook: POST /api/whatsapp/webhook  (Incoming messages)
     // ------------------------------------------------------------------
     if (req.method === 'POST' && reqPath === '/api/whatsapp/webhook') {
-      // Return HTTP 200 to Meta IMMEDIATELY before any async processing.
-      // Meta will retry if it doesn't get 200 within 20s.
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ status: 'ok' }));
-
-      // Parse body and dispatch asynchronously (fire-and-forget)
       let body = '';
       req.on('data', (chunk: Buffer) => { body += chunk.toString(); });
       req.on('end', () => {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'ok' }));
+
         try {
-          const payload = JSON.parse(body);
+          const payload = JSON.parse(body || '{}');
           handleWhatsAppWebhook(payload);
-        } catch {
-          console.warn('[WHATSAPP] POST body is not valid JSON — ignored');
+        } catch (err) {
+          console.warn('[WHATSAPP] POST body is not valid JSON — ignored:', err);
         }
       });
       return;
