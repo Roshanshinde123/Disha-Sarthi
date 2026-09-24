@@ -99,6 +99,7 @@
     "lat": 18.531,
     "lng": 73.845,
     "trades_offered": [
+      "fab_manual_metal_arc_welder",
       "aut_two_wheeler_mechanic",
       "aut_ev_service_technician",
       "con_general_electrician",

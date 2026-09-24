@@ -450,7 +450,9 @@ export function extractAllProfileSlots(
     // Nagpur
     'nagpur': { name: 'Nagpur', state: 'Maharashtra' },
     'नागपूर': { name: 'Nagpur', state: 'Maharashtra' },
+    'नागपुर': { name: 'Nagpur', state: 'Maharashtra' },
     'नागपुरात': { name: 'Nagpur', state: 'Maharashtra' },
+    'नागपुरमध्ये': { name: 'Nagpur', state: 'Maharashtra' },
     // Nashik
     'nashik': { name: 'Nashik', state: 'Maharashtra' },
     'नाशिक': { name: 'Nashik', state: 'Maharashtra' },

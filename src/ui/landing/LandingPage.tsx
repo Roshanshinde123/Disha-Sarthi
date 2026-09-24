@@ -138,7 +138,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <span className="helpline-icon">📞</span>
               <div className="helpline-text" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                 <span className="helpline-label">{t('helplineLabel', lang)}</span>
-                <strong className="helpline-number">+91 80 4718 2609</strong>
+                <strong className="helpline-number">+917965480255</strong>
               </div>
             </div>
           </div>

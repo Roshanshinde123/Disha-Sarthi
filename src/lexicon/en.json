@@ -143,6 +143,19 @@
         "padavidhara"
       ]
     },
+    "skills_interests": {
+      "stitching": ["stitching", "sewing", "tailoring", "clothes", "cutting", "dressmaking"],
+      "electrical": ["electrical", "electrician", "wiring", "wireman", "appliances", "power"],
+      "solar": ["solar", "solar panel", "renewable energy", "suryamitra", "rooftop solar"],
+      "auto_repair": ["auto", "bike repair", "garage", "two wheeler", "motorcycle repair", "mechanic"],
+      "mobile_repair": ["mobile", "phone repair", "screen", "smartphone repair"],
+      "healthcare": ["healthcare", "nursing", "hospital", "patient care", "gda", "first aid"],
+      "beauty": ["beauty", "parlour", "makeup", "hair styling", "beautician"],
+      "computers": ["computer", "data entry", "excel", "typing", "it", "coding"],
+      "agriculture": ["agriculture", "organic farming", "drip irrigation", "farming", "nursery"],
+      "masonry": ["masonry", "plumbing", "construction", "pipe fitting", "plumber"],
+      "welding": ["welding", "welder", "arc welding", "metal work", "fabrication", "smaw", "gmaw", "gas cutting"]
+    },
     "travel_radius_km": {
       "2": [
         "2",

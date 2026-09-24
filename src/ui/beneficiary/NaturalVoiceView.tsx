@@ -131,8 +131,8 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
         if (permErr.name === 'NotAllowedError' || permErr.name === 'PermissionDeniedError') {
           setMicPermissionError(
             lang === 'en' ? 'Microphone permission denied. Please allow mic access in browser settings and tap the mic button again.' :
-            lang === 'hi' ? 'माइक्रोफ़ोन अनुमति अस्वीकृत। ब्राउज़र सेटिंग में अनुमति दें।' :
-            'मायक्रोफोन परवानगी नाकारली. ब्राउझर सेटिंग्समध्ये परवानगी द्या.'
+              lang === 'hi' ? 'माइक्रोफ़ोन अनुमति अस्वीकृत। ब्राउज़र सेटिंग में अनुमति दें।' :
+                'मायक्रोफोन परवानगी नाकारली. ब्राउझर सेटिंग्समध्ये परवानगी द्या.'
           );
           setVoiceState('PAUSED');
           isListeningRef.current = false;
@@ -159,8 +159,8 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
         if (errCode === 'not-allowed' || errCode === 'service-not-allowed') {
           setMicPermissionError(
             lang === 'en' ? 'Microphone access denied. Please enable it in browser settings.' :
-            lang === 'hi' ? 'माइक्रोफ़ोन अनुमति नहीं मिली। ब्राउज़र सेटिंग में जाएं।' :
-            'मायक्रोफोन परवानगी नाकारली.'
+              lang === 'hi' ? 'माइक्रोफ़ोन अनुमति नहीं मिली। ब्राउज़र सेटिंग में जाएं।' :
+                'मायक्रोफोन परवानगी नाकारली.'
           );
           setVoiceState('PAUSED');
         } else if (errCode === 'aborted' && abortRetryCountRef.current < 2) {
@@ -172,15 +172,15 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
           setVoiceState('PAUSED');
           setMicPermissionError(
             lang === 'en' ? "I didn't catch that. Tap the mic 🎙️ button below to try again." :
-            lang === 'hi' ? 'कुछ सुनाई नहीं दिया। नीचे 🎙️ बटन दबाएं।' :
-            'काही ऐकू आले नाही. खालील 🎙️ बटण दाबा.'
+              lang === 'hi' ? 'कुछ सुनाई नहीं दिया। नीचे 🎙️ बटन दबाएं।' :
+                'काही ऐकू आले नाही. खालील 🎙️ बटण दाबा.'
           );
         } else if (errCode === 'network') {
           setVoiceState('PAUSED');
           setMicPermissionError(
             lang === 'en' ? 'Network error. Use text input below.' :
-            lang === 'hi' ? 'नेटवर्क त्रुटि। नीचे टेक्स्ट इनपुट का उपयोग करें।' :
-            'नेटवर्क त्रुटी. खाली मजकूर इनपुट वापरा.'
+              lang === 'hi' ? 'नेटवर्क त्रुटि। नीचे टेक्स्ट इनपुट का उपयोग करें।' :
+                'नेटवर्क त्रुटी. खाली मजकूर इनपुट वापरा.'
           );
         } else {
           setVoiceState('PAUSED');

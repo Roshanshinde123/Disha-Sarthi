@@ -542,7 +542,7 @@ export function getVoicebotDiagnostics(): VoicebotDiagnostics {
 
   const accSid = safeGet('EXOTEL_ACCOUNT_SID') || '';
   const apiKey = safeGet('EXOTEL_API_KEY') || '';
-  const phone = safeGet('EXOTEL_PHONE_NUMBER') || '09513886363';
+  const phone = safeGet('EXOTEL_PHONE_NUMBER') || '+917965480255';
 
   const stt = getSTTProvider();
   const tts = getTTSProvider();

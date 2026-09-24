@@ -91,6 +91,10 @@
       "Logistics": {
         "demand_score": 0.9,
         "seat_capacity": 500
+      },
+      "Capital Goods & Fabrication": {
+        "demand_score": 0.95,
+        "seat_capacity": 520
       }
     },
     "Patna": {
@@ -183,6 +187,10 @@
       "Media & Entertainment": {
         "demand_score": 0.7,
         "seat_capacity": 140
+      },
+      "Capital Goods & Fabrication": {
+        "demand_score": 0.85,
+        "seat_capacity": 250
       }
     }
   }

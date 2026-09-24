@@ -4,6 +4,7 @@ import { WebSocketServer } from 'ws';
 import { handleExotelVoicebotWebSocket, getVoicebotDiagnostics } from './exotelVoicebot';
 import { handleWhatsAppWebhook } from './whatsappHandler';
 import { getTTSProvider } from './ttsProvider';
+import { handleDishaVoiceRequest } from './services/dishaVoiceService';
 import { URL } from 'url';
 import fs from 'fs';
 import path from 'path';
@@ -48,8 +49,8 @@ export function startVoicebotServer(port: number = PORT) {
     // ------------------------------------------------------------------
     if (req.method === 'GET' && reqPath === '/api/whatsapp/webhook') {
       const fullUrl = new URL(rawUrl, `http://${host}`);
-      const mode      = fullUrl.searchParams.get('hub.mode');
-      const token     = fullUrl.searchParams.get('hub.verify_token');
+      const mode = fullUrl.searchParams.get('hub.mode');
+      const token = fullUrl.searchParams.get('hub.verify_token');
       const challenge = fullUrl.searchParams.get('hub.challenge');
 
       const expectedToken = process.env.WHATSAPP_VERIFY_TOKEN;
@@ -136,12 +137,75 @@ export function startVoicebotServer(port: number = PORT) {
       return;
     }
 
+    // ------------------------------------------------------------------
+    // Sarvam Voice Agent / Telephony Endpoint: POST /api/voice/disha
+    // ------------------------------------------------------------------
+    if (req.method === 'POST' && reqPath === '/api/voice/disha') {
+      const configuredApiKey = process.env.SARVAM_VOICE_API_KEY || process.env.DISHA_API_KEY;
+      if (configuredApiKey) {
+        const authHeader = (req.headers['authorization'] as string) || '';
+        const xApiKey = (req.headers['x-api-key'] as string) || '';
+        const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : authHeader.trim();
+        const incomingKey = xApiKey || token;
+
+        if (incomingKey !== configuredApiKey) {
+          res.writeHead(401, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify({
+            success: false,
+            reply: 'Unauthorized',
+            language: 'en',
+            intent: null,
+            profileUpdates: {},
+            recommendations: [],
+            nextStep: null,
+            error: 'Unauthorized: Invalid or missing API key'
+          }));
+          return;
+        }
+      }
+
+      let body = '';
+      req.on('data', (chunk: Buffer) => { body += chunk.toString(); });
+      req.on('end', async () => {
+        try {
+          const parsed = JSON.parse(body || '{}');
+          const result = await handleDishaVoiceRequest(parsed);
+
+          const statusCode = result.success ? 200 : 400;
+          res.writeHead(statusCode, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify(result));
+        } catch (err: any) {
+          res.writeHead(400, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify({
+            success: false,
+            reply: 'Invalid request format',
+            language: 'en',
+            intent: null,
+            profileUpdates: {},
+            recommendations: [],
+            nextStep: null,
+            error: err?.message || 'Bad Request'
+          }));
+        }
+      });
+      return;
+    }
+
     // CORS preflight handling
     if (req.method === 'OPTIONS') {
       res.writeHead(204, {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-API-KEY'
       });
       res.end();
       return;

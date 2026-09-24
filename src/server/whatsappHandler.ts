@@ -208,7 +208,7 @@ async function processTextMessage(
 
   log('TEXT_RECEIVED', 'Text message received', { tag, textLen: text.length });
 
-  await markMessageRead(msgId).catch(() => {});
+  await markMessageRead(msgId).catch(() => { });
 
   const detectedLang = detectLanguage(text);
   const { session, isNew } = getOrCreateSession(from, detectedLang);
@@ -283,7 +283,7 @@ async function processAudioMessage(
 
   log('AUDIO_RECEIVED', 'Audio message received — starting STT pipeline', { tag, mediaId });
 
-  await markMessageRead(msgId).catch(() => {});
+  await markMessageRead(msgId).catch(() => { });
 
   const { session, isNew } = getOrCreateSession(from, 'mr');
   let activeSession = session;
@@ -305,9 +305,9 @@ async function processAudioMessage(
     activeSession.lang === 'hi'
       ? '🎙️ आपका संदेश मिला। एक पल रुकिए...'
       : activeSession.lang === 'en'
-      ? '🎙️ Received your voice message. Processing...'
-      : '🎙️ आपला आवाज संदेश मिळाला. एक क्षण थांबा...'
-  ).catch(() => {});
+        ? '🎙️ Received your voice message. Processing...'
+        : '🎙️ आपला आवाज संदेश मिळाला. एक क्षण थांबा...'
+  ).catch(() => { });
 
   try {
     // 1. Fetch media download URL
@@ -339,8 +339,8 @@ async function processAudioMessage(
         activeSession.lang === 'mr'
           ? 'माफ करा, आपला आवाज नीट ऐकू आला नाही. कृपया पुन्हा बोला किंवा टाइप करा.'
           : activeSession.lang === 'hi'
-          ? 'माफ़ करें, आवाज़ स्पष्ट नहीं आई। कृपया फिर बोलें या टाइप करें।'
-          : 'Sorry, I could not understand the audio. Please try again or type your message.'
+            ? 'माफ़ करें, आवाज़ स्पष्ट नहीं आई। कृपया फिर बोलें या टाइप करें।'
+            : 'Sorry, I could not understand the audio. Please try again or type your message.'
       );
       return;
     }
@@ -394,9 +394,9 @@ async function processAudioMessage(
       activeSession.lang === 'mr'
         ? 'तांत्रिक अडचण आली आहे. कृपया टेक्स्ट संदेश पाठवा.'
         : activeSession.lang === 'hi'
-        ? 'तकनीकी समस्या हुई। कृपया टेक्स्ट संदेश भेजें।'
-        : 'Technical issue. Please send a text message instead.'
-    ).catch(() => {});
+          ? 'तकनीकी समस्या हुई। कृपया टेक्स्ट संदेश भेजें।'
+          : 'Technical issue. Please send a text message instead.'
+    ).catch(() => { });
   }
 }
 
@@ -419,9 +419,9 @@ async function processUnsupportedMessage(from: string, msgId: string, type: stri
     session.lang === 'mr'
       ? `माफ करा, सध्या फक्त मजकूर आणि आवाज संदेश स्वीकारले जातात. (${type} समर्थित नाही)`
       : session.lang === 'hi'
-      ? `माफ़ करें, अभी केवल टेक्स्ट और वॉयस संदेश स्वीकार किए जाते हैं। (${type} समर्थित नहीं)`
-      : `Sorry, only text and voice messages are supported right now. (${type} not supported)`
-  ).catch(() => {});
+        ? `माफ़ करें, अभी केवल टेक्स्ट और वॉयस संदेश स्वीकार किए जाते हैं। (${type} समर्थित नहीं)`
+        : `Sorry, only text and voice messages are supported right now. (${type} not supported)`
+  ).catch(() => { });
 }
 
 // ---------------------------------------------------------------------------
@@ -561,7 +561,7 @@ export function handleWhatsAppWebhook(body: unknown): void {
         logWarn('AUDIO_HANDLER_ERROR', `Unhandled error in processAudioMessage: ${err}`);
       });
     } else {
-      processUnsupportedMessage(msg.from, msg.id, msg.type).catch(() => {});
+      processUnsupportedMessage(msg.from, msg.id, msg.type).catch(() => { });
     }
   }
 }

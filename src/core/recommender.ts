@@ -12,6 +12,7 @@ import nsqfTradesData from '../data/nsqf_trades.json';
 import districtMarketData from '../data/district_market.json';
 import testimonialsData from '../data/testimonials.json';
 import schemesData from '../data/schemes.json';
+import districtsData from '../data/districts.json';
 import { findNearestCenterForTrade } from './geo';
 import { analyzeSkillGap } from './skillGap';
 
@@ -19,6 +20,7 @@ const trades = nsqfTradesData as NSQFTrade[];
 const districtMarket = districtMarketData as any;
 const testimonials = testimonialsData as any[];
 const schemes = schemesData as any[];
+const districts = districtsData as any[];
 
 const EDU_TO_LEARNER_LEVEL: Record<EducationLevel, number> = {
   none: 2,
@@ -98,8 +100,11 @@ export function recommendNSQFTrades(
   const userConstraints = (profile.constraints || []).map((c) => c.toLowerCase());
   const userPreference = profile.employment_preference || 'either';
   const userDistrict = profile.district || 'Varanasi';
-  const userLat = profile.lat || 25.3176;
-  const userLng = profile.lng || 82.9739;
+  const distEntry = districts.find(
+    (d) => d.name.toLowerCase() === userDistrict.toLowerCase()
+  );
+  const userLat = profile.lat || distEntry?.lat || 25.3176;
+  const userLng = profile.lng || distEntry?.lng || 82.9739;
 
   const candidateTraces: CandidateTrace[] = [];
   const validCandidates: Array<{ trade: NSQFTrade; trace: CandidateTrace; score: number }> = [];
@@ -148,14 +153,25 @@ export function recommendNSQFTrades(
     // 1. Interest Match (0.32 weight)
     let interestMatch = 0;
     const tradeInterests = trade.interest_tags.map((t) => t.toLowerCase());
+    const tradeNameEn = trade.name_en.toLowerCase();
+    const tradeId = trade.id.toLowerCase();
+    const tradeSector = trade.sector.toLowerCase();
+    const tradeRelated = (trade.related_occupations || []).map((r) => r.toLowerCase());
+    const tradeLocalNames = Object.values(trade.name_local || {}).map((v) => (v || '').toLowerCase());
+
     if (userInterests.length > 0) {
-      const intersection = userInterests.filter((ui) =>
-        tradeInterests.some((ti) => ti.includes(ui) || ui.includes(ti))
-      );
-      interestMatch = intersection.length > 0 ? Math.min(1.0, intersection.length / userInterests.length + 0.3) : 0.1;
-      if (tradeInterests.some((ti) => userInterests[0] && ti.includes(userInterests[0]))) {
-        interestMatch = 1.0;
-      }
+      const isDirectMatch = userInterests.some((ui) => {
+        const u = ui.toLowerCase().trim();
+        if (!u) return false;
+        if (tradeInterests.some((ti) => ti === u || ti.includes(u) || u.includes(ti))) return true;
+        if (tradeNameEn.includes(u) || u.includes(tradeNameEn)) return true;
+        if (tradeId.includes(u) || u.includes(tradeId)) return true;
+        if (tradeSector.includes(u) || u.includes(tradeSector)) return true;
+        if (tradeRelated.some((ro) => ro === u || ro.includes(u) || u.includes(ro))) return true;
+        if (tradeLocalNames.some((ln) => ln.includes(u) || u.includes(ln))) return true;
+        return false;
+      });
+      interestMatch = isDirectMatch ? 1.0 : 0.0;
     } else {
       interestMatch = 0.5;
     }

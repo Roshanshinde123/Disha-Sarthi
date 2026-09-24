@@ -76,7 +76,7 @@ export const AppFooter: React.FC<AppFooterProps> = ({
 
           <div className="footer-pstn-box" style={{ marginTop: '14px' }}>
             <small style={{ color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>{t('helplineLabel', lang)}</small>
-            <strong style={{ color: 'var(--field)', fontSize: '1rem' }}>📞 +91 80 4718 2609</strong>
+            <strong style={{ color: 'var(--field)', fontSize: '1rem' }}>📞 +917965480255</strong>
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ export function getExotelConfig(): ExotelConfig {
     accountSid: safeGet('EXOTEL_ACCOUNT_SID') || 'exotel_pmajay_sid_01',
     apiKey: safeGet('EXOTEL_API_KEY') || 'exotel_api_key_01',
     apiToken: safeGet('EXOTEL_API_TOKEN') || 'exotel_api_token_01',
-    virtualPhoneNumber: safeGet('EXOTEL_PHONE_NUMBER') || '+91 80 4718 2609', // Demo configured Exotel Virtual Line
+    virtualPhoneNumber: safeGet('EXOTEL_PHONE_NUMBER') || '+917965480255', // Demo configured Exotel Virtual Line
     webhookUrl: safeGet('EXOTEL_WEBHOOK_URL') || 'https://api.dishasarathi.gov.in/api/exotel/incoming',
     mediaStreamUrl: safeGet('EXOTEL_MEDIA_STREAM_URL') || 'wss://api.dishasarathi.gov.in/api/exotel/stream'
   };

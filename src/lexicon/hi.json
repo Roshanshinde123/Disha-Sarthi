@@ -213,29 +213,31 @@
       "carpentry": ["carpentry", "badhai", "lakdi ka kaam", "furniture", "बढ़ई", "लकड़ी का काम", "फर्नीचर"],
       "masonry": ["masonry", "rajmistri", "mistri", "chinai", "construction", "bhavan nirman", "राजमिस्त्री", "मिस्त्री", "चिनाई", "भवन निर्माण"],
       "leather_craft": ["leather", "charmakar", "chappal", "joota", "leather work", "चर्मकार", "जूता चप्पल", "चमड़े का काम"],
-      "handicraft": ["handicraft", "hastshilp", "bunkar", "weaving", "tokri", "mitti", "हस्तशिल्प", "बुनाई", "टोकरी निर्माण", "मिट्टी के बर्तन"],
-      "small_business": ["business", "dukaan", "kirana", "thela", "vyapar", "दुकान", "किराना", "ठेला", "व्यापार", "छोटा व्यवसाय"]
+      "handicraft": ["handicraft", "hastshilp", "bunkar", "weaving", "tokri", "mitti", "हस्तशिल्प", "बुनकर", "हथकरघा"],
+      "small_business": ["business", "dukaan", "kirana", "dhanda", "vyapar", "दुकान", "किराना", "व्यापार", "धंधा"]
     },
     "current_livelihood": {
-      "agriculture": ["kheti", "farming", "kisan", "khet majoor", "agriculture", "kheti badi", "खेती", "खेती बाड़ी", "किसान", "खेत मजदूर"],
-      "daily_wage": ["daily wage", "dihadi", "majoori", "majur", "labor", "shramik", "दिहाड़ी", "मजदूरी", "मजदूर", "श्रमिक", "दैनिक मजदूरी"],
-      "tailoring": ["shilai", "tailoring", "kapde silna", "darji kaam", "boutique", "सिलाई", "दर्जी का काम", "कपड़े सिलते हैं"],
-      "shop_work": ["shop", "dukaan", "helper", "sales", "dukaan par kaam", "दुकान", "दुकान पर काम", "सेल्स"],
-      "electrical": ["electrician", "bijli", "repair", "electrical kaam", "इलेक्ट्रिशियन", "बिजली रिपेयर", "इलेक्ट्रिकल"],
-      "auto_repair": ["garage", "mechanic", "gaadi repair", "auto rickshaw", "bike service", "गैरेज", "मैकेनिक", "गाड़ी रिपेयर", "ऑटो"],
-      "unemployed": ["unemployed", "kuch nahi kar rahe", "berojgar", "kaam dhoondh rahe hain", "कुछ नहीं कर रहे", "बेरोजगार", "काम ढूंढ रहे हैं"]
+      "agriculture": ["kheti", "farming", "kisan", "kheti majoor", "agriculture", "खेती", "किसान", "खेती किसानी", "मजदूरी"],
+      "daily_wage": ["daily wage", "dihadi", "majdoori", "majoori", "labor", "kamgar", "दिहाड़ी", "मजदूरी", "मजदूर", "श्रमिक"],
+      "tailoring": ["shilai", "tailoring", "kapde silna", "darji", "सिलाई", "दर्जी", "सिलाई काम"],
+      "shop_work": ["shop", "dukaan", "sales", "helper", "dukaan par kaam", "दुकान", "दुकान पर काम"],
+      "electrical": ["electrician", "wiring", "bijli repair", "बिजली मिस्त्री", "इलेक्ट्रिकल काम", "वायरिंग"],
+      "auto_repair": ["garage", "mechanic", "gaadi repair", "auto", "गैरेज", "मैकेनिक", "गाड़ी रिपेयर"],
+      "unemployed": ["unemployed", "kuch nahi karte", "berojgar", "kaam dhoondh rahe hain", "बेरोजगार", "कुछ नहीं करते", "काम ढूंढ रहे हैं"]
     },
     "skills_interests": {
       "stitching": ["stitching", "shilai", "tailoring", "kapde", "sewing", "cutting", "dress design", "सिलाई", "टेलरिंग", "कपड़े", "कटिंग", "सिलाई कढ़ाई"],
-      "electrical": ["electrical", "bijli", "wireman", "electrician", "wiring", "light fitting", "motor rewinding", "इलेक्ट्रिकल", "बिजली", "वायरमैन", "इलेक्ट्रिशियन", "वायरिंग"],
-      "solar": ["solar", "solar panel", "saur urja", "suryamitra", "rooftop solar", "सोलर", "सौर ऊर्जा", "सूर्यमित्र", "सोलर पैनल"],
-      "auto_repair": ["auto", "bike repair", "garage", "two wheeler", "motorcycle repair", "tractor", "ऑटो", "बाइक रिपेयर", "टू व्हीलर", "गैरेज"],
+      "electrical": ["electrical", "bijli", "wireman", "electrician", "wiring", "light fitting", "motor rewinding", "इलेक्ट्रिकल", "बिजली", "वायरमैन", "इलेक्ट्रिशियन", "वायरिंग", "बिजली का काम"],
+      "solar": ["solar", "solar panel", "solar panel installation", "saur urja", "suryamitra", "rooftop solar", "सोलर", "सौर ऊर्जा", "सूर्यमित्र", "सोलर पैनल", "सौर संयंत्र"],
+      "auto_repair": ["auto", "bike repair", "garage", "two wheeler", "motorcycle repair", "tractor", "ऑटो", "बाइक रिपेअर", "टू व्हीलर", "गैरेज"],
       "mobile_repair": ["mobile", "phone repair", "screen", "smartphone repair", "मोबाइल रिपेयर", "फोन सुधार"],
       "healthcare": ["nursing", "hospital", "patient care", "gda", "swasthya sahayak", "first aid", "स्वास्थ्य", "नर्सिंग", "अस्पताल", "मरीज देखभाल", "जीडीए"],
       "beauty": ["beauty", "parlour", "makeup", "hair styling", "beautician", "ब्यूटी पार्लर", "मेकअप", "ब्यूटिशियन"],
-      "computers": ["computer", "data entry", "excel", "typing", "csc center", "it", "कंप्यूटर", "डाटा एंट्री", "टाइपिंग", "एक्सेल", "सीएससी"],
+      "computers": ["computer", "digital", "data entry", "excel", "typing", "csc center", "it", "कंप्यूटर", "डाटा एंट्री", "टाइपिंग", "एक्सेल", "सीएससी", "डिजिटल"],
       "agriculture": ["organic farming", "drip irrigation", "kheti", "nursery", "polyhouse", "जैविक खेती", "ड्रिप सिंचाई", "नर्सरी", "पॉलीहाउस"],
-      "masonry": ["masonry", "rajmistri", "plumbing", "construction", "plumber", "राजमिस्त्री", "प्लंबर", "भवन निर्माण", "प्लम्बिंग"]
+      "masonry": ["masonry", "rajmistri", "construction", "राजमिस्त्री", "भवन निर्माण"],
+      "plumbing": ["plumbing", "plumber", "pipe fitting", "प्लंबर", "प्लम्बिंग", "नलसाजी", "पाइप फिटिंग"],
+      "welding": ["welding", "welder", "welding work", "arc welding", "metal work", "fabrication", "smaw", "gmaw", "वेल्डिंग", "वेल्डर", "वेल्डिंग का काम", "मेटल वेल्डिंग", "वेल्डिंग काम", "गैस कटिंग"]
     },
     "constraints": {
       "locomotor_difficulty": ["locomotor", "chalne me pareshani", "divyang", "handicap", "walking difficulty", "pair me taklif", "दिव्यांग", "चलने में परेशानी", "पैर में तकलीफ"],

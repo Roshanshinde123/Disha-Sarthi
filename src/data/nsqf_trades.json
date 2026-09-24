@@ -1655,5 +1655,51 @@
     "scheme_links": [
       "nsfdc"
     ]
+  },
+  {
+    "id": "fab_manual_metal_arc_welder",
+    "qp_code": "CSC/Q0204",
+    "name_en": "Manual Metal Arc Welder / Shielded Metal Arc Welding (SMAW)",
+    "name_local": {
+      "hi": "मैनुअल मेटल आर्क वेल्डर (Manual Metal Arc Welder)",
+      "mr": "मॅन्युअल मेटल आर्क वेल्डर (Welder)",
+      "bn": "ম্যানুয়াল মেটাল আর্ক ওয়েল্ডার",
+      "ta": "மேனுவல் மெட்டல் ஆர்க் வெல்டர்",
+      "te": "మాన్యువల్ మెటల్ ఆర్క్ వెల్డర్",
+      "kn": "ಮ್ಯಾನುವಲ್ ಮೆಟಲ್ ಆರ್ಕ್ ವೆಲ್ಡರ್",
+      "en": "Manual Metal Arc Welder / Shielded Metal Arc Welding (SMAW)"
+    },
+    "sector": "Capital Goods & Fabrication",
+    "ssc": "Capital Goods Skill Council",
+    "nsqf_level": 4,
+    "duration_hours": 350,
+    "min_education": "middle",
+    "interest_tags": [
+      "welding",
+      "metal_work",
+      "fabrication",
+      "smaw",
+      "gmaw",
+      "arc_welding",
+      "fitting",
+      "gas_cutting"
+    ],
+    "related_occupations": [
+      "welder",
+      "fabricator",
+      "fitter",
+      "blacksmith",
+      "iron worker"
+    ],
+    "physical_demands": [
+      "standing_long_hours",
+      "heavy_physical_labor"
+    ],
+    "self_employment_viable": true,
+    "typical_wage_band_inr": "14,000 - 28,000 / month",
+    "scheme_links": [
+      "nsfdc",
+      "pm_svanidhi"
+    ]
   }
 ]

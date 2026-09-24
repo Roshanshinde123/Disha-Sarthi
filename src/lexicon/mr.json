@@ -202,15 +202,17 @@
     },
     "skills_interests": {
       "stitching": ["stitching", "shilai", "tailoring", "kapde", "sewing", "cutting", "fashion", "शिलाई", "टेलरिंग", "कटिंग", "कपडे"],
-      "electrical": ["electrical", "wireman", "electrician", "wiring", "light fitting", "motor", "इलेक्ट्रिकल", "वायरमन", "इलेक्ट्रिशियन", "वायरिंग"],
-      "solar": ["solar", "solar panel", "saur urja", "rooftop solar", "सोलर", "सौर ऊर्जा", "सोलर पॅनेल"],
+      "electrical": ["electrical", "wireman", "electrician", "wiring", "light fitting", "motor", "इलेक्ट्रिकल", "वायरमन", "इलेक्ट्रिशियन", "वायरिंग", "विद्युत", "विद्युत काम"],
+      "solar": ["solar", "solar panel", "solar panel installation", "saur urja", "rooftop solar", "सोलर", "सौर ऊर्जा", "सौर पॅनेल", "सोलर पॅनेल", "सौर संयंत्र", "सूर्यमित्र"],
       "auto_repair": ["auto", "bike repair", "garage", "two wheeler", "motorcycle", "car repair", "ऑटो", "बाइक रिपेअर", "गॅरेज", "मेकॅनिक"],
       "mobile_repair": ["mobile", "phone repair", "screen replace", "smart phone", "मोबाईल रिपेअर", "फोन दुरुस्ती"],
       "healthcare": ["nursing", "hospital", "patient care", "gda", "arogya", "first aid", "आरोग्य", "रुग्ण सेवा", "नर्सिंग", "हॉस्पिटल"],
       "beauty": ["beauty", "parlour", "makeup", "hair styling", "beautician", "ब्यूटी पार्लर", "मेकअप", "केशभूषा"],
-      "computers": ["computer", "data entry", "excel", "typing", "it", "संगणक", "कॉम्प्यूटर", "डेटा एंट्री", "टायपिंग"],
+      "computers": ["computer", "digital", "data entry", "excel", "typing", "it", "संगणक", "कॉम्प्यूटर", "डेटा एंट्री", "टायपिंग", "डिजिटल"],
       "agriculture": ["organic farming", "drip irrigation", "sheti", "nursery", "polyhouse", "सेंद्रिय शेती", "ठिबक सिंचन", "रोपवाटिका"],
-      "masonry": ["masonry", "gawandi", "plumbing", "construction", "pipe fitting", "गवंडी", "प्लम्बिंग", "बांधकाम", "पाइप फिटिंग"]
+      "masonry": ["masonry", "gawandi", "construction", "गवंडी", "बांधकाम"],
+      "plumbing": ["plumbing", "plumber", "pipe fitting", "प्लंबिंग", "प्लंबर", "नळ दुरुस्ती", "नलसाजी", "पाइप फिटिंग"],
+      "welding": ["welding", "welder", "welding work", "वेल्डिंग", "वेल्डर", "वेल्डिंगचे काम", "वेल्डिंग काम", "मेटल वेल्डिंग", "arc welding", "metal joining", "fabrication", "smaw", "gmaw", "गॅस कटिंग"]
     },
     "constraints": {
       "locomotor_difficulty": ["locomotor", "chalayla tras", "divyang", "handicap", "walking difficulty", "paay tras", "दिव्यांग", "चालण्यास त्रास", "पायात त्रास"],
