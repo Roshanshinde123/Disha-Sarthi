@@ -1,0 +1,281 @@
+// Disha Sarathi - Production PostgreSQL Schema (PS 26097)
+// PM-AJAY GIA Component (NSQF Skilling & Livelihood Voice Assistant)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// 1. User & Authentication
+// -----------------------------------------------------------------------------
+model UserAccount {
+  id           String    @id @default(uuid())
+  username     String    @unique
+  name         String
+  role         String    // 'BENEFICIARY' | 'COORDINATOR' | 'ADMIN'
+  phone        String?
+  email        String?
+  district     String?
+  status       String    @default("ACTIVE") // 'ACTIVE' | 'INACTIVE'
+  passwordHash String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+  lastLogin    DateTime? @map("last_login")
+
+  auditLogs        AuditLogEntry[]
+  coordinatorNotes CoordinatorNote[]
+
+  @@index([username])
+  @@index([role])
+  @@index([district])
+  @@map("user_accounts")
+}
+
+// -----------------------------------------------------------------------------
+// 2. Beneficiary Profile
+// -----------------------------------------------------------------------------
+model BeneficiaryProfile {
+  id                     String   @id @default(uuid())
+  refCode                String?  @unique @map("ref_code")
+  name                   String?
+  firstName              String?  @map("first_name")
+  phone                  String?
+  age                    Int?
+  gender                 String?
+  language               String   @default("mr")
+  consentGiven           Boolean  @default(true) @map("consent_given")
+  educationLevel         String?  @map("education_level")
+  familyOccupation       String?  @map("family_occupation")
+  currentLivelihood      String?  @map("current_livelihood")
+  skillsInterests        Json     @default("[]") @map("skills_interests")
+  existingSkills         Json     @default("[]") @map("existing_skills")
+  traditionalSkills      Json     @default("[]") @map("traditional_skills")
+  transferableSkills     Json     @default("[]") @map("transferable_skills")
+  experienceYears        Float?   @map("experience_years")
+  interests              Json     @default("[]")
+  aspirations            String?
+  constraints            Json     @default("[]")
+  constraintsRecorded    Boolean  @default(false) @map("constraints_recorded")
+  travelRadiusKm         Int?     @map("travel_radius_km")
+  employmentPreference   String?  @map("employment_preference")
+  district               String?
+  districtNameLocal      String?  @map("district_name_local")
+  state                  String?  @default("Maharashtra")
+  lat                    Float?
+  lng                    Float?
+  gpsAccuracyM           Float?   @map("gps_accuracy_m")
+  summaryConfirmed       Boolean  @default(false) @map("summary_confirmed")
+  skillGapGenerated      Boolean  @default(false) @map("skill_gap_generated")
+  profileCompleted       Boolean  @default(false) @map("profile_completed")
+  selectedTradeId        String?  @map("selected_trade_id")
+  wantsFinanceAssistance Boolean  @default(false) @map("wants_finance_assistance")
+  trainingStatus         String   @default("RECOMMENDED") @map("training_status")
+  placementStatus        String   @default("NOT_STARTED") @map("placement_status")
+  placementNotes         String?  @map("placement_notes")
+  selectedOpportunityId  String?  @map("selected_opportunity_id")
+  verificationLevel      String   @default("SELF_REPORTED") @map("verification_level")
+  createdAt              DateTime @default(now()) @map("created_at")
+  updatedAt              DateTime @updatedAt @map("updated_at")
+
+  sessions         Session[]
+  evidenceList     PlacementEvidence[]
+  followUps        FollowUpRecord[]
+  coordinatorNotes CoordinatorNote[]
+
+  @@index([phone])
+  @@index([district])
+  @@index([placementStatus])
+  @@index([verificationLevel])
+  @@index([trainingStatus])
+  @@index([createdAt])
+  @@map("beneficiary_profiles")
+}
+
+// -----------------------------------------------------------------------------
+// 3. Conversation & Voice Sessions
+// -----------------------------------------------------------------------------
+model Session {
+  id              String   @id @default(uuid())
+  refCode         String?  @map("ref_code")
+  beneficiaryId   String?  @map("beneficiary_id")
+  lang            String   @default("mr")
+  state           String   @default("LANDING")
+  previousState   String?  @map("previous_state")
+  transcript      Json     @default("[]")
+  recommendations Json     @default("[]")
+  trace           Json?
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  beneficiary BeneficiaryProfile? @relation(fields: [beneficiaryId], references: [id], onDelete: Cascade)
+
+  @@index([beneficiaryId])
+  @@index([refCode])
+  @@index([state])
+  @@index([updatedAt])
+  @@map("sessions")
+}
+
+// -----------------------------------------------------------------------------
+// 4. Placement Evidence & Document Verification
+// -----------------------------------------------------------------------------
+model PlacementEvidence {
+  id               String    @id @default(uuid())
+  beneficiaryId    String    @map("beneficiary_id")
+  evidenceType     String    @default("JOINING_LETTER") @map("evidence_type")
+  documentName     String    @map("document_name")
+  documentUrl      String?   @map("document_url")
+  employerName     String    @map("employer_name")
+  designation      String?
+  joiningDate      String?   @map("joining_date")
+  monthlyWageInr   String?   @map("monthly_wage_inr")
+  status           String    @default("SELF_REPORTED") // 'SELF_REPORTED' | 'EVIDENCE_SUBMITTED' | 'COORDINATOR_VERIFIED' | 'EMPLOYER_VERIFIED' | 'REJECTED'
+  submittedAt      DateTime  @default(now()) @map("submitted_at")
+  verifiedAt       DateTime? @map("verified_at")
+  verifiedBy       String?   @map("verified_by")
+  coordinatorNotes String?   @map("coordinator_notes")
+  isDemo           Boolean   @default(false) @map("is_demo")
+
+  beneficiary BeneficiaryProfile @relation(fields: [beneficiaryId], references: [id], onDelete: Cascade)
+
+  @@index([beneficiaryId])
+  @@index([status])
+  @@index([submittedAt])
+  @@map("placement_evidence")
+}
+
+// -----------------------------------------------------------------------------
+// 5. Post-Placement Livelihood Follow-Up Records (7 / 30 / 90 Days)
+// -----------------------------------------------------------------------------
+model FollowUpRecord {
+  id            String    @id @default(uuid())
+  beneficiaryId String    @map("beneficiary_id")
+  periodDays    Int       @map("period_days") // 7 | 30 | 90
+  dueDate       String    @map("due_date")
+  status        String    @default("PENDING") // 'PENDING' | 'RETAINED' | 'WAGE_RECEIVED' | 'ISSUE_REPORTED' | 'DROPPED_OUT' | 'NOT_DUE'
+  completedAt   DateTime? @map("completed_at")
+  completedBy   String?   @map("completed_by")
+  wageStatus    String?   @map("wage_status")
+  remarks       String?
+
+  beneficiary BeneficiaryProfile @relation(fields: [beneficiaryId], references: [id], onDelete: Cascade)
+
+  @@index([beneficiaryId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("follow_up_records")
+}
+
+// -----------------------------------------------------------------------------
+// 6. Coordinator Field Notes
+// -----------------------------------------------------------------------------
+model CoordinatorNote {
+  id              String   @id @default(uuid())
+  beneficiaryId   String   @map("beneficiary_id")
+  coordinatorName String   @map("coordinator_name")
+  authorId        String?  @map("author_id")
+  content         String
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  beneficiary BeneficiaryProfile @relation(fields: [beneficiaryId], references: [id], onDelete: Cascade)
+  author      UserAccount?        @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([beneficiaryId])
+  @@index([createdAt])
+  @@map("coordinator_notes")
+}
+
+// -----------------------------------------------------------------------------
+// 7. Security & DPDP Compliance Audit Trail
+// -----------------------------------------------------------------------------
+model AuditLogEntry {
+  id          String   @id @default(uuid())
+  timestamp   DateTime @default(now())
+  userId      String?  @map("user_id")
+  userRole    String?  @map("user_role")
+  action      String
+  details     String
+  ipOrChannel String?  @default("WEB") @map("ip_or_channel")
+
+  user UserAccount? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([action])
+  @@map("audit_log_entries")
+}
+
+// -----------------------------------------------------------------------------
+// 8. Opportunities (Wage Employment & Micro-Enterprises)
+// -----------------------------------------------------------------------------
+model Opportunity {
+  id                  String   @id @default(uuid())
+  title               String
+  companyOrAgency     String   @map("company_or_agency")
+  sector              String
+  tradeId             String   @map("trade_id")
+  district            String
+  state               String   @default("Maharashtra")
+  type                String   @default("wage_employment") // 'wage_employment' | 'self_employment'
+  openingsOrCapacity  Int      @default(1) @map("openings_or_capacity")
+  wageOrSupportInr    String   @map("wage_or_support_inr")
+  contactPerson       String   @map("contact_person")
+  contactPhone        String   @map("contact_phone")
+  address             String
+  schemeLink          String?  @map("scheme_link")
+  isDemoSeed          Boolean  @default(false) @map("is_demo_seed")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  @@index([district])
+  @@index([tradeId])
+  @@index([type])
+  @@map("opportunities")
+}
+
+// -----------------------------------------------------------------------------
+// 9. Hyperlocal Training Centers
+// -----------------------------------------------------------------------------
+model TrainingCenter {
+  id            String   @id @default(uuid())
+  name          String
+  district      String
+  state         String   @default("Maharashtra")
+  address       String
+  contactPhone  String?  @map("contact_phone")
+  contactPerson String?  @map("contact_person")
+  lat           Float?
+  lng           Float?
+  isDemo        Boolean  @default(false) @map("is_demo")
+
+  batches TrainingBatch[]
+
+  @@index([district])
+  @@map("training_centers")
+}
+
+// -----------------------------------------------------------------------------
+// 10. Training Batches
+// -----------------------------------------------------------------------------
+model TrainingBatch {
+  id                 String   @id @default(uuid())
+  centerId           String   @map("center_id")
+  tradeId            String   @map("trade_id")
+  tradeName          String   @map("trade_name")
+  startDate          String   @map("start_date")
+  endDate            String   @map("end_date")
+  durationHours      Int      @default(200) @map("duration_hours")
+  capacity           Int      @default(30)
+  enrolledCount      Int      @default(0) @map("enrolled_count")
+  stipendInrMonth    Float    @default(0) @map("stipend_inr_month")
+  toolkitSubsidyInr  Float    @default(0) @map("toolkit_subsidy_inr")
+
+  center TrainingCenter @relation(fields: [centerId], references: [id], onDelete: Cascade)
+
+  @@index([centerId])
+  @@index([tradeId])
+  @@map("training_batches")
+}
