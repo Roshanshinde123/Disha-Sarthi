@@ -5,7 +5,8 @@ export interface ServerTTSAudioResult {
   audioBuffer: Buffer;
   base64Payload: string;
   sampleRate: number;
-  encoding: 'audio/x-l16' | 'audio/x-mulaw';
+  encoding: 'audio/x-l16' | 'audio/x-mulaw' | 'audio/ogg' | 'audio/mpeg' | 'audio/aac' | string;
+  mimeType?: string;
   latencyMs: number;
 }
 
@@ -13,7 +14,11 @@ export interface TextToSpeechProvider {
   synthesize(
     text: string,
     language: LanguageCode,
-    options?: { sampleRate?: number; encoding?: 'audio/x-l16' | 'audio/x-mulaw' }
+    options?: {
+      sampleRate?: number;
+      encoding?: 'audio/x-l16' | 'audio/x-mulaw' | 'audio/ogg' | 'audio/mpeg' | 'audio/aac' | string;
+      outputCodec?: 'mp3' | 'wav' | 'aac' | 'opus' | 'flac';
+    }
   ): Promise<ServerTTSAudioResult>;
   getProviderName(): string;
   isConfigured(): boolean;
@@ -27,7 +32,11 @@ export class MockServerTTSProvider implements TextToSpeechProvider {
   async synthesize(
     text: string,
     _language: LanguageCode,
-    options?: { sampleRate?: number; encoding?: 'audio/x-l16' | 'audio/x-mulaw' }
+    options?: {
+      sampleRate?: number;
+      encoding?: 'audio/x-l16' | 'audio/x-mulaw' | 'audio/ogg' | 'audio/mpeg' | 'audio/aac' | string;
+      outputCodec?: 'mp3' | 'wav' | 'aac' | 'opus' | 'flac';
+    }
   ): Promise<ServerTTSAudioResult> {
     const startTime = Date.now();
     const sampleRate = options?.sampleRate || 8000;
@@ -48,6 +57,7 @@ export class MockServerTTSProvider implements TextToSpeechProvider {
       base64Payload: buffer.toString('base64'),
       sampleRate,
       encoding: options?.encoding || 'audio/x-l16',
+      mimeType: options?.outputCodec === 'opus' ? 'audio/ogg; codecs=opus' : 'audio/wav',
       latencyMs: Date.now() - startTime
     };
   }
@@ -74,7 +84,11 @@ export class SarvamServerTTSProvider implements TextToSpeechProvider {
   async synthesize(
     text: string,
     language: LanguageCode,
-    options?: { sampleRate?: number; encoding?: 'audio/x-l16' | 'audio/x-mulaw' }
+    options?: {
+      sampleRate?: number;
+      encoding?: 'audio/x-l16' | 'audio/x-mulaw' | 'audio/ogg' | 'audio/mpeg' | 'audio/aac' | string;
+      outputCodec?: 'mp3' | 'wav' | 'aac' | 'opus' | 'flac';
+    }
   ): Promise<ServerTTSAudioResult> {
     if (!this.isConfigured()) {
       return new MockServerTTSProvider().synthesize(text, language, options);
@@ -95,28 +109,34 @@ export class SarvamServerTTSProvider implements TextToSpeechProvider {
       od: 'od-IN'
     };
     const langCode = SARVAM_LANG_MAP[language] || 'mr-IN';
-    const sampleRate = options?.sampleRate || 8000;
+    const sampleRate = options?.sampleRate || 16000;
+    const outputCodec = options?.outputCodec || (options?.encoding?.includes('ogg') ? 'opus' : options?.encoding?.includes('mpeg') ? 'mp3' : undefined);
 
-    console.log(`[TTS] TTS_REQUEST_STARTED: provider=SARVAM lang=${langCode} sampleRate=${sampleRate}`);
+    console.log(`[TTS] TTS_REQUEST_STARTED: provider=SARVAM lang=${langCode} sampleRate=${sampleRate} outputCodec=${outputCodec || 'default'}`);
 
     try {
+      const payloadBody: Record<string, unknown> = {
+        inputs: [text],
+        target_language_code: langCode,
+        speaker: 'kavya',
+        pitch: 0,
+        pace: 1.0,
+        loudness: 1.5,
+        speech_sample_rate: sampleRate,
+        enable_preprocessing: true,
+        model: 'bulbul:v3'
+      };
+      if (outputCodec) {
+        payloadBody.output_audio_codec = outputCodec;
+      }
+
       const response = await fetch('https://api.sarvam.ai/text-to-speech', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'api-subscription-key': this.apiKey
         },
-        body: JSON.stringify({
-          inputs: [text],
-          target_language_code: langCode,
-          speaker: 'kavya',
-          pitch: 0,
-          pace: 1.0,
-          loudness: 1.5,
-          speech_sample_rate: sampleRate,
-          enable_preprocessing: true,
-          model: 'bulbul:v3'
-        })
+        body: JSON.stringify(payloadBody)
       });
 
       if (!response.ok) {
@@ -129,19 +149,29 @@ export class SarvamServerTTSProvider implements TextToSpeechProvider {
       const rawAudioBuffer = Buffer.from(base64Audio, 'base64');
       const latencyMs = Date.now() - startTime;
 
-      console.log(`[TTS] TTS_REQUEST_SUCCESS: provider=SARVAM bytes=${rawAudioBuffer.length} latencyMs=${latencyMs}`);
+      console.log(`[TTS] TTS_REQUEST_SUCCESS: provider=SARVAM bytes=${rawAudioBuffer.length} latencyMs=${latencyMs} codec=${outputCodec || 'wav'}`);
 
       // If linear PCM is expected for telephony (e.g. Exotel), strip 44-byte WAV header if present
       let finalBuffer = rawAudioBuffer;
-      if (options?.encoding === 'audio/x-l16' && rawAudioBuffer.length > 44 && rawAudioBuffer.subarray(0, 4).toString('ascii') === 'RIFF') {
+      if (!outputCodec && options?.encoding === 'audio/x-l16' && rawAudioBuffer.length > 44 && rawAudioBuffer.subarray(0, 4).toString('ascii') === 'RIFF') {
         finalBuffer = rawAudioBuffer.subarray(44);
       }
+
+      const detectedMime =
+        outputCodec === 'opus' || (finalBuffer.length >= 4 && finalBuffer.subarray(0, 4).toString('ascii') === 'OggS')
+          ? 'audio/ogg; codecs=opus'
+          : outputCodec === 'mp3' || (finalBuffer.length >= 3 && finalBuffer.subarray(0, 3).toString('ascii') === 'ID3')
+          ? 'audio/mpeg'
+          : outputCodec === 'aac'
+          ? 'audio/aac'
+          : 'audio/wav';
 
       return {
         audioBuffer: finalBuffer,
         base64Payload: finalBuffer.toString('base64'),
         sampleRate,
-        encoding: options?.encoding || 'audio/x-l16',
+        encoding: (options?.encoding as any) || (outputCodec === 'opus' ? 'audio/ogg' : 'audio/x-l16'),
+        mimeType: detectedMime,
         latencyMs
       };
     } catch (error: any) {

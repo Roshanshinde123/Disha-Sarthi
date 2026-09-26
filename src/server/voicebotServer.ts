@@ -3,6 +3,7 @@ import http from 'http';
 import { WebSocketServer } from 'ws';
 import { handleExotelVoicebotWebSocket, getVoicebotDiagnostics } from './exotelVoicebot';
 import { handleWhatsAppWebhook } from './whatsappHandler';
+import { getWhatsAppStatusInfo } from './services/whatsapp';
 import { getTTSProvider } from './ttsProvider';
 import { handleDishaVoiceRequest } from './services/dishaVoiceService';
 import { URL } from 'url';
@@ -352,6 +353,17 @@ export function startVoicebotServer(port: number = PORT) {
     console.log(`[EXOTEL_VOICEBOT] Server listening on http://0.0.0.0:${port}`);
     console.log(`[EXOTEL_VOICEBOT] WebSocket Voicebot endpoint: ws://0.0.0.0:${port}${WS_PATH}`);
     console.log(`[EXOTEL_VOICEBOT] Health check endpoint: http://0.0.0.0:${port}/api/voice/exotel/health`);
+
+    const waInfo = getWhatsAppStatusInfo();
+    if (waInfo.isConfigured) {
+      console.log(
+        `[WhatsApp] Service initialized with phone number ID: ${waInfo.phoneNumberId}, business account ID: ${waInfo.businessAccountId || 'N/A'}, verify token: ${waInfo.verifyTokenConfigured ? 'CONFIGURED' : 'MISSING'}, access token: ${waInfo.maskedToken}`
+      );
+    } else {
+      console.log(
+        `[WhatsApp] Service unconfigured (missing WHATSAPP_PHONE_NUMBER_ID or WHATSAPP_ACCESS_TOKEN)`
+      );
+    }
   });
 
   return { server, wss };

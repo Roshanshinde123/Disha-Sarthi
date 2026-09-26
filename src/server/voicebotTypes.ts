@@ -157,7 +157,7 @@ export interface VoicebotCallSession {
   endedAt?: string;
   durationSeconds: number;
   language: LanguageCode;
-  channel: 'PHONE';
+  channel: 'PHONE' | 'WHATSAPP' | 'WEB';
   status: 'CONNECTED' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED' | 'DISCONNECTED';
   terminationReason?: string;
   verifiedProfile: VerifiedBeneficiaryProfile;

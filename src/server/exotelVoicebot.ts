@@ -534,6 +534,20 @@ export function getVoicebotCallSessions(): VoicebotCallSession[] {
 }
 
 /**
+ * Registers an external channel call session (e.g. WhatsApp voice/text) for unified dashboard sync
+ */
+export function registerVoicebotCallSession(session: VoicebotCallSession): void {
+  const existingIdx = completedSessions.findIndex(
+    (s) => s.id === session.id || (s.callSid && s.callSid === session.callSid)
+  );
+  if (existingIdx >= 0) {
+    completedSessions[existingIdx] = session;
+  } else {
+    completedSessions.push(session);
+  }
+}
+
+/**
  * Health & Diagnostics Status for /api/voice/exotel/health
  */
 export function getVoicebotDiagnostics(): VoicebotDiagnostics {
