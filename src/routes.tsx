@@ -139,7 +139,13 @@ export const AppRouter: React.FC = () => {
     }
 
     if (currentPath === '/contact') {
-      return <ContactView />;
+      return (
+        <ContactView
+          lang={selectedLanguage}
+          onStartVoice={() => navigateTo('/talk')}
+          onNavigateHome={() => navigateTo('/')}
+        />
+      );
     }
 
     // 2. Public / Scanned Resume Card (/resume/:token or /beneficiary/resume/:token)

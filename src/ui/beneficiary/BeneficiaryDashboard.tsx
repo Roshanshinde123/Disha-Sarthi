@@ -162,14 +162,35 @@ export const BeneficiaryDashboard: React.FC<BeneficiaryDashboardProps> = ({
         {activeTab === 'OVERVIEW' && (
           <div className="ben-overview-wrapper">
             {/* Telephony Helpline Strip */}
-            <div className="gov-telephony-banner">
-              <span className="tel-icon">📞</span>
-              <div className="tel-text">
-                <strong>{t('helplineLabel', lang)}</strong> {config.virtualPhoneNumber} (24x7)
+            <div className="gov-telephony-banner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="tel-icon">📞</span>
+                <div className="tel-text">
+                  <strong>{t('helplineLabel', lang)}</strong> {config.virtualPhoneNumber} (24x7)
+                </div>
               </div>
-              <a href={`tel:${config.virtualPhoneNumber.replace(/\s+/g, '')}`} className="btn-tel-call">
-                {t('dashboardCallNow', lang)}
-              </a>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <a href={`tel:${config.virtualPhoneNumber.replace(/\s+/g, '')}`} className="btn-tel-call">
+                  {t('dashboardCallNow', lang)}
+                </a>
+                <a
+                  href="https://wa.me/15551602253?text=Hello%2C%20I%20want%20to%20know%20more%20about%20Disha%20Sarathi."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-tel-call"
+                  aria-label="Message Disha Sarathi on WhatsApp"
+                  style={{
+                    background: '#16a34a',
+                    borderColor: '#15803d',
+                    color: '#FFFFFF',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  💬 WhatsApp: +1 (555) 160-2253
+                </a>
+              </div>
             </div>
 
             {/* NEW USER ONBOARDING BANNER (If Profile is Empty) */}

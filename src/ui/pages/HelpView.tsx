@@ -66,7 +66,7 @@ export const HelpView: React.FC<HelpViewProps> = ({
     {
       tag: 'PHONE',
       q: 'Can I use Disha Sarathi without internet or smartphone? (PSTN Helpline)',
-      a: 'Yes! You can call our toll-free helpline at 09513886363 from any basic phone. The voicebot will interact in your language and record your profile via automated telephone call.'
+      a: 'Yes! You can call our toll-free helpline at +917965480255 from any basic phone. The voicebot will interact in your language and record your profile via automated telephone call.'
     }
   ] : isHi ? [
     {
@@ -107,7 +107,7 @@ export const HelpView: React.FC<HelpViewProps> = ({
     {
       tag: 'PHONE',
       q: 'बिना इंटरनेट या स्मार्टफोन के कैसे उपयोग करें? (PSTN Helpline)',
-      a: 'आप किसी भी साधारण फोन से 09513886363 टोल-फ्री नंबर पर कॉल कर सकते हैं। दिशा सारथी फोन पर आपकी भाषा में बात करके पूरी जानकारी दर्ज करेगी।'
+      a: 'आप किसी भी साधारण फोन से +917965480255 टोल-फ्री नंबर पर कॉल कर सकते हैं। दिशा सारथी फोन पर आपकी भाषा में बात करके पूरी जानकारी दर्ज करेगी।'
     }
   ] : [
     {
@@ -148,7 +148,7 @@ export const HelpView: React.FC<HelpViewProps> = ({
     {
       tag: 'PHONE',
       q: 'इंटरनेट किंवा स्मार्टफोन नसेल तर कसे वापरावे? (PSTN Helpline)',
-      a: 'आपण कोणत्याही साध्या फोनवरून 09513886363 या टोल-फ्री क्रमांकावर कॉल करू शकता. दिशा सारथी फोनवर मराठी, हिंदी किंवा स्थानिक भाषेत बोलून संपूर्ण माहिती नोंदवून घेईल.'
+      a: 'आपण कोणत्याही साध्या फोनवरून +917965480255 या टोल-फ्री क्रमांकावर कॉल करू शकता. दिशा सारथी फोनवर मराठी, हिंदी किंवा स्थानिक भाषेत बोलून संपूर्ण माहिती नोंदवून घेईल.'
     }
   ];
 
@@ -305,9 +305,26 @@ export const HelpView: React.FC<HelpViewProps> = ({
             {isEn ? 'Our support desk and toll-free helpline are always ready to assist you.' : isHi ? 'हमारा सहायता प्रकोष्ठ और टोल-फ्री हेल्पलाइन आपकी मदद के लिए सदैव उपलब्ध है।' : 'आमचा सहाय्यता कक्ष व हेल्पलाइन आपल्या मदतीसाठी सदैव उपलब्ध आहे.'}
           </p>
         </div>
-        <a href="tel:09513886363" className="btn-primary" style={{ textDecoration: 'none', padding: '10px 20px' }}>
-          📞 {isEn ? 'Call 09513886363' : isHi ? '09513886363 पर कॉल करें' : '09513886363 वर कॉल करा'}
-        </a>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href="tel:+917965480255" className="btn-primary" style={{ textDecoration: 'none', padding: '10px 18px' }}>
+            📞 {isEn ? 'Call +917965480255' : isHi ? '+917965480255 पर कॉल करें' : '+917965480255 वर कॉल करा'}
+          </a>
+          <a
+            href="https://wa.me/15551602253?text=Hello%2C%20I%20want%20to%20know%20more%20about%20Disha%20Sarathi."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+            style={{
+              textDecoration: 'none',
+              padding: '10px 18px',
+              background: '#16a34a',
+              color: '#FFFFFF'
+            }}
+            aria-label="Message Disha Sarathi on WhatsApp"
+          >
+            💬 WhatsApp: +1 (555) 160-2253
+          </a>
+        </div>
       </div>
     </div>
   );

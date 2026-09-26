@@ -74,9 +74,23 @@ export const AppFooter: React.FC<AppFooterProps> = ({
             ))}
           </div>
 
-          <div className="footer-pstn-box" style={{ marginTop: '14px' }}>
-            <small style={{ color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>{t('helplineLabel', lang)}</small>
-            <strong style={{ color: 'var(--field)', fontSize: '1rem' }}>📞 +917965480255</strong>
+          <div className="footer-pstn-box" style={{ marginTop: '14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <div>
+              <small style={{ color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>{t('helplineLabel', lang)}</small>
+              <strong style={{ color: 'var(--field)', fontSize: '0.95rem' }}>📞 +917965480255</strong>
+            </div>
+            <div>
+              <small style={{ color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>WhatsApp</small>
+              <a
+                href="https://wa.me/15551602253?text=Hello%2C%20I%20want%20to%20know%20more%20about%20Disha%20Sarathi."
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#22c55e', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}
+                aria-label="Message Disha Sarathi on WhatsApp"
+              >
+                💬 +1 (555) 160-2253
+              </a>
+            </div>
           </div>
         </div>
       </div>

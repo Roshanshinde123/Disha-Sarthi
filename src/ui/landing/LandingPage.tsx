@@ -134,11 +134,29 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Helpline Strip */}
-            <div className="gov-helpline-strip">
-              <span className="helpline-icon">📞</span>
-              <div className="helpline-text" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                <span className="helpline-label">{t('helplineLabel', lang)}</span>
-                <strong className="helpline-number">+917965480255</strong>
+            <div className="gov-helpline-strip" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="helpline-icon">📞</span>
+                <div className="helpline-text" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <span className="helpline-label">{t('helplineLabel', lang)}</span>
+                  <strong className="helpline-number">+917965480255</strong>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="helpline-icon">💬</span>
+                <div className="helpline-text" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  <span className="helpline-label">WhatsApp:</span>
+                  <a
+                    href="https://wa.me/15551602253?text=Hello%2C%20I%20want%20to%20know%20more%20about%20Disha%20Sarathi."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="helpline-number"
+                    style={{ color: '#16a34a', textDecoration: 'none', fontWeight: 800 }}
+                    aria-label="Message Disha Sarathi on WhatsApp"
+                  >
+                    +1 (555) 160-2253
+                  </a>
+                </div>
               </div>
             </div>
           </div>
