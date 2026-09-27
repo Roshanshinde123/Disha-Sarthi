@@ -31,7 +31,7 @@ function loadEnv() {
 }
 loadEnv();
 
-const PORT = parseInt(process.env.VOICEBOT_PORT || process.env.PORT || '8080', 10);
+const PORT = parseInt(process.env.PORT || process.env.VOICEBOT_PORT || '8080', 10);
 const WS_PATH = process.env.EXOTEL_VOICEBOT_WS_PATH || '/api/voice/exotel';
 
 /**
