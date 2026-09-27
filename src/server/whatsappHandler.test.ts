@@ -5,13 +5,19 @@ import {
   handleWhatsAppWebhook,
   getWhatsAppSessionCount,
   getInteractiveButtonsForState,
+  getRecommendationButtons,
+  formatRecommendationsMessage,
+  formatVoiceRecommendationSummary,
+  formatCenterDetailsMessage,
+  normalizeUserInput,
   _resetDeduplicationStore,
   _resetSessionStore,
+  _setSessionForTesting,
   type WaTextMessage,
   type WaAudioMessage,
   type WaInteractiveMessage
 } from './whatsappHandler';
-import { ConversationState, LanguageCode } from '../core/types';
+import { ConversationState, LanguageCode, Session } from '../core/types';
 
 // ---------------------------------------------------------------------------
 // Mock WhatsApp, STT, and TTS services so tests are deterministic and fast
@@ -20,6 +26,7 @@ vi.mock('./services/whatsapp', () => ({
   sendTextMessage: vi.fn().mockResolvedValue(undefined),
   sendAudioMessage: vi.fn().mockResolvedValue(undefined),
   sendInteractiveButtonMessage: vi.fn().mockResolvedValue(undefined),
+  sendLocationMessage: vi.fn().mockResolvedValue(undefined),
   getMediaUrl: vi.fn().mockResolvedValue('https://example.com/media/fake-audio.ogg'),
   downloadMedia: vi.fn().mockResolvedValue(Buffer.from('fake-ogg-bytes')),
   markMessageRead: vi.fn().mockResolvedValue(undefined),
@@ -54,6 +61,7 @@ import {
   sendTextMessage,
   sendAudioMessage,
   sendInteractiveButtonMessage,
+  sendLocationMessage,
   getMediaUrl,
   downloadMedia,
   isWhatsAppConfigured
@@ -686,5 +694,326 @@ describe('13. Voice Note Pipeline & Dashboard Sync', () => {
 
     expect(audioCalled).toBe(true);
     expect(buttonCalled || textCalled).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 14. Explainable Recommendations & Nearest Center WhatsApp Delivery (PS 26097)
+// ---------------------------------------------------------------------------
+describe('14. Explainable NSQF Recommendations & Nearest Center WhatsApp Delivery', () => {
+  const mockRecSession: Session = {
+    id: 'sess_wa_test_rec_01',
+    ref_code: 'PMAJAY-WA-0001',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    lang: 'mr',
+    state: 'RECOMMENDATION',
+    profile: {
+      district: 'Pune',
+      education_level: 'secondary',
+      skills_interests: ['electrical'],
+      skills_recorded: true,
+      placement_status: 'NOT_STARTED',
+      summary_confirmed: true,
+      skill_gap_generated: true,
+      profile_completed: true,
+      selected_trade_id: 'el_asst_electrician'
+    },
+    recommendations: [
+      {
+        trade: {
+          id: 'el_asst_electrician',
+          name_en: 'Assistant Electrician (Construction / Domestic)',
+          name_local: {
+            mr: 'सहाय्यक इलेक्ट्रिशियन (इमारत व घरगुती)',
+            hi: 'सहायक इलेक्ट्रीशियन'
+          },
+          sector: 'Construction',
+          nsqf_level: 3,
+          qp_code: 'CON/Q0602',
+          typical_wage_band_inr: '14,000 - 22,000 / month',
+          duration_hours: 400,
+          self_employment_viable: true,
+          min_education: 'secondary',
+          scheme_links: ['nsfdc', 'pm_svanidhi']
+        },
+        score: 0.95,
+        rank: 1,
+        rationale: 'तुमची "electrical" मधील आवड आणि अनुभवावर आधारित हा एनएसक्यूएफ स्तर 3 कोर्स सर्वाधिक उपयुक्त आहे.',
+        skill_gap: {
+          trade_id: 'el_asst_electrician',
+          trade_name: 'Assistant Electrician',
+          matched_skills: ['Basic Wiring', 'Safety Equipment'],
+          missing_skills: ['Conduit Installation'],
+          training_required_skills: ['Circuit Diagnostics & Multimeter Use', 'Conduit Installation'],
+          severity: 'low',
+          recommended_intervention: 'Fast-track certification'
+        },
+        nearest_center: {
+          center: {
+            id: 'tc_mh_pune_01',
+            name: 'Industrial Training Institute (ITI) Aundh',
+            district: 'Pune',
+            state: 'Maharashtra',
+            lat: 18.558,
+            lng: 73.807,
+            trades_offered: ['el_asst_electrician'],
+            contact_phone: '+91 20 25880001',
+            address: 'ITI Road, Aundh, Pune, Maharashtra 411007'
+          },
+          distance_km: 4.2
+        },
+        no_center_in_range: false
+      },
+      {
+        trade: {
+          id: 'el_solar_panel_installer',
+          name_en: 'Solar Panel Installation Technician (Suryamitra)',
+          name_local: {
+            mr: 'सौर पॅनेल इन्स्टॉलेशन तंत्रज्ञ (सूर्यमित्र)',
+            hi: 'सोलर पैनल इंस्टॉलेशन तकनीशियन'
+          },
+          sector: 'Green Energy',
+          nsqf_level: 4,
+          qp_code: 'ELE/Q5901',
+          typical_wage_band_inr: '16,000 - 32,000 / month',
+          duration_hours: 300,
+          self_employment_viable: true,
+          min_education: 'secondary',
+          scheme_links: ['stand_up_india']
+        },
+        score: 0.88,
+        rank: 2,
+        rationale: 'सौर ऊर्जेच्या वाढत्या मागणीमुळे हा कोर्स उत्तम स्वयंरोजगार देतो.',
+        skill_gap: {
+          trade_id: 'el_solar_panel_installer',
+          trade_name: 'Solar Panel Installer',
+          matched_skills: ['Basic Electrical'],
+          missing_skills: ['Panel Mounting'],
+          training_required_skills: ['Panel Mounting', 'Inverter Wiring'],
+          severity: 'medium',
+          recommended_intervention: 'Standard training'
+        },
+        nearest_center: {
+          center: {
+            id: 'tc_mh_pune_02',
+            name: 'Maharashtra State Skill Development Center - Hadapsar',
+            district: 'Pune',
+            state: 'Maharashtra',
+            lat: 18.502,
+            lng: 73.928,
+            trades_offered: ['el_solar_panel_installer'],
+            contact_phone: '+91 20 26871020',
+            address: 'Magarpatta Road, Hadapsar, Pune, MH - 411028'
+          },
+          distance_km: 7.8
+        },
+        no_center_in_range: false
+      }
+    ],
+    transcript: []
+  };
+
+  it('formatRecommendationsMessage should generate rich WhatsApp card with trade names, scores, and center', () => {
+    const text = formatRecommendationsMessage(mockRecSession);
+
+    // Verify trade names (local & English)
+    expect(text).toContain('सहाय्यक इलेक्ट्रिशियन (इमारत व घरगुती)');
+    expect(text).toContain('सौर पॅनेल इन्स्टॉलेशन तंत्रज्ञ (सूर्यमित्र)');
+
+    // Verify match score & NSQF level
+    expect(text).toContain('95%');
+    expect(text).toContain('NSQF Level 3');
+    expect(text).toContain('88%');
+    expect(text).toContain('NSQF Level 4');
+
+    // Verify explainability rationale
+    expect(text).toContain('तुमची "electrical" मधील आवड');
+
+    // Verify key training skills
+    expect(text).toContain('Circuit Diagnostics & Multimeter Use');
+
+    // Verify nearest center info & distance
+    expect(text).toContain('Industrial Training Institute (ITI) Aundh');
+    expect(text).toContain('4.2 km');
+  });
+
+  it('formatVoiceRecommendationSummary should generate crisp spoken summary matching /talk', () => {
+    const speech = formatVoiceRecommendationSummary(mockRecSession);
+    expect(speech).toContain('सहाय्यक इलेक्ट्रिशियन (इमारत व घरगुती)');
+    expect(speech).toContain('तुमची "electrical" मधील आवड');
+    expect(speech).toContain('Circuit Diagnostics & Multimeter Use');
+  });
+
+  it('formatCenterDetailsMessage should include center name, address, distance and phone', () => {
+    const center = mockRecSession.recommendations![0].nearest_center!.center;
+    const msg = formatCenterDetailsMessage(center, 4.2, 'सहाय्यक इलेक्ट्रिशियन', 'mr');
+
+    expect(msg).toContain('Industrial Training Institute (ITI) Aundh');
+    expect(msg).toContain('ITI Road, Aundh, Pune, Maharashtra 411007');
+    expect(msg).toContain('4.2 किमी');
+    expect(msg).toContain('+91 20 25880001');
+    expect(msg).toContain('सहाय्यक इलेक्ट्रिशियन');
+  });
+
+  it('getRecommendationButtons should return <= 3 buttons <= 20 chars with trade names', () => {
+    const buttons = getRecommendationButtons(mockRecSession.recommendations, 'mr');
+    expect(buttons).toHaveLength(2);
+    expect(buttons[0].id).toBe('select_1');
+    expect(buttons[1].id).toBe('select_2');
+
+    for (const btn of buttons) {
+      expect(btn.title.length).toBeLessThanOrEqual(20);
+      expect(btn.id).toBeTruthy();
+    }
+  });
+
+  it('normalizeUserInput should cleanly normalize user inputs for recommendation & center states', () => {
+    expect(normalizeUserInput('RECOMMENDATION', '1')).toBe('select_1');
+    expect(normalizeUserInput('RECOMMENDATION', '१')).toBe('select_1');
+    expect(normalizeUserInput('RECOMMENDATION', 'select 1')).toBe('select_1');
+    expect(normalizeUserInput('RECOMMENDATION', '2')).toBe('select_2');
+    expect(normalizeUserInput('RECOMMENDATION', '३')).toBe('select_3');
+
+    expect(normalizeUserInput('CENTER_AND_NEXT_STEPS', 'होय')).toBe('yes_finance');
+    expect(normalizeUserInput('CENTER_AND_NEXT_STEPS', 'कर्ज योजना')).toBe('yes_finance');
+    expect(normalizeUserInput('CENTER_AND_NEXT_STEPS', 'loan scheme')).toBe('yes_finance');
+    expect(normalizeUserInput('CENTER_AND_NEXT_STEPS', 'नाही')).toBe('no_finance');
+    expect(normalizeUserInput('CENTER_AND_NEXT_STEPS', 'आकांक्षा कार्ड')).toBe('no_finance');
+  });
+
+  it('delivers rich recommendations, selection buttons, center details, and location pin upon CONFIRM_SUMMARY transition', async () => {
+    vi.mocked(sendTextMessage).mockClear();
+    vi.mocked(sendInteractiveButtonMessage).mockClear();
+    vi.mocked(sendLocationMessage).mockClear();
+
+    const sender = '919309276044';
+    _resetSessionStore();
+
+    // Set up session directly in CONFIRM_SUMMARY state with complete profile
+    const setupSession: Session = {
+      id: 'sess_wa_9309276044',
+      ref_code: 'PMAJAY-WA-6044',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      lang: 'mr',
+      state: 'CONFIRM_SUMMARY',
+      profile: {
+        district: 'Pune',
+        district_name_local: 'पुणे',
+        education_level: 'secondary',
+        skills_interests: ['electrical'],
+        skills_recorded: true,
+        placement_status: 'NOT_STARTED',
+        summary_confirmed: false,
+        skill_gap_generated: false,
+        profile_completed: false
+      },
+      transcript: []
+    };
+    _setSessionForTesting(sender, setupSession);
+
+    // User confirms profile summary ("माहिती बरोबर आहे" / "होय")
+    const confirmSummaryPayload = {
+      object: 'whatsapp_business_account',
+      entry: [{
+        id: '123',
+        changes: [{
+          field: 'messages',
+          value: {
+            messaging_product: 'whatsapp',
+            contacts: [{ profile: { name: 'Pradeep' }, wa_id: sender }],
+            messages: [{
+              from: sender,
+              id: 'wamid.rec_flow_06',
+              type: 'interactive',
+              interactive: { type: 'button_reply', button_reply: { id: 'होय', title: 'माहिती बरोबर आहे' } }
+            }]
+          }
+        }]
+      }]
+    };
+
+    handleWhatsAppWebhook(confirmSummaryPayload);
+    await new Promise((r) => setTimeout(r, 80));
+
+    // VERIFY:
+    // 1. sendTextMessage called with formatted recommendations (contains trade names & match scores)
+    const textCalls = vi.mocked(sendTextMessage).mock.calls;
+    expect(textCalls.length).toBeGreaterThanOrEqual(2); // Recs card text + Center details text
+    const recCall = textCalls.find((c) => c[1].includes('शीर्ष ३ NSQF कौशल्य शिफारसी') || c[1].includes('Assistant Electrician') || c[1].includes('इलेक्ट्रिशियन'));
+    expect(recCall).toBeDefined();
+
+    // 2. sendInteractiveButtonMessage called with trade selection buttons
+    expect(sendInteractiveButtonMessage).toHaveBeenCalled();
+    const buttonCalls = vi.mocked(sendInteractiveButtonMessage).mock.calls;
+    const recButtonCall = buttonCalls.find((c) => c[2].some((b) => b.id === 'select_1'));
+    expect(recButtonCall).toBeDefined();
+    expect(recButtonCall![2][0].id).toBe('select_1');
+
+    // 3. Nearest training center details message sent
+    const centerCall = textCalls.find((c) => c[1].includes('अधिकृत कौशल्य प्रशिक्षण केंद्र') || c[1].includes('Industrial Training Institute') || c[1].includes('ITI'));
+    expect(centerCall).toBeDefined();
+
+    // 4. WhatsApp Location Pin sent with coordinates
+    expect(sendLocationMessage).toHaveBeenCalled();
+    const locationCall = vi.mocked(sendLocationMessage).mock.calls[0];
+    expect(locationCall[0]).toBe(sender);
+    expect(locationCall[1]).toBeCloseTo(18.5, 0.5); // Pune latitude
+    expect(locationCall[2]).toBeCloseTo(73.8, 0.5); // Pune longitude
+    expect(locationCall[3]).toContain('Pune');
+  });
+
+  it('delivers training center details and location pin in CENTER_AND_NEXT_STEPS state', async () => {
+    vi.mocked(sendTextMessage).mockClear();
+    vi.mocked(sendInteractiveButtonMessage).mockClear();
+    vi.mocked(sendLocationMessage).mockClear();
+
+    const sender = '919309276044';
+    _resetSessionStore();
+
+    // Set up session in LOCAL_OPPORTUNITY state; input advances to CENTER_AND_NEXT_STEPS
+    const setupSession: Session = {
+      ...mockRecSession,
+      id: 'sess_wa_9309276044',
+      state: 'LOCAL_OPPORTUNITY'
+    };
+    _setSessionForTesting(sender, setupSession);
+
+    const stepPayload = {
+      object: 'whatsapp_business_account',
+      entry: [{
+        id: '123',
+        changes: [{
+          field: 'messages',
+          value: {
+            messaging_product: 'whatsapp',
+            contacts: [{ profile: { name: 'Pradeep' }, wa_id: sender }],
+            messages: [{
+              from: sender,
+              id: 'wamid.center_steps_01',
+              type: 'text',
+              text: { body: 'केंद्र कुठे आहे?' }
+            }]
+          }
+        }]
+      }]
+    };
+
+    handleWhatsAppWebhook(stepPayload);
+    await new Promise((r) => setTimeout(r, 80));
+
+    // Center details text message sent
+    const textCalls = vi.mocked(sendTextMessage).mock.calls;
+    const centerCall = textCalls.find((c) => c[1].includes('अधिकृत कौशल्य प्रशिक्षण केंद्र') || c[1].includes('प्रशिक्षण केंद्र') || c[1].includes('PMKK') || c[1].includes('Industrial Training Institute'));
+    expect(centerCall).toBeDefined();
+
+    // Location message sent
+    expect(sendLocationMessage).toHaveBeenCalled();
+
+    // Interactive buttons sent for finance / next steps
+    expect(sendInteractiveButtonMessage).toHaveBeenCalled();
+    const buttonCalls = vi.mocked(sendInteractiveButtonMessage).mock.calls;
+    expect(buttonCalls[0][2].some((b) => b.id === 'yes_finance')).toBe(true);
   });
 });

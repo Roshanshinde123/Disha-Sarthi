@@ -169,6 +169,47 @@ export async function sendInteractiveButtonMessage(
 }
 
 /**
+ * Sends a WhatsApp Location message with latitude, longitude, name, and address.
+ * Uses Meta Cloud API POST /{phone-number-id}/messages with type: "location".
+ */
+export async function sendLocationMessage(
+  to: string,
+  latitude: number,
+  longitude: number,
+  name: string,
+  address: string
+): Promise<void> {
+  const { accessToken, phoneNumberId } = getWhatsAppConfig();
+
+  const body = {
+    messaging_product: 'whatsapp',
+    recipient_type: 'individual',
+    to,
+    type: 'location',
+    location: {
+      latitude: latitude.toString(),
+      longitude: longitude.toString(),
+      name: name.slice(0, 100),
+      address: address.slice(0, 1000)
+    }
+  };
+
+  const resp = await fetch(`${WA_API_BASE}/${phoneNumberId}/messages`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) {
+    const errText = await resp.text().catch(() => '');
+    throw new Error(`[WHATSAPP] sendLocationMessage HTTP ${resp.status}: ${errText}`);
+  }
+}
+
+/**
  * Fetches metadata (download URL) for a WhatsApp media object.
  * Returns the HTTPS URL to download the media binary.
  */

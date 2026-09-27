@@ -6,13 +6,14 @@ import { createHash } from 'crypto';
 import { createInitialSession, step, getPromptForState } from '../core/orchestrator';
 import { extractAllProfileSlots } from '../core/nlu';
 import { recommendNSQFTrades } from '../core/recommender';
-import { LanguageCode, Session, ConversationEvent, ConversationState } from '../core/types';
+import { LanguageCode, Session, ConversationEvent, ConversationState, RecommendationResult, TrainingCenter } from '../core/types';
 import { getSTTProvider } from './sttProvider';
 import { getTTSProvider } from './ttsProvider';
 import {
   sendTextMessage,
   sendAudioMessage,
   sendInteractiveButtonMessage,
+  sendLocationMessage,
   WhatsAppReplyButton,
   getMediaUrl,
   downloadMedia,
@@ -273,6 +274,12 @@ export function _resetSessionStore(): void {
   sessionStore.clear();
 }
 
+/** Exported for test session setup */
+export function _setSessionForTesting(waId: string, session: Session): void {
+  const key = sessionKey(waId);
+  sessionStore.set(key, session);
+}
+
 // ---------------------------------------------------------------------------
 // Language Detection from text
 // ---------------------------------------------------------------------------
@@ -394,22 +401,79 @@ export function getInteractiveButtonsForState(
         { id: 'माहिती बदलायची आहे', title: 'बदल करायचा आहे' }
       ];
 
-    case 'CENTER_AND_NEXT_STEPS':
+    case 'RECOMMENDATION':
       if (lang === 'hi') {
         return [
-          { id: 'हाँ', title: 'ऋण योजना जानकारी' },
-          { id: 'नहीं', title: 'आकांक्षा कार्ड' }
+          { id: 'select_1', title: '1. ट्रेड 1 चुनें' },
+          { id: 'select_2', title: '2. ट्रेड 2 चुनें' },
+          { id: 'select_3', title: '3. ट्रेड 3 चुनें' }
         ];
       }
       if (lang === 'en') {
         return [
-          { id: 'yes', title: 'Loan Schemes' },
-          { id: 'no', title: 'Aspiration Card' }
+          { id: 'select_1', title: '1. Select Trade 1' },
+          { id: 'select_2', title: '2. Select Trade 2' },
+          { id: 'select_3', title: '3. Select Trade 3' }
         ];
       }
       return [
-        { id: 'होय', title: 'कर्ज योजना माहिती' },
-        { id: 'नाही', title: 'आकांक्षा कार्ड' }
+        { id: 'select_1', title: '१. ट्रेड १ निवडा' },
+        { id: 'select_2', title: '२. ट्रेड २ निवडा' },
+        { id: 'select_3', title: '३. ट्रेड ३ निवडा' }
+      ];
+
+    case 'BENEFICIARY_CHOICE':
+      if (lang === 'hi') {
+        return [
+          { id: 'हाँ, केंद्र देखें', title: 'केंद्र व योजना देखें' },
+          { id: 'जानकारी', title: 'अधिक जानकारी' }
+        ];
+      }
+      if (lang === 'en') {
+        return [
+          { id: 'yes', title: 'Center & Schemes' },
+          { id: 'info', title: 'More Info' }
+        ];
+      }
+      return [
+        { id: 'होय, केंद्र पहा', title: 'केंद्र व योजना पहा' },
+        { id: 'माहिती', title: 'अधिक माहिती' }
+      ];
+
+    case 'LOCAL_OPPORTUNITY':
+      if (lang === 'hi') {
+        return [
+          { id: 'view_training', title: 'प्रशिक्षण केंद्र देखें' },
+          { id: 'view_placement', title: 'रोजगार अवसर' }
+        ];
+      }
+      if (lang === 'en') {
+        return [
+          { id: 'view_training', title: 'View Training Center' },
+          { id: 'view_placement', title: 'View Placements' }
+        ];
+      }
+      return [
+        { id: 'view_training', title: 'प्रशिक्षण केंद्र पहा' },
+        { id: 'view_placement', title: 'रोजगार संधी' }
+      ];
+
+    case 'CENTER_AND_NEXT_STEPS':
+      if (lang === 'hi') {
+        return [
+          { id: 'yes_finance', title: 'ऋण योजना जानकारी' },
+          { id: 'no_finance', title: 'आकांक्षा कार्ड' }
+        ];
+      }
+      if (lang === 'en') {
+        return [
+          { id: 'yes_finance', title: 'Loan Schemes' },
+          { id: 'no_finance', title: 'Aspiration Card' }
+        ];
+      }
+      return [
+        { id: 'yes_finance', title: 'कर्ज योजना माहिती' },
+        { id: 'no_finance', title: 'आकांक्षा कार्ड' }
       ];
 
     case 'FINANCE_TRACK':
@@ -510,13 +574,232 @@ function ensureAudioContainer(buffer: Buffer, _sampleRate: number = 16000): { bu
 }
 
 // ---------------------------------------------------------------------------
+// Recommendations & Training Center Formatting Helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * Formats top 3 NSQF recommendations into a structured WhatsApp message with
+ * trade names, match score, NSQF level, duration, wage band, explainability rationale,
+ * training skills required, and nearest center info.
+ */
+export function formatRecommendationsMessage(session: Session): string {
+  const recs = session.recommendations || [];
+  const lang = session.lang || 'mr';
+
+  if (recs.length === 0) {
+    if (lang === 'mr') return 'सध्या आपल्या प्रोफाइलसाठी शिफारसी उपलब्ध नाहीत.';
+    if (lang === 'hi') return 'वर्तमान में आपकी प्रोफाइल के लिए कोई सिफारिश उपलब्ध नहीं है।';
+    return 'No recommendations available for your profile at this moment.';
+  }
+
+  const header =
+    lang === 'mr'
+      ? `🎯 *आपल्यासाठी शीर्ष ३ NSQF कौशल्य शिफारसी (Top 3 Recommendations):*\n\n`
+      : lang === 'hi'
+      ? `🎯 *आपके लिए शीर्ष 3 NSQF कौशल्य सिफारिशें (Top 3 Recommendations):*\n\n`
+      : `🎯 *Your Top 3 NSQF-Aligned Skilling Recommendations:*\n\n`;
+
+  const cards = recs.slice(0, 3).map((rec, idx) => {
+    const isTop = idx === 0;
+    const badge =
+      isTop
+        ? (lang === 'mr' ? '⭐ *#१ सर्वोत्तम निवड (Top Recommendation)*' : lang === 'hi' ? '⭐ *#1 सर्वोत्तम चयन (Top Recommendation)*' : '⭐ *#1 Top Recommendation*')
+        : (lang === 'mr' ? `🥈 *#${idx + 1} पर्यायी निवड*` : lang === 'hi' ? `🥈 *#${idx + 1} वैकल्पिक विकल्प*` : `🥈 *#${idx + 1} Alternative Option*`);
+
+    const tradeName = rec.trade.name_local?.[lang] || rec.trade.name_en;
+    const matchScore = Math.round(rec.score * 100);
+    const scoreLabel = lang === 'mr' ? 'सामंजस्य गुण' : lang === 'hi' ? 'मैच स्कोर' : 'Match Score';
+    const durationLabel = lang === 'mr' ? 'कालावधी' : lang === 'hi' ? 'अवधि' : 'Duration';
+    const hoursUnit = lang === 'mr' ? 'तास' : lang === 'hi' ? 'घंटे' : 'hrs';
+    const wageLabel = lang === 'mr' ? 'वेतन' : lang === 'hi' ? 'वेतन' : 'Wage';
+    const reasonLabel = lang === 'mr' ? 'सविस्तर कारण' : lang === 'hi' ? 'कारण' : 'Why Recommended';
+    const skillsLabel = lang === 'mr' ? 'आवश्यक प्रशिक्षण' : lang === 'hi' ? 'प्रशिक्षण कौशल' : 'Training Skills';
+    const centerLabel = lang === 'mr' ? 'नजीकचे केंद्र' : lang === 'hi' ? 'निकटतम केंद्र' : 'Nearest Center';
+
+    let card = `${badge}\n`;
+    card += `🎓 *${tradeName}*\n`;
+    card += `• ${scoreLabel}: *${matchScore}%* | NSQF Level ${rec.trade.nsqf_level} (${rec.trade.qp_code})\n`;
+    card += `• ⏱️ ${durationLabel}: ${rec.trade.duration_hours} ${hoursUnit} | 💵 ${wageLabel}: ${rec.trade.typical_wage_band_inr || (lang === 'mr' ? 'उपलब्ध' : 'Market standard')}\n`;
+    if (rec.trade.self_employment_viable) {
+      card += `• 🏪 ${lang === 'mr' ? 'स्वयंरोजगार योग्य (Self-Employment Viable)' : lang === 'hi' ? 'स्वरोजगार हेतु उपयुक्त' : 'Self-Employment Viable'}\n`;
+    }
+    card += `• 💡 ${reasonLabel}: ${rec.rationale}\n`;
+
+    if (rec.skill_gap?.training_required_skills?.length) {
+      card += `• 🔍 ${skillsLabel}: ${rec.skill_gap.training_required_skills.slice(0, 2).join(', ')}\n`;
+    }
+
+    if (rec.nearest_center?.center) {
+      card += `• 📍 ${centerLabel}: ${rec.nearest_center.center.name} (~${rec.nearest_center.distance_km} km)\n`;
+    }
+
+    return card;
+  }).join('\n━━━━━━━━━━━━━━━━━\n\n');
+
+  const footer =
+    lang === 'mr'
+      ? `\n\n👇 *आपला पसंतीचा ट्रेड निवडण्यासाठी खालील बटण दाबा किंवा 1, 2, 3 पाठवा:*`
+      : lang === 'hi'
+      ? `\n\n👇 *अपना पसंदीदा ट्रेड चुनने के लिए नीचे दिए गए बटन पर टैप करें या 1, 2, 3 भेजें:*`
+      : `\n\n👇 *Select your preferred trade below or reply 1, 2, or 3:*`;
+
+  return header + cards + footer;
+}
+
+/**
+ * Concise spoken summary for audio voice note in RECOMMENDATION state (matches /talk handleReadAloud)
+ */
+export function formatVoiceRecommendationSummary(session: Session): string {
+  const recs = session.recommendations || [];
+  const lang = session.lang || 'mr';
+  if (recs.length === 0) {
+    if (lang === 'mr') return 'आपल्या प्रोफाइलसाठी सध्या शिफारसी उपलब्ध नाहीत.';
+    if (lang === 'hi') return 'आपकी प्रोफाइल के लिए अभी कोई सिफारिश उपलब्ध नहीं है।';
+    return 'No recommendations are currently available for your profile.';
+  }
+
+  const top = recs[0];
+  const tradeTitle = top.trade.name_local?.[lang] || top.trade.name_en;
+  const skills = top.skill_gap?.training_required_skills?.slice(0, 2).join(', ') || '';
+
+  if (lang === 'mr') {
+    return `आपल्यासाठी क्रमांक १ शिफारस आहे ${tradeTitle}. ${top.rationale}.${skills ? ` आवश्यक कौशल्ये: ${skills}.` : ''} तपशील व प्रशिक्षण केंद्र आपल्या चॅटवर पाठवले आहे.`;
+  }
+  if (lang === 'hi') {
+    return `आपके लिए नंबर एक सुझाव है ${tradeTitle}। ${top.rationale}।${skills ? ` आवश्यक प्रशिक्षण कौशल: ${skills}।` : ''} पूरी जानकारी और केंद्र आपके चैट पर भेजा गया है।`;
+  }
+  return `Top recommendation for you is ${tradeTitle}. ${top.rationale}.${skills ? ` Key skills to be trained: ${skills}.` : ''} Training center details have been sent to your chat.`;
+}
+
+/**
+ * Formats nearest training center information card for WhatsApp follow-up.
+ */
+export function formatCenterDetailsMessage(
+  center: TrainingCenter,
+  distanceKm?: number,
+  tradeTitle?: string,
+  lang: LanguageCode = 'mr'
+): string {
+  const unit = lang === 'en' ? 'km' : 'किमी';
+  const distStr = distanceKm !== undefined ? ` (~${distanceKm} ${unit})` : '';
+  if (lang === 'mr') {
+    return (
+      `📍 *नजीकचे अधिकृत कौशल्य प्रशिक्षण केंद्र:*\n` +
+      `🏢 *${center.name}*\n` +
+      `📌 पत्ता: ${center.address}\n` +
+      `📏 अंतर: ${center.district}${distStr}\n` +
+      `📞 संपर्क: ${center.contact_phone || 'उपलब्ध नाही'}\n` +
+      (tradeTitle ? `🎓 कोर्स: ${tradeTitle}\n` : '') +
+      `\n💡 आपण या केंद्रात थेट भेट देऊन किंवा दूरध्वनीवरून नोंदणी करू शकता.`
+    );
+  }
+  if (lang === 'hi') {
+    return (
+      `📍 *निकटतम अधिकृत कौशल्य प्रशिक्षण केंद्र:*\n` +
+      `🏢 *${center.name}*\n` +
+      `📌 पता: ${center.address}\n` +
+      `📏 दूरी: ${center.district}${distStr}\n` +
+      `📞 संपर्क: ${center.contact_phone || 'उपलब्ध नहीं'}\n` +
+      (tradeTitle ? `🎓 कोर्स: ${tradeTitle}\n` : '') +
+      `\n💡 आप इस केंद्र पर जाकर या फोन द्वारा प्रवेश ले सकते हैं।`
+    );
+  }
+  return (
+    `📍 *Nearest Authorized Training Center:*\n` +
+    `🏢 *${center.name}*\n` +
+    `📌 Address: ${center.address}\n` +
+    `📏 Location: ${center.district}${distStr}\n` +
+    `📞 Contact: ${center.contact_phone || 'Not available'}\n` +
+    (tradeTitle ? `🎓 Trade: ${tradeTitle}\n` : '') +
+    `\n💡 You can visit this center directly or call them for admissions.`
+  );
+}
+
+/**
+ * Builds interactive reply buttons for trade selection in RECOMMENDATION state.
+ */
+export function getRecommendationButtons(
+  recommendations: RecommendationResult[] = [],
+  lang: LanguageCode = 'mr'
+): WhatsAppReplyButton[] {
+  if (!recommendations || recommendations.length === 0) {
+    if (lang === 'hi') return [{ id: 'select_1', title: '1. ट्रेड 1 चुनें' }];
+    if (lang === 'en') return [{ id: 'select_1', title: '1. Select Trade 1' }];
+    return [{ id: 'select_1', title: '१. ट्रेड १ निवडा' }];
+  }
+
+  return recommendations.slice(0, 3).map((rec, idx) => {
+    const tradeName = rec.trade.name_local?.[lang] || rec.trade.name_en;
+    const prefix = `${idx + 1}. `;
+    const maxLen = 20 - prefix.length;
+    const cleanTitle = tradeName.length > maxLen ? tradeName.slice(0, maxLen - 1) + '…' : tradeName;
+    return {
+      id: `select_${idx + 1}`,
+      title: `${prefix}${cleanTitle}`.slice(0, 20)
+    };
+  });
+}
+
+/**
+ * Normalizes user text in RECOMMENDATION and CENTER_AND_NEXT_STEPS states
+ * to match exact expected FSM triggers (e.g. 1 -> select_1, yes/होय -> yes_finance).
+ */
+export function normalizeUserInput(state: ConversationState, input: string): string {
+  const trimmed = input.trim();
+  const lower = trimmed.toLowerCase();
+
+  if (state === 'RECOMMENDATION') {
+    if (trimmed === '1' || trimmed === '१' || /^(select\s*1|trade\s*1|option\s*1|पहिला|पहला|first)/i.test(trimmed)) {
+      return 'select_1';
+    }
+    if (trimmed === '2' || trimmed === '२' || /^(select\s*2|trade\s*2|option\s*2|दुसरा|दूसरा|second)/i.test(trimmed)) {
+      return 'select_2';
+    }
+    if (trimmed === '3' || trimmed === '३' || /^(select\s*3|trade\s*3|option\s*3|तिसरा|तीसरा|third)/i.test(trimmed)) {
+      return 'select_3';
+    }
+  }
+
+  if (state === 'CENTER_AND_NEXT_STEPS') {
+    if (
+      trimmed === '1' ||
+      trimmed === '१' ||
+      lower.includes('कर्ज') ||
+      lower.includes('ऋण') ||
+      lower.includes('loan') ||
+      lower.includes('scheme') ||
+      lower.includes('finance') ||
+      lower === 'होय' ||
+      lower === 'हाँ' ||
+      lower === 'yes'
+    ) {
+      return 'yes_finance';
+    }
+    if (
+      trimmed === '2' ||
+      trimmed === '२' ||
+      lower.includes('कार्ड') ||
+      lower.includes('card') ||
+      lower.includes('aspiration') ||
+      lower === 'नाही' ||
+      lower === 'नहीं' ||
+      lower === 'no'
+    ) {
+      return 'no_finance';
+    }
+  }
+
+  return input;
+}
+
+// ---------------------------------------------------------------------------
 // Core: Drive conversation step, extract slots, compute recommendations & response text
 // ---------------------------------------------------------------------------
 function driveConversation(
   session: Session,
   userText: string,
   engine: string
-): { updatedSession: Session; responseText: string } {
+): { updatedSession: Session; responseText: string; spokenText: string } {
   // 1. Extract multi-slot profile data from user text
   const slots = extractAllProfileSlots(userText, session.lang);
   let workingSession = { ...session };
@@ -568,8 +851,16 @@ function driveConversation(
   // 4. Extract response text from speak action or state prompt
   const speakAction = actions.find((a) => a.type === 'speak');
   let responseText = speakAction?.payload?.text || '';
+  let spokenText = '';
 
-  if (!responseText) {
+  if (
+    recommendedSession.state === 'RECOMMENDATION' &&
+    recommendedSession.recommendations &&
+    recommendedSession.recommendations.length > 0
+  ) {
+    responseText = formatRecommendationsMessage(recommendedSession);
+    spokenText = formatVoiceRecommendationSummary(recommendedSession);
+  } else if (!responseText) {
     if (recommendedSession.recommendations && recommendedSession.recommendations.length > 0) {
       const topRec = recommendedSession.recommendations[0];
       const tradeName = topRec.trade.name_local?.[recommendedSession.lang] || topRec.trade.name_en;
@@ -578,13 +869,161 @@ function driveConversation(
         recommendedSession.lang === 'mr'
           ? `आपल्या प्रोफाइलनुसार सर्वात योग्य ट्रेड आहे: ${tradeName}। प्रशिक्षण केंद्र: ${centerName}। अधिक माहिती आपल्या दिशा सारथी डॅशबोर्डवर उपलब्ध आहे.`
           : `आपकी प्रोफाइल अनुसार सबसे उत्तम ट्रेड है: ${tradeName}। प्रशिक्षण केंद्र: ${centerName}। पूरी जानकारी दिशा सारथी डैशबोर्ड पर उपलब्ध है।`;
+      spokenText = responseText;
     } else {
       const promptEntry = getPromptForState(recommendedSession.state, recommendedSession.lang, recommendedSession.profile);
       responseText = promptEntry.prompt;
+      spokenText = responseText;
     }
+  } else {
+    spokenText = responseText;
   }
 
-  return { updatedSession: recommendedSession, responseText };
+  return { updatedSession: recommendedSession, responseText, spokenText };
+}
+
+/**
+ * Unified WhatsApp message delivery dispatcher:
+ * - In RECOMMENDATION: delivers rich recommendations text, interactive selection buttons,
+ *   nearest center details, and WhatsApp location map pin (plus audio voice note if user sent audio).
+ * - In CENTER_AND_NEXT_STEPS: delivers selected trade's center details, WhatsApp location pin,
+ *   and next step action buttons.
+ * - In other states: delivers voice note if audio, plus interactive buttons or companion text.
+ */
+async function deliverTurnToWhatsApp(
+  from: string,
+  session: Session,
+  responseText: string,
+  spokenText: string,
+  isAudio: boolean
+): Promise<void> {
+  const lang = session.lang || 'mr';
+
+  // 1. RECOMMENDATION STATE
+  if (session.state === 'RECOMMENDATION' && session.recommendations && session.recommendations.length > 0) {
+    const textToSend = responseText || formatRecommendationsMessage(session);
+    const voiceToSpeak = spokenText || formatVoiceRecommendationSummary(session);
+
+    // If incoming message was audio, send synthesized voice note first
+    if (isAudio) {
+      try {
+        const ttsProvider = getTTSProvider();
+        const ttsResult = await ttsProvider.synthesize(voiceToSpeak, session.lang, {
+          sampleRate: 16000,
+          outputCodec: 'opus',
+          encoding: 'audio/ogg'
+        });
+        const { buffer: containerAudio, mimeType } = ensureAudioContainer(ttsResult.audioBuffer, 16000);
+        await sendAudioMessage(from, containerAudio, mimeType);
+        log('AUDIO_REPLY_SENT', 'Recommendation voice note sent via WhatsApp', { tag: senderLogTag(from), mimeType });
+      } catch (ttsErr) {
+        logWarn('TTS_FALLBACK', 'Recommendation TTS failed, falling back to text', { tag: senderLogTag(from), error: String(ttsErr) });
+      }
+    }
+
+    // Step A: Send rich recommendations list text message
+    await sendTextMessage(from, textToSend);
+    log('TEXT_REPLY_SENT', 'Top 3 NSQF recommendations text sent', { tag: senderLogTag(from) });
+
+    // Step B: Send interactive buttons for trade selection
+    const buttons = getRecommendationButtons(session.recommendations, session.lang);
+    const selectPrompt =
+      lang === 'mr'
+        ? 'आपला पसंतीचा ट्रेड निवडण्यासाठी खालील बटणावर टॅप करा:'
+        : lang === 'hi'
+        ? 'अपना पसंदीदा ट्रेड चुनने के लिए नीचे दिए गए बटन पर टैप करें:'
+        : 'Tap a button below to select your preferred trade:';
+
+    if (buttons && buttons.length > 0) {
+      await sendInteractiveButtonMessage(from, selectPrompt, buttons).catch(async (btnErr) => {
+        logWarn('BUTTONS_SEND_FAILED', 'Failed to send recommendation buttons, sending text prompt', { error: String(btnErr) });
+        await sendTextMessage(from, selectPrompt + '\n' + buttons.map((b) => b.title).join('\n'));
+      });
+      log('BUTTONS_REPLY_SENT', 'Interactive recommendation selection buttons sent', { buttonCount: buttons.length });
+    }
+
+    // Step C: Send nearest training center follow-up message & location pin
+    const topRec = session.recommendations[0];
+    if (topRec?.nearest_center?.center) {
+      const center = topRec.nearest_center.center;
+      const tradeTitle = topRec.trade.name_local?.[session.lang] || topRec.trade.name_en;
+      const centerMsg = formatCenterDetailsMessage(center, topRec.nearest_center.distance_km, tradeTitle, session.lang);
+      await sendTextMessage(from, centerMsg);
+      log('TEXT_REPLY_SENT', 'Nearest training center details sent', { tag: senderLogTag(from) });
+
+      if (center.lat && center.lng) {
+        await sendLocationMessage(from, center.lat, center.lng, center.name, center.address).catch((locErr) => {
+          logWarn('LOCATION_SEND_FAILED', 'Failed to send WhatsApp location pin', { error: String(locErr) });
+        });
+        log('LOCATION_SENT', 'Training center location pin sent via WhatsApp', { tag: senderLogTag(from), lat: center.lat, lng: center.lng });
+      }
+    }
+
+    return;
+  }
+
+  // 2. CENTER_AND_NEXT_STEPS STATE
+  if (session.state === 'CENTER_AND_NEXT_STEPS') {
+    const selectedRec =
+      (session.recommendations || []).find((r) => r.trade.id === session.profile.selected_trade_id) ||
+      session.recommendations?.[0];
+
+    if (selectedRec?.nearest_center?.center) {
+      const center = selectedRec.nearest_center.center;
+      const tradeTitle = selectedRec.trade.name_local?.[session.lang] || selectedRec.trade.name_en;
+      const centerMsg = formatCenterDetailsMessage(center, selectedRec.nearest_center.distance_km, tradeTitle, session.lang);
+      await sendTextMessage(from, centerMsg);
+      log('TEXT_REPLY_SENT', 'Center details sent in CENTER_AND_NEXT_STEPS', { tag: senderLogTag(from) });
+
+      if (center.lat && center.lng) {
+        await sendLocationMessage(from, center.lat, center.lng, center.name, center.address).catch((locErr) => {
+          logWarn('LOCATION_SEND_FAILED', 'Failed to send location pin in CENTER_AND_NEXT_STEPS', { error: String(locErr) });
+        });
+        log('LOCATION_SENT', 'Location pin sent in CENTER_AND_NEXT_STEPS', { tag: senderLogTag(from), lat: center.lat, lng: center.lng });
+      }
+    }
+
+    if (isAudio) {
+      try {
+        const ttsProvider = getTTSProvider();
+        const ttsResult = await ttsProvider.synthesize(responseText, session.lang, {
+          sampleRate: 16000,
+          outputCodec: 'opus',
+          encoding: 'audio/ogg'
+        });
+        const { buffer: containerAudio, mimeType } = ensureAudioContainer(ttsResult.audioBuffer, 16000);
+        await sendAudioMessage(from, containerAudio, mimeType);
+        log('AUDIO_REPLY_SENT', 'Audio reply sent in CENTER_AND_NEXT_STEPS', { tag: senderLogTag(from) });
+      } catch (ttsErr) {
+        logWarn('TTS_FALLBACK', 'TTS failed in CENTER_AND_NEXT_STEPS', { error: String(ttsErr) });
+      }
+    }
+
+    await sendTurnTextOrButtons(from, responseText, session.state, session.lang);
+    return;
+  }
+
+  // 3. ALL OTHER STATES
+  if (isAudio) {
+    try {
+      const ttsProvider = getTTSProvider();
+      const ttsResult = await ttsProvider.synthesize(responseText, session.lang, {
+        sampleRate: 16000,
+        outputCodec: 'opus',
+        encoding: 'audio/ogg'
+      });
+      const { buffer: containerAudio, mimeType } = ensureAudioContainer(ttsResult.audioBuffer, 16000);
+      await sendAudioMessage(from, containerAudio, mimeType);
+      log('AUDIO_REPLY_SENT', 'Audio reply sent via WhatsApp', { tag: senderLogTag(from), mimeType });
+      await sendTurnTextOrButtons(from, responseText, session.state, session.lang).catch(() => {});
+    } catch (ttsErr) {
+      logWarn('TTS_FALLBACK', 'TTS failed, sending text fallback', { tag: senderLogTag(from), error: String(ttsErr) });
+      await sendTurnTextOrButtons(from, responseText, session.state, session.lang);
+    }
+  } else {
+    const finalReplyText = responseText || (GREETINGS[session.lang] || GREETINGS.mr);
+    await sendTurnTextOrButtons(from, finalReplyText, session.state, session.lang);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -637,8 +1076,11 @@ async function processTextMessage(
     return;
   }
 
+  // Normalize user input for state transitions (e.g. 1 -> select_1, yes -> yes_finance)
+  const normalizedText = normalizeUserInput(activeSession.state, text);
+
   // Existing user: drive FSM
-  const { updatedSession, responseText } = driveConversation(activeSession, text, 'WhatsApp');
+  const { updatedSession, responseText, spokenText } = driveConversation(activeSession, normalizedText, 'WhatsApp');
   saveSession(from, updatedSession, msgId);
 
   log('CONVERSATION_RESPONSE', 'Response generated', {
@@ -652,8 +1094,7 @@ async function processTextMessage(
     return;
   }
 
-  const finalReplyText = responseText || (GREETINGS[updatedSession.lang] || GREETINGS.mr);
-  await sendTurnTextOrButtons(from, finalReplyText, updatedSession.state, updatedSession.lang);
+  await deliverTurnToWhatsApp(from, updatedSession, responseText, spokenText, false);
 }
 
 // ---------------------------------------------------------------------------
@@ -731,8 +1172,11 @@ async function processAudioMessage(
       activeSession = { ...activeSession, lang: transcriptLang };
     }
 
+    // Normalize user input for state transitions
+    const normalizedTranscript = normalizeUserInput(activeSession.state, transcript);
+
     // 4. Drive conversation FSM with transcribed text
-    const { updatedSession, responseText } = driveConversation(activeSession, transcript, 'WhatsApp-STT');
+    const { updatedSession, responseText, spokenText } = driveConversation(activeSession, normalizedTranscript, 'WhatsApp-STT');
     saveSession(from, updatedSession, msgId);
 
     log('CONVERSATION_RESPONSE', 'Response generated from audio transcript', {
@@ -740,34 +1184,9 @@ async function processAudioMessage(
       state: updatedSession.state
     });
 
-    // 5. Synthesize reply audio using native Opus/OGG for WhatsApp voice notes & send back via WhatsApp
-    try {
-      const ttsProvider = getTTSProvider();
-      const ttsResult = await ttsProvider.synthesize(responseText, updatedSession.lang, {
-        sampleRate: 16000,
-        outputCodec: 'opus',
-        encoding: 'audio/ogg'
-      });
-      log('TTS_COMPLETED', 'TTS synthesized', {
-        tag,
-        provider: ttsProvider.getProviderName(),
-        latencyMs: ttsResult.latencyMs,
-        bytes: ttsResult.audioBuffer.length
-      });
+    // 5. Deliver turn to WhatsApp (handles voice note audio + companion text, buttons, and location pin)
+    await deliverTurnToWhatsApp(from, updatedSession, responseText, spokenText, true);
 
-      const { buffer: containerAudio, mimeType } = ensureAudioContainer(ttsResult.audioBuffer, 16000);
-      await sendAudioMessage(from, containerAudio, mimeType);
-      log('AUDIO_REPLY_SENT', 'Audio reply sent via WhatsApp', { tag, mimeType });
-
-      // Deliver companion text or interactive buttons alongside audio
-      await sendTurnTextOrButtons(from, responseText, updatedSession.state, updatedSession.lang).catch(() => {});
-    } catch (ttsErr) {
-      logWarn('TTS_FALLBACK', 'TTS/audio-upload failed, sending text fallback', {
-        tag,
-        error: String(ttsErr)
-      });
-      await sendTurnTextOrButtons(from, responseText, updatedSession.state, updatedSession.lang);
-    }
   } catch (err) {
     logWarn('AUDIO_PIPELINE_ERROR', 'Audio pipeline failed', {
       tag,
