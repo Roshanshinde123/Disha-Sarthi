@@ -8,7 +8,7 @@ import lexiconTa from '../lexicon/ta.json';
 import lexiconTe from '../lexicon/te.json';
 import lexiconKn from '../lexicon/kn.json';
 
-const lexicons: Record<LanguageCode, any> = {
+const lexicons: Partial<Record<LanguageCode, any>> = {
   hi: lexiconHi,
   en: lexiconEn,
   mr: lexiconMr,
@@ -152,7 +152,26 @@ export function calculateTrigramSimilarity(a: string, b: string): number {
 }
 
 export interface NLUIntentResult {
-  controlIntent?: 'repeat' | 'simplify' | 'escalate' | 'delete_data' | 'yes' | 'no';
+  controlIntent?:
+    | 'repeat'
+    | 'simplify'
+    | 'escalate'
+    | 'delete_data'
+    | 'end_conversation'
+    | 'yes'
+    | 'no'
+    | 'switch_lang_en'
+    | 'switch_lang_hi'
+    | 'switch_lang_mr'
+    | 'switch_lang_bn'
+    | 'switch_lang_gu'
+    | 'switch_lang_kn'
+    | 'switch_lang_ml'
+    | 'switch_lang_od'
+    | 'switch_lang_pa'
+    | 'switch_lang_ta'
+    | 'switch_lang_te'
+    | 'switch_lang_as';
   isDistressCrisis?: boolean;
   matchedSlotValue?: string;
   confidence: number;
@@ -163,6 +182,77 @@ const CRISIS_KEYWORDS = [
   'aatmahatya', 'mar jana', 'khatra', 'bachao', 'madad karo emergency',
   'आत्महत्या', 'मदद करो', 'खतरा', 'बचाओ', 'इमरजेंसी', 'पोलीस',
   'maripovalani', 'tharkolai', 'saavu', 'aatmahatya karin'
+];
+
+const END_PATTERNS = [
+  'end conversation', 'stop conversation', 'end call', 'stop call', 'quit', 'exit',
+  'stop', 'थांबवा', 'थांबा', 'बंद करा', 'संभाषण थांबवा', 'संभाषण समाप्त',
+  'बातचीत बंद करो', 'बातचीत समाप्त', 'समाप्त', 'कॉल बंद करा', 'कॉल बंद करो',
+  'நிறுத்து', 'முடிக்கவும்', 'ఆపు', 'ముగించు', 'থামুন', 'বন্ধ করুন',
+  'બંધ કરો', 'ਸਮਾਪਤ ਕਰੋ', 'ਰੋਕੋ', 'સમાપ્ત કરો', 'അവസാനിപ്പിക്കുക'
+];
+
+const LANGUAGE_TRIGGER_PATTERNS: Array<{ lang: LanguageCode; intent: any; patterns: string[] }> = [
+  {
+    lang: 'mr',
+    intent: 'switch_lang_mr',
+    patterns: ['मराठीत बोला', 'मराठी मध्ये बोला', 'मराठीत सांगा', 'मराठी बोला', 'मराठी', 'marathi', 'marathi madhe', 'marathit bola', 'speak in marathi', 'switch to marathi']
+  },
+  {
+    lang: 'hi',
+    intent: 'switch_lang_hi',
+    patterns: ['हिंदी में बोलो', 'हिंदी में बात करो', 'हिंदी में बताओ', 'हिंदी बोलो', 'हिंदी', 'hindi', 'hindi mein', 'hindi me', 'speak in hindi', 'switch to hindi']
+  },
+  {
+    lang: 'en',
+    intent: 'switch_lang_en',
+    patterns: ['speak in english', 'talk in english', 'switch to english', 'english please', 'english', 'in english', 'इंग्लिश मध्ये बोला', 'अंग्रेजी में बात करो', 'इंग्रजीत बोला', 'इंग्रजी', 'इंग्लिश']
+  },
+  {
+    lang: 'ta',
+    intent: 'switch_lang_ta',
+    patterns: ['தமிழ்', 'தமிழில் பேசுங்கள்', 'tamil', 'speak in tamil', 'speak tamil', 'switch to tamil']
+  },
+  {
+    lang: 'te',
+    intent: 'switch_lang_te',
+    patterns: ['తెలుగు', 'తెలుగులో మాట్లాడు', 'telugu', 'speak in telugu', 'speak telugu', 'switch to telugu']
+  },
+  {
+    lang: 'bn',
+    intent: 'switch_lang_bn',
+    patterns: ['বাংলা', 'বাংলায় বলুন', 'bengali', 'bangla', 'speak in bengali', 'switch to bengali']
+  },
+  {
+    lang: 'gu',
+    intent: 'switch_lang_gu',
+    patterns: ['ગુજરાતી', 'ગુજરાતીમાં બોલો', 'gujarati', 'speak in gujarati', 'switch to gujarati']
+  },
+  {
+    lang: 'kn',
+    intent: 'switch_lang_kn',
+    patterns: ['ಕನ್ನಡ', 'ಕನ್ನಡದಲ್ಲಿ ಮಾತನಾಡಿ', 'kannada', 'speak in kannada', 'switch to kannada']
+  },
+  {
+    lang: 'ml',
+    intent: 'switch_lang_ml',
+    patterns: ['മലയാളം', 'മലയാളത്തിൽ സംസാരിക്കുക', 'malayalam', 'speak in malayalam', 'switch to malayalam']
+  },
+  {
+    lang: 'od',
+    intent: 'switch_lang_od',
+    patterns: ['ଓଡ଼ିଆ', 'ଓଡ଼ିଆରେ କୁହନ୍ତୁ', 'odia', 'oriya', 'speak in odia', 'switch to odia']
+  },
+  {
+    lang: 'pa',
+    intent: 'switch_lang_pa',
+    patterns: ['ਪੰਜਾਬੀ', 'ਪੰਜਾਬੀ ਵਿੱਚ ਬੋਲੋ', 'punjabi', 'speak in punjabi', 'switch to punjabi']
+  },
+  {
+    lang: 'as',
+    intent: 'switch_lang_as',
+    patterns: ['অসমীয়া', 'অসমীয়াত কওক', 'assamese', 'speak in assamese', 'switch to assamese']
+  }
 ];
 
 /**
@@ -187,9 +277,36 @@ export function matchNLUIntent(
     }
   }
 
+  // 1.5. End Conversation Check
+  for (const endP of END_PATTERNS) {
+    const normEnd = normalizeIndicText(endP);
+    if (norm === normEnd || norm.includes(normEnd)) {
+      return {
+        controlIntent: 'end_conversation',
+        confidence: 0.99
+      };
+    }
+  }
+
+  // 2. Language Switch Detection & Language Slot Matching
+  for (const langConfig of LANGUAGE_TRIGGER_PATTERNS) {
+    for (const p of langConfig.patterns) {
+      const normP = normalizeIndicText(p);
+      if (slotName === 'language' || slotName === 'LANG_SELECT') {
+        if (norm === normP || norm.includes(normP)) {
+          return { matchedSlotValue: langConfig.lang, controlIntent: langConfig.intent, confidence: 0.98 };
+        }
+      } else {
+        if (norm.includes(normP)) {
+          return { matchedSlotValue: langConfig.lang, controlIntent: langConfig.intent, confidence: 0.98 };
+        }
+      }
+    }
+  }
+
   const lex = lexicons[lang] || lexicons.hi;
 
-  // 2. Control Intent Check (repeat, simplify, escalate, delete_data, yes, no)
+  // 3. Control Intent Check (repeat, simplify, escalate, delete_data, yes, no)
   if (lex && lex.controls) {
     for (const [intentKey, aliases] of Object.entries(lex.controls)) {
       for (const alias of aliases as string[]) {
@@ -294,12 +411,43 @@ export function extractAllProfileSlots(
 
   const slotsFound: Partial<BeneficiaryProfile> = {};
   const matchedDetails: string[] = [];
-
   const lex = lexicons[lang] || lexicons.hi;
-  if (!lex || !lex.slots) return { slotsFound, slotsCount: 0, matchedDetails };
+
+  // 0. Name Extraction (Marathi, Hindi, English)
+  const namePatterns = [
+    /(?:माझं|माझे|माझा)\s+नाव\s+([a-zA-Z\u0900-\u097F]+)/i,
+    /(?:मेरा)\s+नाम\s+([a-zA-Z\u0900-\u097F]+)/i,
+    /(?:my\s+name\s+is|i\s+am)\s+([a-zA-Z\u0900-\u097F]+)/i,
+    /(?:मी|मैं)\s+([a-zA-Z\u0900-\u097F]+)\s+(?:आहे|हूँ|हु)/i
+  ];
+  for (const pat of namePatterns) {
+    const m = rawInput.match(pat);
+    if (m && m[1]) {
+      const candidate = m[1].trim();
+      const lower = candidate.toLowerCase();
+      if (!['ahe', 'aahe', 'hai', 'aani', 'ani', 'aur', 'and', 'in', 'at', 'पुण्यात', 'पुणे', 'pune'].includes(lower)) {
+        slotsFound.name = candidate;
+        slotsFound.first_name = candidate;
+        matchedDetails.push(`Name: ${candidate}`);
+        break;
+      }
+    }
+  }
 
   // 1. Education Level
-  if (lex.slots.education_level) {
+  if (/\b(10th|10वी|दहावी|दहावी पास|दसवीं|दसवीं पास|matric|ssc)\b/i.test(norm)) {
+    slotsFound.education_level = 'secondary';
+    matchedDetails.push('Education: secondary (10th)');
+  } else if (/\b(12th|12वी|बारावी|बारावी पास|बारहवीं|बारहवीं पास|hsc|intermediate)\b/i.test(norm)) {
+    slotsFound.education_level = 'higher_secondary';
+    matchedDetails.push('Education: higher_secondary (12th)');
+  } else if (/\b(8th|8वी|आठवी|आठवीं|primary|प्राथमिक)\b/i.test(norm)) {
+    slotsFound.education_level = 'primary';
+    matchedDetails.push('Education: primary (8th)');
+  } else if (/\b(graduate|degree|पदवी|पदवीधर|ग्रेजुएट|ba|bcom|bsc|btech)\b/i.test(norm)) {
+    slotsFound.education_level = 'graduate';
+    matchedDetails.push('Education: graduate');
+  } else if (lex.slots.education_level) {
     for (const [canonicalVal, aliases] of Object.entries(lex.slots.education_level)) {
       for (const alias of aliases as string[]) {
         const normAlias = normalizeIndicText(alias);
@@ -373,6 +521,28 @@ export function extractAllProfileSlots(
         }
       }
     }
+    // Direct vocational fallback keywords
+    if (/welding|वेल्डिंग|वेल्डर|welder|वेल्डिंगचे काम/i.test(norm) && !matchedSkills.includes('welding')) {
+      matchedSkills.push('welding');
+      matchedDetails.push('Skill/Interest: welding');
+    }
+    if (/electrician|इलेक्ट्रिशियन|इलेक्ट्रीशियन|वायरमन|wireman|electrical/i.test(norm) && !matchedSkills.includes('electrical')) {
+      matchedSkills.push('electrical');
+      matchedDetails.push('Skill/Interest: electrical');
+    }
+    if (/solar|सोलर|सौर|suryamitra|सूर्यमित्र/i.test(norm) && !matchedSkills.includes('solar')) {
+      matchedSkills.push('solar');
+      matchedDetails.push('Skill/Interest: solar');
+    }
+    if (/tailor|दर्जी|शिंपी|सिलाई|शिवणकाम|stitching/i.test(norm) && !matchedSkills.includes('stitching')) {
+      matchedSkills.push('stitching');
+      matchedDetails.push('Skill/Interest: stitching');
+    }
+    if (/plumb|प्लंबर|प्लंबिंग|नलसाजी|नळ दुरुस्ती/i.test(norm) && !matchedSkills.includes('plumbing')) {
+      matchedSkills.push('plumbing');
+      matchedDetails.push('Skill/Interest: plumbing');
+    }
+
     if (matchedSkills.length > 0) {
       slotsFound.skills_interests = matchedSkills;
     }

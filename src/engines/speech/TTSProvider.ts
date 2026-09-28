@@ -15,13 +15,18 @@ export interface TTSProvider {
 }
 
 const BROWSER_LANG_TAGS: Record<LanguageCode, string> = {
-  hi: 'hi-IN',
   en: 'en-IN',
+  hi: 'hi-IN',
   mr: 'mr-IN',
   bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  ml: 'ml-IN',
+  od: 'or-IN',
+  pa: 'pa-IN',
   ta: 'ta-IN',
   te: 'te-IN',
-  kn: 'kn-IN'
+  as: 'as-IN'
 };
 
 /**

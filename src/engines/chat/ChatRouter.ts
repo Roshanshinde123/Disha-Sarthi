@@ -20,47 +20,34 @@ export class ChatRouter {
     lang: LanguageCode = 'hi'
   ): Promise<{ rationale: string; engine: string }> {
     const templateRationale = this.localEngine.generateRationale(profile, trade, lang);
-    const geminiKey = (import.meta as any).env?.VITE_GEMINI_API_KEY;
-
-    if (!geminiKey) {
-      this.activeEngineName = 'Local Deterministic Engine';
-      return { rationale: templateRationale, engine: 'LocalTemplate' };
-    }
 
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 2500); // 2.5s hard timeout
 
-      const spokenInterest = profile.skills_interests[0] || '';
-      const spokenOcc = profile.current_livelihood || profile.family_occupation || '';
-
-      const prompt = `Rewrite this vocational counselling sentence to sound slightly more natural in ${lang}, but YOU MUST KEEP the exact words "${spokenInterest}" and "${spokenOcc}". Do not add extra jargon. Output ONE sentence only:\n${templateRationale}`;
-
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }]
-          }),
-          signal: controller.signal
-        }
-      );
+      const response = await fetch('/api/opportunities/explain', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          profile,
+          tradeName: trade.name_local[lang] || trade.name_en,
+          tradeId: trade.id,
+          rationale: templateRationale,
+          language: lang
+        }),
+        signal: controller.signal
+      });
       clearTimeout(timeoutId);
 
-      if (!response.ok) throw new Error('API Error');
-
-      const data = await response.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-
-      // Validate that rewrite retained the user's spoken words
-      if (text && (!spokenInterest || text.toLowerCase().includes(spokenInterest.toLowerCase()))) {
-        this.activeEngineName = 'Gemini 2.5 Flash';
-        return { rationale: text, engine: 'Gemini-2.5-Flash' };
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.explanation) {
+          this.activeEngineName = data.engine || 'Gemini Grounded Engine';
+          return { rationale: data.explanation, engine: data.engine || 'Gemini-Grounded' };
+        }
       }
     } catch (err) {
-      console.warn('Layer B Chat Router silent failover to LocalTemplate:', err);
+      // Graceful failover to Local Deterministic Engine
     }
 
     this.activeEngineName = 'Local Deterministic Engine';

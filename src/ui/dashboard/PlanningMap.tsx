@@ -90,6 +90,10 @@ export const PlanningMap: React.FC<PlanningMapProps> = ({
       }
 
       mapInstanceRef.current = map;
+      setTimeout(() => map.invalidateSize(), 100);
+      setTimeout(() => map.invalidateSize(), 400);
+    } else {
+      mapInstanceRef.current.invalidateSize();
     }
 
     return () => {

@@ -91,18 +91,28 @@ import promptHi from '../i18n/hi.json';
 import promptEn from '../i18n/en.json';
 import promptMr from '../i18n/mr.json';
 import promptBn from '../i18n/bn.json';
+import promptGu from '../i18n/gu.json';
+import promptKn from '../i18n/kn.json';
+import promptMl from '../i18n/ml.json';
+import promptOd from '../i18n/od.json';
+import promptPa from '../i18n/pa.json';
 import promptTa from '../i18n/ta.json';
 import promptTe from '../i18n/te.json';
-import promptKn from '../i18n/kn.json';
+import promptAs from '../i18n/as.json';
 
 const promptPacks: Record<LanguageCode, Record<string, PromptPackEntry>> = {
-  hi: promptHi as any,
   en: promptEn as any,
+  hi: promptHi as any,
   mr: promptMr as any,
   bn: promptBn as any,
+  gu: promptGu as any,
+  kn: promptKn as any,
+  ml: promptMl as any,
+  od: promptOd as any,
+  pa: promptPa as any,
   ta: promptTa as any,
   te: promptTe as any,
-  kn: promptKn as any
+  as: promptAs as any
 };
 
 /**
@@ -365,6 +375,11 @@ export function step(
 
   const now = new Date().toISOString();
 
+  // 0. Terminal State Guard: Once ENDED, no transitions or prompt emissions are allowed except explicit RESTART
+  if (session.state === 'ENDED' && event.type !== 'RESTART') {
+    return { session, actions: [] };
+  }
+
   // Helper to record user utterance in transcript
   const logUserTurn = (text: string) => {
     updatedTranscript.push({
@@ -388,6 +403,22 @@ export function step(
     const promptEntry = getPromptForState(stateForChips, currentLang, updatedProfile);
     actions.push({ type: 'render_chips', payload: promptEntry.chips });
   };
+
+  // 0.5. Cross-Cutting Event: End Conversation immediately
+  if (event.type === 'END_CONVERSATION') {
+    logUserTurn('End Conversation');
+    actions.push({ type: 'persist' });
+    return {
+      session: {
+        ...session,
+        state: 'ENDED',
+        previous_state: session.state,
+        updated_at: now,
+        transcript: updatedTranscript
+      },
+      actions
+    };
+  }
 
   // 1. Cross-Cutting Event: Explicit Language Switch
   if (event.type === 'SWITCH_LANG') {
@@ -580,10 +611,98 @@ export function step(
       };
     }
 
+    // End conversation control intent from speech
+    if (nluResult.controlIntent === 'end_conversation') {
+      actions.push({ type: 'persist' });
+      return {
+        session: {
+          ...session,
+          state: 'ENDED',
+          previous_state: session.state,
+          updated_at: now,
+          transcript: updatedTranscript
+        },
+        actions
+      };
+    }
+
+    // Language switch control intent during voice conversation
+    if (nluResult.controlIntent && nluResult.controlIntent.startsWith('switch_lang_')) {
+      const newLang = nluResult.controlIntent.replace('switch_lang_', '') as LanguageCode;
+      currentLang = newLang;
+      updatedProfile.language = newLang;
+      if (session.state === 'LANG_SELECT' || session.state === 'LANDING') {
+        nextState = 'GREETING';
+        const promptEntry = getPromptForState('GREETING', newLang, updatedProfile);
+        queueBotSpeak(promptEntry.prompt, 'GREETING');
+        actions.push({ type: 'persist' });
+        return {
+          session: {
+            ...session,
+            lang: newLang,
+            state: nextState,
+            previous_state: session.state,
+            profile: updatedProfile,
+            updated_at: now,
+            transcript: updatedTranscript
+          },
+          actions
+        };
+      } else {
+        const promptEntry = getPromptForState(session.state, newLang, updatedProfile);
+        queueBotSpeak(promptEntry.prompt, session.state);
+        actions.push({ type: 'persist' });
+        return {
+          session: {
+            ...session,
+            lang: newLang,
+            profile: updatedProfile,
+            updated_at: now,
+            transcript: updatedTranscript
+          },
+          actions
+        };
+      }
+    }
+
     chosenValue = nluResult.matchedSlotValue || rawText;
 
-    // Multi-slot extraction for natural conversational voice utterances
+    // Universal slot extraction across all states (name, district, education, skill, preference)
+    const multi = extractAllProfileSlots(rawText, currentLang);
+    if (multi.slotsCount > 0) {
+      if (multi.slotsFound.name) {
+        updatedProfile.name = multi.slotsFound.name;
+        updatedProfile.first_name = multi.slotsFound.name;
+      }
+      if (multi.slotsFound.district) {
+        updatedProfile.district = multi.slotsFound.district;
+        updatedProfile.district_name_local = multi.slotsFound.district;
+        updatedProfile.state = multi.slotsFound.state || updatedProfile.state || 'Maharashtra';
+        if (multi.slotsFound.district.toLowerCase() === 'pune') {
+          updatedProfile.lat = 18.5204;
+          updatedProfile.lng = 73.8567;
+        } else if (multi.slotsFound.district.toLowerCase().includes('varanasi')) {
+          updatedProfile.lat = 25.3176;
+          updatedProfile.lng = 82.9739;
+        }
+      }
+      if (multi.slotsFound.education_level) updatedProfile.education_level = multi.slotsFound.education_level;
+      if (multi.slotsFound.family_occupation) updatedProfile.family_occupation = multi.slotsFound.family_occupation;
+      if (multi.slotsFound.current_livelihood) updatedProfile.current_livelihood = multi.slotsFound.current_livelihood;
+      if (multi.slotsFound.skills_interests && multi.slotsFound.skills_interests.length > 0) {
+        updatedProfile.skills_interests = Array.from(new Set([...(updatedProfile.skills_interests || []), ...multi.slotsFound.skills_interests]));
+      }
+      if (multi.slotsFound.experience_years !== undefined) updatedProfile.experience_years = multi.slotsFound.experience_years;
+      if (multi.slotsFound.constraints) updatedProfile.constraints = multi.slotsFound.constraints;
+      if (multi.slotsFound.travel_radius_km) updatedProfile.travel_radius_km = multi.slotsFound.travel_radius_km;
+      if (multi.slotsFound.employment_preference) updatedProfile.employment_preference = multi.slotsFound.employment_preference;
+    }
+
+    // Multi-slot extraction for conversational advance during profiling
     const isProfilingState = [
+      'LANDING',
+      'GREETING',
+      'CONSENT',
       'LOCATION',
       'LOCATION_MANUAL',
       'BACKGROUND',
@@ -599,45 +718,26 @@ export function step(
       'EMPLOYMENT_PREFERENCE'
     ].includes(session.state);
 
-    if (isProfilingState) {
-      const multi = extractAllProfileSlots(rawText, currentLang);
-      if (multi.slotsCount > 1) {
-        if (multi.slotsFound.district) {
-          updatedProfile.district = multi.slotsFound.district;
-          updatedProfile.district_name_local = multi.slotsFound.district;
-          updatedProfile.state = multi.slotsFound.state || updatedProfile.state || 'Maharashtra';
-        }
-        if (multi.slotsFound.education_level) updatedProfile.education_level = multi.slotsFound.education_level;
-        if (multi.slotsFound.family_occupation) updatedProfile.family_occupation = multi.slotsFound.family_occupation;
-        if (multi.slotsFound.current_livelihood) updatedProfile.current_livelihood = multi.slotsFound.current_livelihood;
-        if (multi.slotsFound.skills_interests && multi.slotsFound.skills_interests.length > 0) {
-          updatedProfile.skills_interests = Array.from(new Set([...updatedProfile.skills_interests, ...multi.slotsFound.skills_interests]));
-        }
-        if (multi.slotsFound.experience_years !== undefined) updatedProfile.experience_years = multi.slotsFound.experience_years;
-        if (multi.slotsFound.constraints) updatedProfile.constraints = multi.slotsFound.constraints;
-        if (multi.slotsFound.travel_radius_km) updatedProfile.travel_radius_km = multi.slotsFound.travel_radius_km;
-        if (multi.slotsFound.employment_preference) updatedProfile.employment_preference = multi.slotsFound.employment_preference;
+    if (isProfilingState && multi.slotsCount > 1) {
+      const nextTarget = getNextUnfilledProfilingState(updatedProfile, session.state);
+      nextState = nextTarget;
 
-        const nextTarget = getNextUnfilledProfilingState(updatedProfile, session.state);
-        nextState = nextTarget;
+      const nextPrompt = getPromptForState(nextState, currentLang, updatedProfile);
+      queueBotSpeak(nextPrompt.prompt, nextState);
+      actions.push({ type: 'persist' });
 
-        const nextPrompt = getPromptForState(nextState, currentLang, updatedProfile);
-        queueBotSpeak(nextPrompt.prompt, nextState);
-        actions.push({ type: 'persist' });
-
-        return {
-          session: {
-            ...session,
-            lang: currentLang,
-            state: nextState,
-            previous_state: session.state,
-            profile: updatedProfile,
-            updated_at: now,
-            transcript: updatedTranscript
-          },
-          actions
-        };
-      }
+      return {
+        session: {
+          ...session,
+          lang: currentLang,
+          state: nextState,
+          previous_state: session.state,
+          profile: updatedProfile,
+          updated_at: now,
+          transcript: updatedTranscript
+        },
+        actions
+      };
     }
   } else if (event.type === 'CHIP_CLICK') {
     chosenValue = typeof event.payload === 'string' ? event.payload : event.payload?.value || '';
@@ -649,15 +749,38 @@ export function step(
 
   switch (session.state) {
     case 'LANDING': {
-      nextState = 'LANG_SELECT';
+      const normVal = chosenValue.toLowerCase();
+      const isLanguageChoice = normVal.includes('मराठी') || normVal.includes('marathi') || normVal === 'mr' ||
+        normVal.includes('हिंदी') || normVal.includes('hindi') || normVal === 'hi' ||
+        normVal.includes('english') || normVal.includes('इंग्रजी') || normVal === 'en' ||
+        ['bn', 'ta', 'te', 'kn'].includes(chosenValue);
+
+      if (isLanguageChoice) {
+        if (normVal.includes('मराठी') || normVal.includes('marathi') || normVal === 'mr') currentLang = 'mr';
+        else if (normVal.includes('हिंदी') || normVal.includes('hindi') || normVal === 'hi') currentLang = 'hi';
+        else if (normVal.includes('english') || normVal.includes('इंग्रजी') || normVal === 'en') currentLang = 'en';
+        else currentLang = chosenValue as LanguageCode;
+
+        updatedProfile.language = currentLang;
+        nextState = 'GREETING';
+      } else {
+        nextState = 'LANG_SELECT';
+      }
       break;
     }
 
     case 'LANG_SELECT': {
-      if (['hi', 'mr', 'bn', 'ta', 'te', 'kn', 'en'].includes(chosenValue)) {
+      const normVal = chosenValue.toLowerCase();
+      if (normVal.includes('मराठी') || normVal.includes('marathi') || normVal === 'mr') {
+        currentLang = 'mr';
+      } else if (normVal.includes('हिंदी') || normVal.includes('hindi') || normVal === 'hi') {
+        currentLang = 'hi';
+      } else if (normVal.includes('english') || normVal.includes('इंग्रजी') || normVal === 'en') {
+        currentLang = 'en';
+      } else if (['bn', 'ta', 'te', 'kn'].includes(chosenValue)) {
         currentLang = chosenValue as LanguageCode;
-        updatedProfile.language = currentLang;
       }
+      updatedProfile.language = currentLang;
       nextState = 'GREETING';
       break;
     }

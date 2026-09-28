@@ -5537,4 +5537,59 @@ h1, h2, h3, h4, h5, h6 {
   color: #64748B;
 }
 
+/* Responsive Opportunity & Leaflet Map Enhancements */
+.opportunity-map-container, .mini-map, .map-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative;
+  z-index: 1;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: var(--font-family) !important;
+}
+
+.user-map-pin-div, .opp-map-pin-div, .tc-map-pin-div {
+  background: transparent;
+  border: none;
+}
+
+/* Mobile Responsiveness & Viewport Stabilization (320px - 768px) */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .opportunity-map-container {
+    height: 240px !important;
+  }
+
+  .mini-map {
+    height: 180px !important;
+  }
+
+  .gov-main-header-bar {
+    padding: 8px 12px;
+  }
+
+  .gov-header-container {
+    gap: 8px;
+  }
+
+  .gov-brand-title {
+    font-size: 1.05rem;
+  }
+
+  .gov-brand-desc {
+    display: none;
+  }
+
+  .rec-card {
+    padding: 14px !important;
+  }
+}
+
 

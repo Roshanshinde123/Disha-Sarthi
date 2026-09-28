@@ -1,0 +1,179 @@
+{
+  "LANDING": {
+    "prompt": "નમસ્તે! દિશા સારથીમાં આપનું સ્વાગત છે.",
+    "simplified": "દિશા સારથી શરૂ કરવા આગળ વધો.",
+    "chips": [
+      {
+        "value": "start",
+        "label": "વાતચીત શરૂ કરો",
+        "icon": "🎙️"
+      },
+      {
+        "value": "about",
+        "label": "દિશા સારથી વિશે",
+        "icon": "ℹ️"
+      }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "કૃપા કરીને તમારી પસંદગીની ભાષા પસંદ કરો.",
+    "simplified": "તમે કઈ ભાષામાં વાત કરવા માંગો છો?",
+    "chips": [
+      { "value": "gu", "label": "ગુજરાતી (Gujarati)", "icon": "🇮🇳" },
+      { "value": "hi", "label": "हिंदी (Hindi)", "icon": "🇮🇳" },
+      { "value": "mr", "label": "मराठी (Marathi)", "icon": "🇮🇳" },
+      { "value": "en", "label": "English", "icon": "🌐" }
+    ]
+  },
+  "GREETING": {
+    "prompt": "નમસ્તે! હું તમને યોગ્ય કૌશલ્ય અને આજીવિકાની તકો શોધવામાં મદદ કરીશ.",
+    "simplified": "શું આપણે તમારી કૌશલ્ય યોજના બનાવવાનું શરૂ કરીએ?",
+    "chips": [
+      {
+        "value": "continue",
+        "label": "હા, શરૂ કરો",
+        "icon": "👍"
+      },
+      {
+        "value": "help",
+        "label": "આ કેવી રીતે કાર્ય કરે છે?",
+        "icon": "❓"
+      }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "કૌશલ્ય માર્ગદર્શન માટે શું તમે સામાન્ય માહિતી શેર કરવા માટે સંમત છો?",
+    "simplified": "અમે તમારી માહિતી સુરક્ષિત રાખીએ છીએ. શું તમે સંમત છો?",
+    "chips": [
+      {
+        "value": "yes",
+        "label": "હા, સંમત છું",
+        "icon": "✅"
+      },
+      {
+        "value": "no",
+        "label": "ના, હમણાં નહીં",
+        "icon": "❌"
+      }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "તમે કયા જિલ્લા અને રાજ્યમાં રહો છો?",
+    "simplified": "તમારો જિલ્લો જણાવો જેથી નજીકનું કેન્દ્ર શોધી શકાય.",
+    "chips": [
+      {
+        "value": "gps_detect",
+        "label": "મારું GPS સ્થાન વાપરો",
+        "icon": "📍"
+      },
+      {
+        "value": "pune",
+        "label": "પુણે",
+        "icon": "📍"
+      },
+      {
+        "value": "mumbai",
+        "label": "મુંબઈ",
+        "icon": "📍"
+      },
+      {
+        "value": "ahmedabad",
+        "label": "અમદાવાદ",
+        "icon": "📍"
+      }
+    ]
+  },
+  "BACKGROUND": {
+    "prompt": "તમારું શિક્ષણ કેટલું છે?",
+    "simplified": "તમારું છેલ્લું પાસ કરેલ ધોરણ પસંદ કરો.",
+    "chips": [
+      { "value": "primary", "label": "૫મું ધોરણ (Primary)", "icon": "🎒" },
+      { "value": "middle", "label": "૮મું ધોરણ (8th Pass)", "icon": "📚" },
+      { "value": "secondary", "label": "૧૦મું ધોરણ (10th Pass)", "icon": "🎓" },
+      { "value": "higher_secondary", "label": "૧૨મું ધોરણ (12th Pass)", "icon": "🏛️" },
+      { "value": "iti_diploma", "label": "ITI / ડિપ્લોમા", "icon": "🔧" },
+      { "value": "graduate", "label": "સ્નાતક (Graduate)", "icon": "📜" }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "તમારા પરિવારનો મુખ્ય કે પરંપરાગત વ્યવસાય કયો છે?",
+    "simplified": "પરિવારમાં ખેતી, વેપાર કે કોઈ હુનર છે?",
+    "chips": [
+      { "value": "farming", "label": "ખેતી / કૃષિ", "icon": "🌾" },
+      { "value": "weaving", "label": "વણકર / કાપડ", "icon": "🧵" },
+      { "value": "carpentry", "label": "સુથારી કામ", "icon": "🪚" },
+      { "value": "welding", "label": "વેલ્ડિંગ / લોખંડ કામ", "icon": "⚡" },
+      { "value": "masonry", "label": "કડિયા કામ", "icon": "🧱" }
+    ]
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "તમે હાલમાં કયું કામ કરો છો?",
+    "simplified": "હાલની આજીવિકા કે કામ જણાવો.",
+    "chips": [
+      { "value": "unemployed", "label": "હાલમાં કોઈ કામ નથી", "icon": "🌱" },
+      { "value": "daily_wage", "label": "દૈનિક મજૂરી", "icon": "🔨" },
+      { "value": "agriculture", "label": "ખેત મજૂરી", "icon": "🌾" },
+      { "value": "shop_assistant", "label": "દુકાન સહાયક", "icon": "🏪" },
+      { "value": "apprentice", "label": "કામ શીખું છું", "icon": "🔧" }
+    ]
+  },
+  "SKILLS_INPUT": {
+    "prompt": "તમારી પાસે કયા હુનર કે કૌશલ્ય છે?",
+    "simplified": "તમે કયું કામ સારી રીતે કરી શકો છો?",
+    "chips": [
+      { "value": "welding", "label": "વેલ્ડિંગ", "icon": "⚡" },
+      { "value": "electrical", "label": "ઇલેક્ટ્રિશિયન", "icon": "💡" },
+      { "value": "stitching", "label": "સિલાઈ / ટેલરિંગ", "icon": "✂️" },
+      { "value": "solar", "label": "સોલર ઇન્સ્ટોલેશન", "icon": "☀️" },
+      { "value": "computers", "label": "કમ્પ્યુટર / ડેટા એન્ટ્રી", "icon": "💻" }
+    ]
+  },
+  "EXPERIENCE": {
+    "prompt": "કામનો કેટલા વર્ષનો અનુભવ છે?",
+    "simplified": "અનુભવના વર્ષો પસંદ કરો.",
+    "chips": [
+      { "value": "0", "label": "કોઈ અનુભવ નથી (ફ્રેશર)", "icon": "🌱" },
+      { "value": "1", "label": "૧ વર્ષ", "icon": "⭐" },
+      { "value": "2", "label": "૨ વર્ષ", "icon": "⭐⭐" },
+      { "value": "3", "label": "૩+ વર્ષ", "icon": "🏆" }
+    ]
+  },
+  "INTERESTS": {
+    "prompt": "તમે કયું નવું કૌશલ્ય શીખવા માંગો છો?",
+    "simplified": "તમારી પસંદનું ક્ષેત્ર જણાવો.",
+    "chips": [
+      { "value": "welding", "label": "વેલ્ડિંગ ટેકનિશિયન", "icon": "⚡" },
+      { "value": "electrical", "label": "ઇલેક્ટ્રિકલ વાયરમેન", "icon": "💡" },
+      { "value": "solar", "label": "સૂર્યમિત્ર સોલર", "icon": "☀️" },
+      { "value": "stitching", "label": "ફેશન ટેલરિંગ", "icon": "✂️" }
+    ]
+  },
+  "CONSTRAINTS": {
+    "prompt": "શું મુસાફરી કે સમય બાબતે કોઈ મર્યાદા છે?",
+    "simplified": "પ્રવાસ કે સમયની કોઈ મુશ્કેલી છે?",
+    "chips": [
+      { "value": "none", "label": "કોઈ અડચણ નથી", "icon": "✅" },
+      { "value": "local_only", "label": "માત્ર સ્થાનિક વિસ્તારમાં", "icon": "🏠" },
+      { "value": "financial", "label": "નાણાકીય સહાય જરૂરી", "icon": "💰" }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "તાલીમ કે નોકરી માટે કેટલા કિમી મુસાફરી કરી શકો છો?",
+    "simplified": "પ્રવાસની મહત્તમ મર્યાદા પસંદ કરો.",
+    "chips": [
+      { "value": "5", "label": "૫ કિમી", "icon": "🚶" },
+      { "value": "10", "label": "૧૦ કિમી", "icon": "🚲" },
+      { "value": "25", "label": "૨૫ કિમી", "icon": "🛵" },
+      { "value": "50", "label": "૫૦ કિમી", "icon": "🚌" }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "તમે નોકરી કરવા માંગો છો કે પોતાનો વ્યવસાય?",
+    "simplified": "રોજગાર પસંદગી જણાવો.",
+    "chips": [
+      { "value": "wage_employment", "label": "નોકરી (પગારદાર)", "icon": "💼" },
+      { "value": "self_employment", "label": "પોતાનો વ્યવસાય (સ્વરોજગાર)", "icon": "🏪" },
+      { "value": "either", "label": "બંનેમાંથી કોઈ પણ", "icon": "🤝" }
+    ]
+  }
+}

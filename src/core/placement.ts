@@ -72,7 +72,7 @@ export function getOpportunitiesForTradeAndDistrict(
  * Returns localized label for placement status
  */
 export function getPlacementStatusLabel(status: PlacementStatus, lang: LanguageCode = 'hi'): string {
-  const labels: Record<PlacementStatus, Record<LanguageCode, string>> = {
+  const labels: Record<PlacementStatus, Partial<Record<LanguageCode, string>>> = {
     NOT_STARTED: {
       hi: 'प्रारंभ नहीं',
       mr: 'सुरू नाही',
@@ -235,7 +235,7 @@ export function getPlacementStatusLabel(status: PlacementStatus, lang: LanguageC
  * Returns localized label for verification levels
  */
 export function getVerificationLevelLabel(level: VerificationLevel, lang: LanguageCode = 'hi'): string {
-  const labels: Record<VerificationLevel, Record<LanguageCode, string>> = {
+  const labels: Record<VerificationLevel, Partial<Record<LanguageCode, string>>> = {
     SELF_REPORTED: {
       hi: 'स्व-घोषित',
       mr: 'स्वयं-नोंदवलेले',

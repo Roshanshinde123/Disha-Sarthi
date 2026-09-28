@@ -32,6 +32,7 @@ export const STATE_SEQUENCE: ConversationState[] = [
 ];
 
 export const TERMINAL_STATES: ConversationState[] = [
+  'ENDED',
   'END',
   'DECLINED_END',
   'DELETED_END',
@@ -52,6 +53,9 @@ export const INTAKE_SLOT_STATES: ConversationState[] = [
 ];
 
 export function getNextStateInSequence(currentState: ConversationState): ConversationState {
+  if (currentState === 'ENDED' || currentState === 'DECLINED_END' || currentState === 'DELETED_END') {
+    return currentState;
+  }
   const idx = STATE_SEQUENCE.indexOf(currentState);
   if (idx >= 0 && idx < STATE_SEQUENCE.length - 1) {
     return STATE_SEQUENCE[idx + 1];

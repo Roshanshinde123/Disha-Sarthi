@@ -38,7 +38,6 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
   onEndCall,
   onEndVoice
 }) => {
-  const handleEnd = onEndVoice || onEndCall;
   const [voiceState, setVoiceState] = useState<VoiceInteractionState>('SPEAKING');
   const [liveTranscript, setLiveTranscript] = useState<string>('');
   const [lastUserUtterance, setLastUserUtterance] = useState<string>('');
@@ -70,7 +69,12 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
 
   // Continuous Voice Loop: Speak Prompt -> Auto Start Listening -> Process -> Next
   useEffect(() => {
-    if (isMuted) return;
+    if (isMuted || session.state === 'ENDED' || session.state === 'DELETED_END' || session.state === 'DECLINED_END') {
+      speechRouter.stopSpeaking();
+      speechRouter.stopListening();
+      setVoiceState('PAUSED');
+      return;
+    }
 
     if (session.state === 'CONFIRM_SUMMARY') {
       setVoiceState('CONFIRMING');
@@ -85,7 +89,7 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
       lang,
       // onEnd callback: immediately start listening to user
       () => {
-        if (!isMuted) {
+        if (!isMuted && session.state !== 'ENDED') {
           startListeningAutomatically();
         }
       },
@@ -104,6 +108,20 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
       speechRouter.stopListening();
     };
   }, [session.state, session.lang, isMuted]);
+
+  const handleEndConversation = () => {
+    speechRouter.stopSpeaking();
+    speechRouter.stopListening();
+    setVoiceState('PAUSED');
+    isListeningRef.current = false;
+    setLiveTranscript('');
+    onEvent({ type: 'END_CONVERSATION' });
+    if (onEndVoice) {
+      onEndVoice();
+    } else if (onEndCall) {
+      onEndCall();
+    }
+  };
 
   const startListeningAutomatically = async () => {
     setMicPermissionError(null);
@@ -200,9 +218,10 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
     const cleanText = userText.trim();
     if (!cleanText) return;
 
+    speechRouter.stopSpeaking();
+    speechRouter.stopListening();
     setVoiceState('PROCESSING');
     isListeningRef.current = false;
-    speechRouter.stopListening();
     setLastUserUtterance(cleanText);
 
     console.log('[VOICE] handleUserResponse(', cleanText, ')');
@@ -302,22 +321,32 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
             value={session.lang}
             onChange={(e) => onSwitchLang(e.target.value as LanguageCode)}
             className="lang-pill-select"
+            aria-label="Select conversation language"
           >
-            <option value="mr">मराठी</option>
-            <option value="hi">हिन्दी</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
             <option value="en">English</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+            <option value="od">ଓଡ଼ିଆ (Odia)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="as">অসমীয়া (Assamese)</option>
           </select>
 
-          {onEndCall && (
-            <button
-              type="button"
-              className="btn-end-call"
-              onClick={onEndCall}
-              title="End Voice Session"
-            >
-              📞 {t('btnEndSession', lang)}
-            </button>
-          )}
+          <button
+            type="button"
+            className="btn-end-call"
+            onClick={handleEndConversation}
+            aria-label="End conversation"
+            title="End Voice Session"
+            style={{ background: '#FEE2E2', color: '#DC2626', borderColor: '#FCA5A5', fontWeight: 700 }}
+          >
+            {lang === 'en' ? 'End Conversation' : lang === 'hi' ? 'बातचीत समाप्त करें' : 'संभाषण समाप्त करा'}
+          </button>
         </div>
       </div>
 
@@ -508,7 +537,7 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
             onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
             onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
           >
-            🎙️ {lang === 'en' ? 'Tap to Speak' : lang === 'hi' ? 'बोलने के लिए टैप करें' : 'बोलण्यासाठी टॅप करा'}
+            {lang === 'en' ? 'Tap to Speak' : lang === 'hi' ? 'बोलने के लिए टैप करें' : 'बोलण्यासाठी टॅप करा'}
           </button>
         )}
 
@@ -594,17 +623,17 @@ export const NaturalVoiceView: React.FC<NaturalVoiceViewProps> = ({
           {showFallbackChips ? t('btnHideOptions', lang) : t('btnShowOptions', lang)}
         </button>
 
-        {handleEnd && (
-          <button
-            type="button"
-            id="btn-voice-end"
-            className="voice-ctrl-btn"
-            onClick={handleEnd}
-            style={{ color: '#DC2626' }}
-          >
-            {t('btnEndSession', lang)}
-          </button>
-        )}
+        <button
+          type="button"
+          id="btn-voice-end"
+          className="voice-ctrl-btn"
+          onClick={handleEndConversation}
+          aria-label="End conversation"
+          title="End Conversation"
+          style={{ color: '#DC2626', borderColor: '#FCA5A5', background: '#FEF2F2', fontWeight: 700 }}
+        >
+          ⏹️ {lang === 'en' ? 'End Conversation' : lang === 'hi' ? 'बातचीत समाप्त करें' : 'संभाषण समाप्त करा'}
+        </button>
       </div>
     </div>
   );

@@ -203,6 +203,36 @@ export const VoicePwa: React.FC<{
               🔄 {lang === 'en' ? 'Start Again' : lang === 'hi' ? 'पुनः प्रारंभ करें' : 'पुन्हा सुरू करा'}
             </button>
           </div>
+        ) : session.state === 'ENDED' ? (
+          <div style={{ textAlign: 'center', padding: '40px 16px', background: '#FFF', borderRadius: '16px', border: '1px solid #E2E8F0', maxWidth: '520px', margin: '30px auto' }}>
+            <div style={{ fontSize: '2.4rem', marginBottom: '10px' }}>🛑</div>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px' }}>
+              {lang === 'en' ? 'Conversation Ended' : lang === 'hi' ? 'बातचीत समाप्त हो गई' : 'संभाषण समाप्त झाले'}
+            </h2>
+            <p style={{ color: '#64748B', fontSize: '0.95rem', marginBottom: '22px' }}>
+              {lang === 'en' ? 'Your information has been saved.' : lang === 'hi' ? 'आपकी जानकारी सहेज ली गई है।' : 'आपली माहिती जतन केली गेली आहे.'}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '280px', margin: '0 auto' }}>
+              <button
+                type="button"
+                className="btn-primary"
+                style={{ padding: '12px 20px', fontWeight: 700 }}
+                onClick={() => handleEvent({ type: 'RESTART' })}
+              >
+                🔄 {lang === 'en' ? 'Start Again' : lang === 'hi' ? 'पुनः प्रारंभ करें' : 'पुन्हा सुरू करा'}
+              </button>
+              {onNavigate && (
+                <button
+                  type="button"
+                  className="btn-secondary"
+                  style={{ padding: '10px 16px' }}
+                  onClick={() => onNavigate('/beneficiary')}
+                >
+                  {lang === 'en' ? 'Go to Dashboard' : lang === 'hi' ? 'डैशबोर्ड पर जाएं' : 'डॅशबोर्डवर जा'}
+                </button>
+              )}
+            </div>
+          </div>
         ) : session.state === 'END' ? (
           <div style={{ textAlign: 'center', padding: '30px 16px', background: '#FFF', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
             <h2>🎉 {lang === 'en' ? 'Counselling Session Completed Successfully!' : lang === 'hi' ? 'परामर्श सत्र सफलतापूर्वक पूरा हुआ!' : 'समुपदेशन सत्र यशस्वीरित्या पूर्ण झाले!'}</h2>
@@ -227,7 +257,8 @@ export const VoicePwa: React.FC<{
             session={session}
             onEvent={handleEvent}
             onSwitchLang={handleSwitchLang}
-            onEndCall={() => handleEvent({ type: 'REVISE_SLOT' })}
+            onEndCall={() => handleEvent({ type: 'END_CONVERSATION' })}
+            onEndVoice={() => handleEvent({ type: 'END_CONVERSATION' })}
           />
         ) : (
           <ConversationView

@@ -6,6 +6,8 @@ import { handleWhatsAppWebhook } from './whatsappHandler';
 import { getWhatsAppStatusInfo } from './services/whatsapp';
 import { getTTSProvider } from './ttsProvider';
 import { handleDishaVoiceRequest } from './services/dishaVoiceService';
+import { searchOpportunities } from './services/opportunityService';
+import { explainRecommendationWithGemini } from './services/geminiService';
 import { URL } from 'url';
 import fs from 'fs';
 import path from 'path';
@@ -133,6 +135,74 @@ export function startVoicebotServer(port: number = PORT) {
             'Access-Control-Allow-Origin': '*'
           });
           res.end(JSON.stringify({ error: err?.message || 'TTS synthesis failed' }));
+        }
+      });
+      return;
+    }
+
+    // ------------------------------------------------------------------
+    // Opportunity Search API: POST /api/opportunities/search
+    // ------------------------------------------------------------------
+    if (req.method === 'POST' && reqPath === '/api/opportunities/search') {
+      let body = '';
+      req.on('data', (chunk: Buffer) => { body += chunk.toString(); });
+      req.on('end', () => {
+        try {
+          const parsed = JSON.parse(body || '{}');
+          const result = searchOpportunities(parsed);
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify(result));
+        } catch (err: any) {
+          res.writeHead(400, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify({
+            success: false,
+            source: 'Error',
+            isLive: false,
+            isDemo: true,
+            opportunities: [],
+            trainingCenters: [],
+            summary: 'Invalid request body',
+            error: err?.message || 'Bad Request'
+          }));
+        }
+      });
+      return;
+    }
+
+    // ------------------------------------------------------------------
+    // Gemini Grounded Opportunity Explanation: POST /api/opportunities/explain
+    // ------------------------------------------------------------------
+    if (req.method === 'POST' && reqPath === '/api/opportunities/explain') {
+      let body = '';
+      req.on('data', (chunk: Buffer) => { body += chunk.toString(); });
+      req.on('end', async () => {
+        try {
+          const parsed = JSON.parse(body || '{}');
+          const result = await explainRecommendationWithGemini(parsed);
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify(result));
+        } catch (err: any) {
+          res.writeHead(500, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          });
+          res.end(JSON.stringify({
+            success: false,
+            explanation: 'Unable to generate explanation',
+            opportunities: [],
+            trainingCenters: [],
+            engine: 'Fallback',
+            source: 'Error'
+          }));
         }
       });
       return;

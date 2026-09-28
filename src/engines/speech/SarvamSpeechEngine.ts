@@ -2,13 +2,18 @@
 import { LanguageCode } from '../../core/types';
 
 const SARVAM_LANG_MAP: Record<LanguageCode, string> = {
+  en: 'en-IN',
   hi: 'hi-IN',
   mr: 'mr-IN',
-  en: 'en-IN',
   bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  ml: 'ml-IN',
+  od: 'od-IN',
+  pa: 'pa-IN',
   ta: 'ta-IN',
   te: 'te-IN',
-  kn: 'kn-IN'
+  as: 'as-IN'
 };
 
 export class SarvamSpeechEngine {
@@ -124,13 +129,18 @@ export class SarvamSpeechEngine {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     const langTags: Record<LanguageCode, string> = {
-      mr: 'mr-IN',
-      hi: 'hi-IN',
       en: 'en-IN',
+      hi: 'hi-IN',
+      mr: 'mr-IN',
       bn: 'bn-IN',
+      gu: 'gu-IN',
+      kn: 'kn-IN',
+      ml: 'ml-IN',
+      od: 'or-IN',
+      pa: 'pa-IN',
       ta: 'ta-IN',
       te: 'te-IN',
-      kn: 'kn-IN'
+      as: 'as-IN'
     };
     utterance.lang = langTags[lang] || 'mr-IN';
     utterance.rate = 0.95;

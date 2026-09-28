@@ -62,7 +62,7 @@ export interface GroundedRecommendation {
 export interface SarvamVoiceResponse {
   success: boolean;
   reply: string;
-  language: 'en' | 'hi' | 'mr';
+  language: LanguageCode;
   intent: string | null;
   profileUpdates: Partial<BeneficiaryProfile>;
   recommendations: GroundedRecommendation[];
@@ -76,42 +76,85 @@ export interface SarvamVoiceResponse {
 export function detectVoiceLanguageSwitch(text: string, currentLang: LanguageCode): { requestedLang: LanguageCode; isSwitch: boolean } {
   const norm = (text || '').toLowerCase().trim();
 
-  // Explicit Marathi triggers
-  const mrPatterns = [
-    'मराठीत बोला', 'मराठी मध्ये बोला', 'मराठीत सांगा', 'मराठी बोला', 'मराठी',
-    'marathi madhe', 'marathi madhe bola', 'marathit bola', 'speak in marathi', 'talk in marathi', 'switch to marathi'
-  ];
-  for (const p of mrPatterns) {
-    if (norm === p || norm.includes(p)) {
-      return { requestedLang: 'mr', isSwitch: currentLang !== 'mr' };
+  const TRIGGERS: Array<{ lang: LanguageCode; patterns: string[] }> = [
+    {
+      lang: 'mr',
+      patterns: ['मराठीत बोला', 'मराठी मध्ये बोला', 'मराठीत सांगा', 'मराठी बोला', 'मराठी', 'marathi madhe', 'marathi madhe bola', 'marathit bola', 'speak in marathi', 'talk in marathi', 'switch to marathi']
+    },
+    {
+      lang: 'hi',
+      patterns: ['हिंदी में बोलो', 'हिंदी में बात करो', 'हिंदी में बताओ', 'हिंदी बोलो', 'हिंदी', 'hindi mein', 'hindi mein bolo', 'hindi me baat karo', 'speak in hindi', 'talk in hindi', 'switch to hindi']
+    },
+    {
+      lang: 'en',
+      patterns: ['speak in english', 'talk in english', 'switch to english', 'english please', 'in english', 'इंग्लिश मध्ये बोला', 'अंग्रेजी में बात करो', 'इंग्रजीमध्ये सांगा', 'इंग्रजीत बोला']
+    },
+    {
+      lang: 'ta',
+      patterns: ['தமிழ்', 'தமிழில் பேசுங்கள்', 'tamil', 'speak in tamil', 'speak tamil', 'switch to tamil']
+    },
+    {
+      lang: 'te',
+      patterns: ['తెలుగు', 'తెలుగులో మాట్లాడు', 'telugu', 'speak in telugu', 'speak telugu', 'switch to telugu']
+    },
+    {
+      lang: 'bn',
+      patterns: ['বাংলা', 'বাংলায় বলুন', 'bengali', 'bangla', 'speak in bengali', 'switch to bengali']
+    },
+    {
+      lang: 'gu',
+      patterns: ['ગુજરાતી', 'ગુજરાતીમાં બોલો', 'gujarati', 'speak in gujarati', 'switch to gujarati']
+    },
+    {
+      lang: 'kn',
+      patterns: ['ಕನ್ನಡ', 'ಕನ್ನಡದಲ್ಲಿ ಮಾತನಾಡಿ', 'kannada', 'speak in kannada', 'switch to kannada']
+    },
+    {
+      lang: 'ml',
+      patterns: ['മലയാളം', 'മലയാളത്തിൽ സംസാരിക്കുക', 'malayalam', 'speak in malayalam', 'switch to malayalam']
+    },
+    {
+      lang: 'od',
+      patterns: ['ଓଡ଼ିଆ', 'ଓଡ଼ିଆରେ କୁହନ୍ତୁ', 'odia', 'oriya', 'speak in odia', 'switch to odia']
+    },
+    {
+      lang: 'pa',
+      patterns: ['ਪੰਜਾਬੀ', 'ਪੰਜਾਬੀ ਵਿੱਚ ਬੋਲੋ', 'punjabi', 'speak in punjabi', 'switch to punjabi']
+    },
+    {
+      lang: 'as',
+      patterns: ['অসমীয়া', 'অসমীয়াত কওক', 'assamese', 'speak in assamese', 'switch to assamese']
     }
-  }
-
-  // Explicit Hindi triggers
-  const hiPatterns = [
-    'हिंदी में बोलो', 'हिंदी में बात करो', 'हिंदी में बताओ', 'हिंदी बोलो', 'हिंदी',
-    'hindi mein', 'hindi mein bolo', 'hindi me baat karo', 'speak in hindi', 'talk in hindi', 'switch to hindi'
   ];
-  for (const p of hiPatterns) {
-    if (norm === p || norm.includes(p)) {
-      return { requestedLang: 'hi', isSwitch: currentLang !== 'hi' };
-    }
-  }
 
-  // Explicit English triggers
-  const enPatterns = [
-    'speak in english', 'talk in english', 'switch to english', 'english please',
-    'in english', 'इंग्लिश मध्ये बोला', 'अंग्रेजी में बात करो', 'इंग्रजीमध्ये सांगा', 'इंग्रजीत बोला'
-  ];
-  for (const p of enPatterns) {
-    if (norm === p || norm.includes(p)) {
-      return { requestedLang: 'en', isSwitch: currentLang !== 'en' };
+  for (const t of TRIGGERS) {
+    for (const p of t.patterns) {
+      if (norm === p || norm.includes(p)) {
+        return { requestedLang: t.lang, isSwitch: currentLang !== t.lang };
+      }
     }
   }
 
   // Heuristic script detection
   const devanagariCount = (text.match(/[\u0900-\u097F]/g) || []).length;
+  const tamilCount = (text.match(/[\u0B80-\u0BFF]/g) || []).length;
+  const teluguCount = (text.match(/[\u0C00-\u0C7F]/g) || []).length;
+  const bengaliCount = (text.match(/[\u0980-\u09FF]/g) || []).length;
+  const gujaratiCount = (text.match(/[\u0A80-\u0AFF]/g) || []).length;
+  const kannadaCount = (text.match(/[\u0C80-\u0CFF]/g) || []).length;
+  const malayalamCount = (text.match(/[\u0D00-\u0D7F]/g) || []).length;
+  const odiaCount = (text.match(/[\u0B00-\u0B7F]/g) || []).length;
+  const punjabiCount = (text.match(/[\u0A00-\u0A7F]/g) || []).length;
   const latinCount = (text.match(/[a-zA-Z]/g) || []).length;
+
+  if (tamilCount > 5) return { requestedLang: 'ta', isSwitch: currentLang !== 'ta' };
+  if (teluguCount > 5) return { requestedLang: 'te', isSwitch: currentLang !== 'te' };
+  if (bengaliCount > 5) return { requestedLang: 'bn', isSwitch: currentLang !== 'bn' };
+  if (gujaratiCount > 5) return { requestedLang: 'gu', isSwitch: currentLang !== 'gu' };
+  if (kannadaCount > 5) return { requestedLang: 'kn', isSwitch: currentLang !== 'kn' };
+  if (malayalamCount > 5) return { requestedLang: 'ml', isSwitch: currentLang !== 'ml' };
+  if (odiaCount > 5) return { requestedLang: 'od', isSwitch: currentLang !== 'od' };
+  if (punjabiCount > 5) return { requestedLang: 'pa', isSwitch: currentLang !== 'pa' };
 
   if (currentLang === 'en' && devanagariCount > 6 && devanagariCount > latinCount) {
     const marathiMarkers = /ाहे|आहे|माझ|तुमच|आपल|मला|नाही|आणि|किंवा|कारण|होय|नको|शिकायचे|सांगा/;
@@ -142,10 +185,10 @@ function isTrainingCenterInquiry(text: string): boolean {
 function isLivelihoodRequest(text: string, slotsCount: number, mergedProfile: Partial<BeneficiaryProfile>): boolean {
   const norm = (text || '').toLowerCase();
   
-  // Exclude pure programming / academic queries (e.g., Java, Python, C++, Math, History) unless explicit vocational trade is present
+  // Exclude pure programming / academic queries (e.g., Java, Python, C++, Math, History)
   const isGeneralAcademicOrTech = /\b(java|python|c\+\+|golang|rust|react|javascript|typescript|coding|programming|algorithm|calculus|physics|chemistry|history|geography)\b/i.test(norm) ||
     /जावा|पायथन|प्रोग्रामिंग|कोडिंग/i.test(norm);
-  if (isGeneralAcademicOrTech && (!mergedProfile.skills_interests || mergedProfile.skills_interests.length === 0)) {
+  if (isGeneralAcademicOrTech) {
     return false;
   }
 

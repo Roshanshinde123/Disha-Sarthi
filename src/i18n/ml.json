@@ -1,0 +1,121 @@
+{
+  "LANDING": {
+    "prompt": "നമസ്കാരം! ദിശാ സാരഥിയിലേക്ക് സ്വാഗതം.",
+    "simplified": "ദിശാ സാരഥി ആരംഭിക്കാൻ താഴെ ടാപ്പ് ചെയ്യുക.",
+    "chips": [
+      { "value": "start", "label": "സംഭാഷണം ആരംഭിക്കുക", "icon": "🎙️" },
+      { "value": "about", "label": "ദിശാ സാരഥിയെക്കുറിച്ച്", "icon": "ℹ️" }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "നിങ്ങളുടെ പ്രിയപ്പെട്ട ഭാഷ തിരഞ്ഞെടുക്കുക.",
+    "simplified": "ഏത് ഭാഷയിലാണ് സംസാരിക്കാൻ ആഗ്രഹിക്കുന്നത്?",
+    "chips": [
+      { "value": "ml", "label": "മലയാളം (Malayalam)", "icon": "🇮🇳" },
+      { "value": "en", "label": "English", "icon": "🌐" },
+      { "value": "hi", "label": "हिंदी (Hindi)", "icon": "🇮🇳" }
+    ]
+  },
+  "GREETING": {
+    "prompt": "നമസ്കാരം! നിങ്ങളുടെ നൈപുണ്യവും തൊഴിൽ അവസരങ്ങളും കണ്ടെത്താൻ ഞാൻ സഹായിക്കാം.",
+    "simplified": "നമുക്ക് നൈപുണ്യ പ്ലാൻ തയ്യാറാക്കാൻ ആരംഭിക്കാമോ?",
+    "chips": [
+      { "value": "continue", "label": "അതെ, ആരംഭിക്കുക", "icon": "👍" },
+      { "value": "help", "label": "ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നു?", "icon": "❓" }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "തൊഴിൽ നിർദ്ദേശങ്ങൾക്കായി ചില വിവരങ്ങൾ പങ്കുവെക്കാൻ സമ്മതമാണോ?",
+    "simplified": "വിവരങ്ങൾ സുരക്ഷിതമായിരിക്കും. സമ്മതമാണോ?",
+    "chips": [
+      { "value": "yes", "label": "അതെ, സമ്മതമാണ്", "icon": "✅" },
+      { "value": "no", "label": "ഇല്ല", "icon": "❌" }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "നിങ്ങൾ ഏത് ജില്ലയിലാണ് താമസിക്കുന്നത്?",
+    "simplified": "അടുത്തുള്ള പരിശീലന കേന്ദ്രം കണ്ടെത്താൻ ജില്ല പറയുക.",
+    "chips": [
+      { "value": "gps_detect", "label": "എന്റെ ലൊക്കേഷൻ ഉപയോഗിക്കുക", "icon": "📍" },
+      { "value": "pune", "label": "പൂനെ", "icon": "📍" }
+    ]
+  },
+  "BACKGROUND": {
+    "prompt": "നിങ്ങളുടെ വിദ്യാഭ്യാസം എത്രയാണ്?",
+    "simplified": "പഠിച്ച തലം തിരഞ്ഞെടുക്കുക.",
+    "chips": [
+      { "value": "primary", "label": "പ്രൈമറി (Primary)", "icon": "🎒" },
+      { "value": "middle", "label": "എട്ടാം ക്ലാസ് (8th Pass)", "icon": "📚" },
+      { "value": "secondary", "label": "പത്താം ക്ലാസ് (10th Pass)", "icon": "🎓" },
+      { "value": "higher_secondary", "label": "പ്ലസ് ടു (12th Pass)", "icon": "🏛️" },
+      { "value": "iti_diploma", "label": "ITI / ഡിപ്ലോമ", "icon": "🔧" },
+      { "value": "graduate", "label": "ബിരുദം (Graduate)", "icon": "📜" }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "കുടുംബത്തിന്റെ പ്രധാന തൊഴിൽ എന്താണ്?",
+    "simplified": "കൃഷി, നിർമ്മാണം അല്ലെങ്കിൽ മറ്റ് തൊഴിൽ ആണോ?",
+    "chips": [
+      { "value": "farming", "label": "കൃഷി", "icon": "🌾" },
+      { "value": "welding", "label": "വെൽഡിംഗ് / വർക്ക്ഷോപ്പ്", "icon": "⚡" },
+      { "value": "carpentry", "label": "തടിപ്പണി", "icon": "🪚" }
+    ]
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "ഇപ്പോൾ എന്തെങ്കിലും ജോലി ചെയ്യുന്നുണ്ടോ?",
+    "simplified": "നിലവിലെ ജോലി വിവരം പറയുക.",
+    "chips": [
+      { "value": "unemployed", "label": "നിലവിൽ ജോലിയില്ല", "icon": "🌱" },
+      { "value": "daily_wage", "label": "ദിവസവേതന ജോലി", "icon": "🔨" }
+    ]
+  },
+  "SKILLS_INPUT": {
+    "prompt": "നിങ്ങൾക്ക് അറിയാവുന്ന നൈപുണ്യങ്ങൾ എന്തൊക്കെയാണ്?",
+    "simplified": "നിങ്ങൾക്ക് അറിയാവുന്ന ജോലികൾ പറയുക.",
+    "chips": [
+      { "value": "welding", "label": "വെൽഡിംഗ്", "icon": "⚡" },
+      { "value": "electrical", "label": "ഇലക്ട്രീഷ്യൻ", "icon": "💡" },
+      { "value": "stitching", "label": "തയ്യൽ", "icon": "✂️" }
+    ]
+  },
+  "EXPERIENCE": {
+    "prompt": "എത്ര വർഷത്തെ തൊഴിൽ പരിചയമുണ്ട്?",
+    "simplified": "പരിചയമുള്ള വർഷങ്ങൾ തിരഞ്ഞെടുക്കുക.",
+    "chips": [
+      { "value": "0", "label": "പരിചയമില്ല (ഫ്രെഷർ)", "icon": "🌱" },
+      { "value": "1", "label": "1 വർഷം", "icon": "⭐" },
+      { "value": "2", "label": "2 വർഷം", "icon": "⭐⭐" }
+    ]
+  },
+  "INTERESTS": {
+    "prompt": "ഏത് മേഖലയിലാണ് പരിശീലനം ആഗ്രഹിക്കുന്നത്?",
+    "simplified": "താൽപ്പര്യമുള്ള കോഴ്സ് പറയുക.",
+    "chips": [
+      { "value": "welding", "label": "വെൽഡിംഗ് ടെക്നീഷ്യൻ", "icon": "⚡" },
+      { "value": "electrical", "label": "ഇലക്ട്രിക്കൽ", "icon": "💡" }
+    ]
+  },
+  "CONSTRAINTS": {
+    "prompt": "യാത്രയിലോ സമയത്തിലോ എന്തെങ്കിലും തടസ്സങ്ങളുണ്ടോ?",
+    "simplified": "തടസ്സങ്ങൾ പറയുക.",
+    "chips": [
+      { "value": "none", "label": "തടസ്സങ്ങളില്ല", "icon": "✅" }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "എത്ര കിലോമീറ്റർ വരെ യാത്ര ചെയ്യാൻ സാധിക്കും?",
+    "simplified": "യാത്രാ ദൂരം തിരഞ്ഞെടുക്കുക.",
+    "chips": [
+      { "value": "10", "label": "10 കി.മീ", "icon": "🚲" },
+      { "value": "25", "label": "25 കി.മീ", "icon": "🛵" }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "ശമ്പള ജോലിയാണോ സ്വന്തം ബിസിനസ് ആണോ താല്പര്യം?",
+    "simplified": "തൊഴിൽ മുൻഗണന പറയുക.",
+    "chips": [
+      { "value": "wage_employment", "label": "ശമ്പള ജോലി (Wage Job)", "icon": "💼" },
+      { "value": "self_employment", "label": "സ്വയം തൊഴിൽ (Self Employed)", "icon": "🏪" }
+    ]
+  }
+}

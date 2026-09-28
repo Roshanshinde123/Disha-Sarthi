@@ -1,0 +1,120 @@
+{
+  "LANDING": {
+    "prompt": "নমস্কাৰ! দিশা সাৰথিত আপোনাক স্বাগতম।",
+    "simplified": "দিশা সাৰথি আৰম্ভ কৰিবলৈ তলত ক্লিক কৰক।",
+    "chips": [
+      { "value": "start", "label": "কথা-বতৰা আৰম্ভ কৰক", "icon": "🎙️" },
+      { "value": "about", "label": "দিশা সাৰথিৰ বিষয়ে", "icon": "ℹ️" }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "অনুগ্ৰহ কৰি আপোনাৰ পছন্দৰ ভাষা বাছক।",
+    "simplified": "আপুনি কোনটো ভাষাত কথা পাতিব বিচাৰে?",
+    "chips": [
+      { "value": "as", "label": "অসমীয়া (Assamese)", "icon": "🇮🇳" },
+      { "value": "hi", "label": "हिंदी (Hindi)", "icon": "🇮🇳" },
+      { "value": "en", "label": "English", "icon": "🌐" }
+    ]
+  },
+  "GREETING": {
+    "prompt": "নমস্কাৰ! মই আপোনাৰ দক্ষতা আৰু কৰ্মসংস্থানৰ সুযোগ বিচাৰি পোৱাত সহায় কৰিম।",
+    "simplified": "আহক আমি আপোনাৰ দক্ষতা পৰিকল্পনা আৰম্ভ কৰোঁ?",
+    "chips": [
+      { "value": "continue", "label": "হয়, আৰম্ভ কৰক", "icon": "👍" },
+      { "value": "help", "label": "ই কেনেকৈ কাম কৰে?", "icon": "❓" }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "দক্ষতা পৰামৰ্শৰ বাবে কিছু সাধাৰণ তথ্য দিবলৈ সন্মত নে?",
+    "simplified": "আপোনাৰ তথ্য সুৰক্ষিত থাকিব। সন্মত নে?",
+    "chips": [
+      { "value": "yes", "label": "হয়, সন্মত", "icon": "✅" },
+      { "value": "no", "label": "নহয়", "icon": "❌" }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "আপুনি কোন জিলাত বাস কৰে?",
+    "simplified": "ওচৰৰ প্ৰশিক্ষণ কেন্দ্ৰ বিচাৰিবলৈ জিলাৰ নাম কওক।",
+    "chips": [
+      { "value": "gps_detect", "label": "মোৰ GPS স্থান ব্যৱহাৰ কৰক", "icon": "📍" },
+      { "value": "pune", "label": "পুনে", "icon": "📍" }
+    ]
+  },
+  "BACKGROUND": {
+    "prompt": "আপোনাৰ শিক্ষা কিমান?",
+    "simplified": "শিক্ষা স্তৰ বাছক।",
+    "chips": [
+      { "value": "primary", "label": "প্ৰাথমিক (Primary)", "icon": "🎒" },
+      { "value": "middle", "label": "অষ্টম শ্ৰেণী (8th Pass)", "icon": "📚" },
+      { "value": "secondary", "label": "দশম শ্ৰেণী (10th Pass)", "icon": "🎓" },
+      { "value": "higher_secondary", "label": "দ্বাদশ শ্ৰেণী (12th Pass)", "icon": "🏛️" },
+      { "value": "iti_diploma", "label": "ITI / ডিপ্লমা", "icon": "🔧" },
+      { "value": "graduate", "label": "স্নাতক (Graduate)", "icon": "📜" }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "আপোনাৰ পৰিয়ালৰ প্ৰধান বৃত্তি কি?",
+    "simplified": "খেতি বা আন কিবা কাম কৰে নেকি?",
+    "chips": [
+      { "value": "farming", "label": "খেতি / কৃষি", "icon": "🌾" },
+      { "value": "welding", "label": "ৱেল্ডিং / ৱৰ্কশ্বপ", "icon": "⚡" }
+    ]
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "আপুনি বৰ্তমান কি কাম কৰি আছে?",
+    "simplified": "বৰ্তমানৰ কামৰ বিষয়ে কওক।",
+    "chips": [
+      { "value": "unemployed", "label": "বৰ্তমান কোনো কাম নাই", "icon": "🌱" },
+      { "value": "daily_wage", "label": "দৈনিক হাজিৰা", "icon": "🔨" }
+    ]
+  },
+  "SKILLS_INPUT": {
+    "prompt": "আপোনাৰ কি কি কামত দক্ষতা আছে?",
+    "simplified": "জনা কামসমূহ কওক।",
+    "chips": [
+      { "value": "welding", "label": "ৱেল্ডিং", "icon": "⚡" },
+      { "value": "electrical", "label": "ইলেকট্ৰিচিয়ান", "icon": "💡" },
+      { "value": "stitching", "label": "চিলাই / টেলৰিং", "icon": "✂️" }
+    ]
+  },
+  "EXPERIENCE": {
+    "prompt": "কামৰ কিমান বছৰৰ অভিজ্ঞতা আছে?",
+    "simplified": "অভিজ্ঞতাৰ বছৰ বাছক।",
+    "chips": [
+      { "value": "0", "label": "অভিজ্ঞতা নাই (ফ্ৰেচাৰ)", "icon": "🌱" },
+      { "value": "1", "label": "১ বছৰ", "icon": "⭐" },
+      { "value": "2", "label": "২ বছৰ", "icon": "⭐⭐" }
+    ]
+  },
+  "INTERESTS": {
+    "prompt": "আপুনি কি নতুন দক্ষতা শিকিব বিচাৰে?",
+    "simplified": "পছন্দৰ ক্ষেত্ৰ বাছক।",
+    "chips": [
+      { "value": "welding", "label": "ৱেল্ডিং টেকনিচিয়ান", "icon": "⚡" },
+      { "value": "electrical", "label": "ইলেকট্ৰিক্যেল", "icon": "💡" }
+    ]
+  },
+  "CONSTRAINTS": {
+    "prompt": "যাতায়াত বা সময়ৰ কিবা অসুবিধা আছে নেকি?",
+    "simplified": "অসুবিধা থাকিলে কওক।",
+    "chips": [
+      { "value": "none", "label": "কোনো অসুবিধা নাই", "icon": "✅" }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "কামত যাবলৈ কিমান দূৰলৈ যাব পাৰিব?",
+    "simplified": "যাতায়াতৰ সীমা বাছক।",
+    "chips": [
+      { "value": "10", "label": "১০ কিঃমিঃ", "icon": "🚲" },
+      { "value": "25", "label": "২৫ কিঃমিঃ", "icon": "🛵" }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "আপুনি চাকৰি কৰিব বিচাৰে নে নিজৰ ব্যৱসায়?",
+    "simplified": "কৰ্ম পছন্দ বাছক।",
+    "chips": [
+      { "value": "wage_employment", "label": "চাকৰি (দৰমহাযুক্ত)", "icon": "💼" },
+      { "value": "self_employment", "label": "স্ব-নিয়োজন (ব্যৱসায়)", "icon": "🏪" }
+    ]
+  }
+}

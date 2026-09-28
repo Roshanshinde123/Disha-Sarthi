@@ -18,12 +18,17 @@ const LANGUAGES: { code: LanguageCode; name: string; native: string; flag: strin
   { code: 'hi', name: 'Hindi', native: 'हिन्दी', flag: '🇮🇳' },
   { code: 'en', name: 'English', native: 'English', flag: '🌐' },
   { code: 'bn', name: 'Bengali', native: 'বাংলা', flag: '🇮🇳' },
+  { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી', flag: '🇮🇳' },
+  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', flag: '🇮🇳' },
+  { code: 'ml', name: 'Malayalam', native: 'മലയാളം', flag: '🇮🇳' },
+  { code: 'od', name: 'Odia', native: 'ଓଡ଼ିଆ', flag: '🇮🇳' },
+  { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ', flag: '🇮🇳' },
   { code: 'ta', name: 'Tamil', native: 'தமிழ்', flag: '🇮🇳' },
   { code: 'te', name: 'Telugu', native: 'తెలుగు', flag: '🇮🇳' },
-  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ', flag: '🇮🇳' }
+  { code: 'as', name: 'Assamese', native: 'অসমীয়া', flag: '🇮🇳' }
 ];
 
-const NAV_LABELS: Record<LanguageCode, {
+const NAV_LABELS: Record<string, {
   home: string;
   about: string;
   howItWorks: string;
@@ -43,7 +48,6 @@ const NAV_LABELS: Record<LanguageCode, {
   telephony: string;
   login: string;
   logout: string;
-  prototypeLabel: string;
 }> = {
   mr: {
     home: 'मुख्य पृष्ठ',
@@ -52,7 +56,7 @@ const NAV_LABELS: Record<LanguageCode, {
     help: 'मदत व FAQ',
     contact: 'संपर्क',
     profile: 'माझे प्रोफाईल',
-    voice: '🎙️ व्हॉईस असिस्टंट',
+    voice: 'व्हॉईस असिस्टंट',
     passport: 'स्किल पासपोर्ट',
     recommendations: 'रोजगार शिफारसी',
     training: 'प्रशिक्षण केंद्रे',
@@ -63,9 +67,8 @@ const NAV_LABELS: Record<LanguageCode, {
     verification: 'पडताळणी',
     analytics: 'अनालिटिक्स',
     telephony: 'टेलिफोनी',
-    login: '🔐 लॉगिन',
-    logout: 'लॉगआउट',
-    prototypeLabel: 'दिशा सारथी • PM-AJAY GIA प्रोटोटाइप'
+    login: 'लॉगिन',
+    logout: 'लॉगआउट'
   },
   hi: {
     home: 'मुख्य पृष्ठ',
@@ -74,7 +77,7 @@ const NAV_LABELS: Record<LanguageCode, {
     help: 'सहायता एवं FAQ',
     contact: 'संपर्क',
     profile: 'मेरी प्रोफाइल',
-    voice: '🎙️ वॉइस असिस्टेंट',
+    voice: 'वॉइस असिस्टेंट',
     passport: 'स्किल पासपोर्ट',
     recommendations: 'रोजगार सिफारिशें',
     training: 'प्रशिक्षण केंद्र',
@@ -85,9 +88,8 @@ const NAV_LABELS: Record<LanguageCode, {
     verification: 'सत्यापन',
     analytics: 'एनालिटिक्स',
     telephony: 'टेलीफोनी',
-    login: '🔐 लॉगिन',
-    logout: 'लॉगआउट',
-    prototypeLabel: 'दिशा सारथी • PM-AJAY GIA प्रोटोटाइप'
+    login: 'लॉगिन',
+    logout: 'लॉगआउट'
   },
   en: {
     home: 'Home',
@@ -96,7 +98,7 @@ const NAV_LABELS: Record<LanguageCode, {
     help: 'Help & FAQ',
     contact: 'Contact Us',
     profile: 'My Profile',
-    voice: '🎙️ Voice Assistant',
+    voice: 'Voice Assistant',
     passport: 'Skill Passport',
     recommendations: 'Recommendations',
     training: 'Training Centres',
@@ -107,97 +109,8 @@ const NAV_LABELS: Record<LanguageCode, {
     verification: 'Verification',
     analytics: 'Analytics',
     telephony: 'Telephony',
-    login: '🔐 Login',
-    logout: 'Logout',
-    prototypeLabel: 'Disha Sarathi • PM-AJAY GIA Prototype'
-  },
-  bn: {
-    home: 'প্রধান পাতা',
-    about: 'সম্পর্কে',
-    howItWorks: 'কীভাবে কাজ করে',
-    help: 'সাহায্য',
-    contact: 'যোগাযোগ',
-    profile: 'আমার প্রোফাইল',
-    voice: '🎙️ ভয়েস অ্যাসিস্ট্যান্ট',
-    passport: 'স্কিল পাসপোর্ট',
-    recommendations: 'সুপারিশসমূহ',
-    training: 'প্রশিক্ষণ কেন্দ্র',
-    placement: 'নিয়োগ',
-    adminDashboard: 'অ্যাডমিন ড্যাশবোর্ড',
-    coordinatorDashboard: 'সমন্বয়ক ড্যাশবোর্ড',
-    beneficiaries: 'সুবিধাভোগী',
-    verification: 'যাচাইকরণ',
-    analytics: 'অ্যানালিটিক্স',
-    telephony: 'টেলিফোনি',
-    login: '🔐 লগইন',
-    logout: 'লগআউট',
-    prototypeLabel: 'Disha Sarathi • PM-AJAY GIA Prototype'
-  },
-  ta: {
-    home: 'முகப்பு',
-    about: 'பற்றி',
-    howItWorks: 'செயல்படும் முறை',
-    help: 'உதவி',
-    contact: 'தொடர்பு',
-    profile: 'என் சுயவிவரம்',
-    voice: '🎙️ குரல் உதவியாளர்',
-    passport: 'திறன் கடவுச்சீட்டு',
-    recommendations: 'பரிந்துரைகள்',
-    training: 'பயிற்சி மையங்கள்',
-    placement: 'வேலைவாய்ப்பு',
-    adminDashboard: 'நிர்வாகி டாஷ்போர்டு',
-    coordinatorDashboard: 'ஒருங்கிணைப்பாளர்',
-    beneficiaries: 'பயனாளிகள்',
-    verification: 'சரிபார்ப்பு',
-    analytics: 'பகுப்பாய்வு',
-    telephony: 'தொலைபேசி',
-    login: '🔐 உள்நுழைவு',
-    logout: 'வெளியேறு',
-    prototypeLabel: 'Disha Sarathi • PM-AJAY GIA Prototype'
-  },
-  te: {
-    home: 'హోమ్',
-    about: 'గురించి',
-    howItWorks: 'పనిచేసే విధానం',
-    help: 'సహాయం',
-    contact: 'సంప్రదించండి',
-    profile: 'నా ప్రొఫైల్',
-    voice: '🎙️ వాయిస్ అసిస్టెంట్',
-    passport: 'స్కిల్ పాస్‌పోర్ట్',
-    recommendations: 'సిఫార్సులు',
-    training: 'శిక్షణ కేంద్రాలు',
-    placement: 'ఉపాధి',
-    adminDashboard: 'అడ్మిన్ డాష్‌బోర్డ్',
-    coordinatorDashboard: 'సమన్వయకర్త',
-    beneficiaries: 'లబ్ధిదారులు',
-    verification: 'ధృవీకరణ',
-    analytics: 'విశ్లేషణలు',
-    telephony: 'టెలిఫోనీ',
-    login: '🔐 లాగిన్',
-    logout: 'లాగ్‌అవుట్',
-    prototypeLabel: 'Disha Sarathi • PM-AJAY GIA Prototype'
-  },
-  kn: {
-    home: 'ಮುಖಪುಟ',
-    about: 'ಬಗ್ಗೆ',
-    howItWorks: 'ಕಾರ್ಯವಿಧಾನ',
-    help: 'ಸಹಾಯ',
-    contact: 'ಸಂಪರ್ಕಿಸಿ',
-    profile: 'ನನ್ನ ಪ್ರೊಫೈಲ್',
-    voice: '🎙️ ಧ್ವನಿ ಸಹಾಯಕ',
-    passport: 'ಸ್ಕಿಲ್ ಪಾಸ್‌ಪೋರ್ಟ್',
-    recommendations: 'ಶಿಫಾರಸುಗಳು',
-    training: 'ತರಬೇತಿ ಕೇಂದ್ರಗಳು',
-    placement: 'ಉದ್ಯೋಗ',
-    adminDashboard: 'ಆಡಳಿತ ಮಂಡಳಿ',
-    coordinatorDashboard: 'ಸಂಯೋಜಕರು',
-    beneficiaries: 'ಫಲಾನುಭವಿಗಳು',
-    verification: 'ಪರಿಶೀಲನೆ',
-    analytics: 'ವಿಶ್ಲೇಷಣೆ',
-    telephony: 'ದೂರವಾಣಿ',
-    login: '🔐 ಲಾಗಿನ್',
-    logout: 'ಲಾಗ್‌ಔಟ್',
-    prototypeLabel: 'Disha Sarathi • PM-AJAY GIA Prototype'
+    login: 'Login',
+    logout: 'Logout'
   }
 };
 
@@ -248,8 +161,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         { label: labels.training, path: '/coordinator/training' },
         { label: labels.verification, path: '/coordinator/verification' },
         { label: labels.analytics, path: '/coordinator/analytics' },
-        { label: labels.telephony, path: '/admin' },
-        { label: '🩺 ' + (selectedLanguage === 'mr' ? 'प्रणाली चाचणी' : selectedLanguage === 'hi' ? 'सिस्टम परीक्षण' : 'Diagnostics'), path: '/diagnostics' },
+        { label: selectedLanguage === 'mr' ? 'प्रणाली चाचणी' : selectedLanguage === 'hi' ? 'सिस्टम परीक्षण' : 'Diagnostics', path: '/diagnostics' },
         { label: labels.help, path: '/help' }
       ];
     }
@@ -265,7 +177,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       ];
     }
 
-    // Public Visitor Nav Links (Strictly No Admin Dashboard for Public)
     return [
       { label: labels.home, path: '/' },
       { label: labels.about, path: '/#about' },
@@ -303,7 +214,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       <div className="gov-top-authority-bar">
         <div className="gov-top-container">
           <span className="gov-top-title">
-            🏛️ Ministry of Social Justice & Empowerment • PM-AJAY
+            Ministry of Social Justice & Empowerment • PM-AJAY
           </span>
           <span className="gov-top-badge">AI Skilling & Livelihood</span>
         </div>
@@ -320,7 +231,9 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             tabIndex={0}
             aria-label="Go to Home"
           >
-            <div className="gov-brand-emblem">🌟</div>
+            <div className="gov-brand-emblem" style={{ background: '#1F6F4A', color: '#FFF', borderRadius: '8px', padding: '4px 8px', fontWeight: 800, fontSize: '1rem' }}>
+              DS
+            </div>
             <div className="gov-brand-text-block">
               <div className="gov-brand-title">
                 दिशा सारथी <span className="gov-brand-en">• Disha Sarathi</span>
@@ -361,14 +274,13 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                 aria-expanded={langDropdownOpen}
                 aria-label="Select Language"
               >
-                <span className="lang-flag">{currentLang.flag}</span>
                 <span className="lang-label">{currentLang.native}</span>
-                <span className="lang-arrow">▼</span>
+                <span className="lang-arrow" style={{ fontSize: '10px', marginLeft: '4px' }}>▼</span>
               </button>
 
               {langDropdownOpen && (
                 <div className="gov-lang-dropdown-menu" role="menu">
-                  <div className="lang-menu-caption">भाषा निवडा / Select Language</div>
+                  <div className="lang-menu-caption">भाषा निवडा / Language</div>
                   {LANGUAGES.map((l) => (
                     <button
                       key={l.code}
@@ -380,7 +292,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                         setLangDropdownOpen(false);
                       }}
                     >
-                      <span className="opt-flag">{l.flag}</span>
                       <span className="opt-native">{l.native}</span>
                       <span className="opt-en">({l.name})</span>
                       {selectedLanguage === l.code && <span className="opt-check">✓</span>}
@@ -394,7 +305,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             {currentUser ? (
               <div className="gov-auth-user-box">
                 <div className="user-info-pill">
-                  <span className="user-avatar-icon">👤</span>
                   <div className="user-details">
                     <span className="user-display-name">{currentUser.name.split(' ')[0]}</span>
                     <span className="user-role-badge">{currentUser.role}</span>
@@ -408,7 +318,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                     title={labels.logout}
                     aria-label="Logout"
                   >
-                    🚪
+                    {labels.logout}
                   </button>
                 )}
               </div>
@@ -451,10 +361,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           </div>
 
           <div className="drawer-content-body">
-            {/* Language Chips */}
+            {/* Language Segmented Control on Mobile */}
             <div className="drawer-lang-selector">
-              <span className="drawer-lang-title">भाषा निवडा (Select Language):</span>
-              <div className="drawer-lang-chips-grid">
+              <span className="drawer-lang-title">{selectedLanguage === 'mr' ? 'भाषा:' : 'Language:'}</span>
+              <div className="drawer-lang-chips-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
                 {LANGUAGES.map((l) => (
                   <button
                     key={l.code}
@@ -494,7 +404,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                   onStartVoice();
                 }}
               >
-                🎙️ दिशा सारथीशी बोला
+                {selectedLanguage === 'mr' ? 'दिशा सारथीशी बोला' : selectedLanguage === 'hi' ? 'दिशा सारथी से बात करें' : 'Talk to Disha Sarathi'}
               </button>
               {currentUser ? (
                 <button
@@ -505,7 +415,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                     if (onLogout) onLogout();
                   }}
                 >
-                  🚪 लॉगआउट ({currentUser.name})
+                  {labels.logout} ({currentUser.name})
                 </button>
               ) : (
                 <button
@@ -516,7 +426,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                     onNavigate('/login');
                   }}
                 >
-                  🔐 लॉगिन करा (Login)
+                  {labels.login}
                 </button>
               )}
             </div>

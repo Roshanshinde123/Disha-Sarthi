@@ -1,6 +1,36 @@
 // Disha Sarathi - Core Type Definitions (PS 26097)
 
-export type LanguageCode = 'hi' | 'mr' | 'bn' | 'ta' | 'te' | 'kn' | 'en';
+export type AppLanguage =
+  | 'en'
+  | 'hi'
+  | 'mr'
+  | 'bn'
+  | 'gu'
+  | 'kn'
+  | 'ml'
+  | 'od'
+  | 'pa'
+  | 'ta'
+  | 'te'
+  | 'as';
+
+export type LanguageCode = AppLanguage;
+export type ConversationLanguage = AppLanguage;
+
+export const PROVIDER_LANG_MAP: Record<AppLanguage, string> = {
+  en: 'en-IN',
+  hi: 'hi-IN',
+  mr: 'mr-IN',
+  bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  ml: 'ml-IN',
+  od: 'od-IN',
+  pa: 'pa-IN',
+  ta: 'ta-IN',
+  te: 'te-IN',
+  as: 'as-IN'
+};
 
 export type EducationLevel =
   | 'none'
@@ -145,6 +175,9 @@ export interface Opportunity {
   contact_person: string;
   contact_phone: string;
   address: string;
+  lat?: number;
+  lng?: number;
+  distanceKm?: number;
   scheme_link?: string;
   is_demo_seed?: boolean;
 }
@@ -223,6 +256,7 @@ export type ConversationState =
   | 'ASPIRATION_CARD'
   | 'SESSION_FEEDBACK'
   | 'END'
+  | 'ENDED'
   | 'DECLINED_END'
   | 'DELETED_END'
   | 'ESCALATE_TO_HUMAN'
@@ -273,6 +307,7 @@ export interface ConversationEvent {
     | 'SELECT_FINANCE'
     | 'UPDATE_PLACEMENT'
     | 'SUBMIT_FEEDBACK'
+    | 'END_CONVERSATION'
     | 'RESTART';
   payload?: any;
   raw_transcript?: string;
@@ -391,6 +426,15 @@ export interface RecommendationResult {
   no_center_in_range: boolean;
   matching_testimonial?: Testimonial;
   scheme_link?: SchemeInfo;
+  scoreBreakdown?: {
+    interestMatch: number;
+    educationFit: number;
+    localDemand: number;
+    preferenceFit: number;
+    accessibility: number;
+    skillTransfer: number;
+    finalScore: number;
+  };
 }
 
 export interface CandidateTrace {

@@ -2,11 +2,7 @@
 import { LanguageCode } from './types';
 
 export interface Translations {
-  [key: string]: {
-    mr: string;
-    hi: string;
-    en: string;
-  };
+  [key: string]: Partial<Record<LanguageCode, string>>;
 }
 
 export const DICTIONARY: Translations = {
@@ -1441,13 +1437,12 @@ export const DICTIONARY: Translations = {
 
 /**
  * Helper to get clean translated string for a given key and language.
- * Falls back to English if key or lang is missing.
+ * Falls back to English / Hindi / Marathi if key or lang is missing.
  */
 export function t(key: string, lang: LanguageCode = 'mr'): string {
   const item = DICTIONARY[key];
   if (!item) return key;
-  const langKey = (lang === 'mr' || lang === 'hi' || lang === 'en') ? lang : 'mr';
-  return item[langKey] || item.mr || item.en || key;
+  return item[lang] || item.mr || item.hi || item.en || Object.values(item)[0] || key;
 }
 
 /**
@@ -1455,13 +1450,18 @@ export function t(key: string, lang: LanguageCode = 'mr'): string {
  */
 export function getLanguageDisplay(lang: LanguageCode): string {
   switch (lang) {
-    case 'mr':
-      return '🌐 मराठी';
-    case 'hi':
-      return '🌐 हिन्दी';
-    case 'en':
-      return '🌐 English';
-    default:
-      return '🌐 मराठी';
+    case 'mr': return '🌐 मराठी (Marathi)';
+    case 'hi': return '🌐 हिन्दी (Hindi)';
+    case 'en': return '🌐 English';
+    case 'bn': return '🌐 বাংলা (Bengali)';
+    case 'gu': return '🌐 ગુજરાતી (Gujarati)';
+    case 'kn': return '🌐 ಕನ್ನಡ (Kannada)';
+    case 'ml': return '🌐 മലയാളം (Malayalam)';
+    case 'od': return '🌐 ଓଡ଼ିଆ (Odia)';
+    case 'pa': return '🌐 ਪੰਜਾਬੀ (Punjabi)';
+    case 'ta': return '🌐 தமிழ் (Tamil)';
+    case 'te': return '🌐 తెలుగు (Telugu)';
+    case 'as': return '🌐 অসমীয়া (Assamese)';
+    default: return '🌐 ' + lang;
   }
 }

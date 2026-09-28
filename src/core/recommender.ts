@@ -304,7 +304,16 @@ export function recommendNSQFTrades(
       nearest_center: centerInfo ? { center: centerInfo.center, distance_km: centerInfo.distanceKm } : undefined,
       no_center_in_range: c.trace.no_center_in_range,
       matching_testimonial: matchingTestimonial,
-      scheme_link: schemeLink
+      scheme_link: schemeLink,
+      scoreBreakdown: {
+        interestMatch: c.trace.interest_match,
+        educationFit: c.trace.education_fit,
+        localDemand: c.trace.local_demand,
+        preferenceFit: c.trace.preference_fit,
+        accessibility: c.trace.accessibility,
+        skillTransfer: c.trace.skill_transfer,
+        finalScore: c.trace.final_score
+      }
     };
   });
 

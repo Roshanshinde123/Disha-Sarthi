@@ -6,6 +6,7 @@ import { BhashiniSpeechEngine } from './BhashiniSpeechEngine';
 import { SarvamSpeechEngine } from './SarvamSpeechEngine';
 import { SarvamSTTEngine } from './SarvamSTTEngine';
 import { WebSpeechTTSProvider, TTSProvider } from './TTSProvider';
+import { conversationAudioController } from './ConversationAudioController';
 
 export type SpeechEngineType = 'Bhashini' | 'Sarvam' | 'WebSpeech' | 'SarvamSTT' | 'SilentEngine';
 
@@ -154,15 +155,11 @@ export class SpeechRouter {
       return;
     }
 
-    if (this.sarvam.isAvailable()) {
-      this.sarvam.speak(text, lang, onEnd, onStart);
-      return;
-    }
-
-    this.ttsProvider.speak(text, lang, onEnd, onStart);
+    conversationAudioController.play(text, lang, onEnd, onStart);
   }
 
   stopSpeaking(): void {
+    conversationAudioController.cancel();
     this.sarvam.stop();
     this.ttsProvider.stop();
     this.silentEngine.stopSpeaking();

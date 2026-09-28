@@ -3,13 +3,18 @@ import { LanguageCode } from '../../core/types';
 import { SpeechRecognitionResultPayload } from './WebSpeechEngine';
 
 const SARVAM_LANG_MAP: Record<LanguageCode, string> = {
+  en: 'en-IN',
   hi: 'hi-IN',
   mr: 'mr-IN',
-  en: 'en-IN',
   bn: 'bn-IN',
+  gu: 'gu-IN',
+  kn: 'kn-IN',
+  ml: 'ml-IN',
+  od: 'od-IN',
+  pa: 'pa-IN',
   ta: 'ta-IN',
   te: 'te-IN',
-  kn: 'kn-IN'
+  as: 'as-IN'
 };
 
 export class SarvamSTTEngine {

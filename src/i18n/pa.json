@@ -1,0 +1,120 @@
+{
+  "LANDING": {
+    "prompt": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! ਦਿਸ਼ਾ ਸਾਰਥੀ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ।",
+    "simplified": "ਦਿਸ਼ਾ ਸਾਰਥੀ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਹੇਠਾਂ ਟੈਪ ਕਰੋ।",
+    "chips": [
+      { "value": "start", "label": "ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੋ", "icon": "🎙️" },
+      { "value": "about", "label": "ਦਿਸ਼ਾ ਸਾਰਥੀ ਬਾਰੇ", "icon": "ℹ️" }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਚੁਣੋ।",
+    "simplified": "ਤੁਸੀਂ ਕਿਸ ਭਾਸ਼ਾ ਵਿੱਚ ਗੱਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "chips": [
+      { "value": "pa", "label": "ਪੰਜਾਬੀ (Punjabi)", "icon": "🇮🇳" },
+      { "value": "hi", "label": "हिंदी (Hindi)", "icon": "🇮🇳" },
+      { "value": "en", "label": "English", "icon": "🌐" }
+    ]
+  },
+  "GREETING": {
+    "prompt": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਡੇ ਹੁਨਰ ਅਤੇ ਰੋਜ਼ਗਾਰ ਦੇ ਮੌਕੇ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਾਂਗਾ।",
+    "simplified": "ਆਓ ਆਪਣੀ ਹੁਨਰ ਯੋਜਨਾ ਸ਼ੁਰੂ ਕਰੀਏ?",
+    "chips": [
+      { "value": "continue", "label": "ਹਾਂ, ਸ਼ੁਰੂ ਕਰੋ", "icon": "👍" },
+      { "value": "help", "label": "ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ?", "icon": "❓" }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "ਕੀ ਤੁਸੀਂ ਹੁਨਰ ਸੁਝਾਵਾਂ ਲਈ ਕੁਝ ਆਮ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰਨ ਲਈ ਸਹਿਮਤ ਹੋ?",
+    "simplified": "ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਸੁਰੱਖਿਅਤ ਰਹੇਗੀ। ਕੀ ਤੁਸੀਂ ਸਹਿਮਤ ਹੋ?",
+    "chips": [
+      { "value": "yes", "label": "ਹਾਂ, ਸਹਿਮਤ ਹਾਂ", "icon": "✅" },
+      { "value": "no", "label": "ਨਹੀਂ", "icon": "❌" }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "ਤੁਸੀਂ ਕਿਸ ਜ਼ਿਲ੍ਹੇ ਵਿੱਚ ਰਹਿੰਦੇ ਹੋ?",
+    "simplified": "ਨੇੜਲਾ ਸਿਖਲਾਈ ਕੇਂਦਰ ਲੱਭਣ ਲਈ ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ ਦੱਸੋ।",
+    "chips": [
+      { "value": "gps_detect", "label": "ਮੇਰੀ GPS ਸਥਿਤੀ ਵਰਤੋ", "icon": "📍" },
+      { "value": "pune", "label": "ਪੁਣੇ", "icon": "📍" }
+    ]
+  },
+  "BACKGROUND": {
+    "prompt": "ਤੁਹਾਡੀ ਪੜ੍ਹਾਈ ਕਿੰਨੀ ਹੈ?",
+    "simplified": "ਪਾਸ ਕੀਤੀ ਸ਼੍ਰੇਣੀ ਚੁਣੋ।",
+    "chips": [
+      { "value": "primary", "label": "ਪ੍ਰਾਇਮਰੀ (Primary)", "icon": "🎒" },
+      { "value": "middle", "label": "ਅੱਠਵੀਂ (8th Pass)", "icon": "📚" },
+      { "value": "secondary", "label": "ਦਸਵੀਂ (10th Pass)", "icon": "🎓" },
+      { "value": "higher_secondary", "label": "ਬਾਰ੍ਹਵੀਂ (12th Pass)", "icon": "🏛️" },
+      { "value": "iti_diploma", "label": "ITI / ਡਿਪਲੋਮਾ", "icon": "🔧" },
+      { "value": "graduate", "label": "ਗ੍ਰੈਜੂਏਟ (Graduate)", "icon": "📜" }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "ਤੁਹਾਡੇ ਪਰਿਵਾਰ ਦਾ ਮੁੱਖ ਕੰਮ ਕੀ ਹੈ?",
+    "simplified": "ਖੇਤੀਬਾੜੀ, ਦੁਕਾਨ ਜਾਂ ਹੋਰ ਕੰਮ?",
+    "chips": [
+      { "value": "farming", "label": "ਖੇਤੀਬਾੜੀ", "icon": "🌾" },
+      { "value": "welding", "label": "ਵੈਲਡਿੰਗ / ਵਰਕਸ਼ਾਪ", "icon": "⚡" }
+    ]
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "ਤੁਸੀਂ ਇਸ ਸਮੇਂ ਕੀ ਕੰਮ ਕਰਦੇ ਹੋ?",
+    "simplified": "ਮੌਜੂਦਾ ਕੰਮ ਬਾਰੇ ਦੱਸੋ।",
+    "chips": [
+      { "value": "unemployed", "label": "ਕੋਈ ਕੰਮ ਨਹੀਂ", "icon": "🌱" },
+      { "value": "daily_wage", "label": "ਦਿਹਾੜੀਦਾਰ", "icon": "🔨" }
+    ]
+  },
+  "SKILLS_INPUT": {
+    "prompt": "ਤੁਹਾਡੇ ਕੋਲ ਕਿਹੜਾ ਹੁਨਰ ਹੈ?",
+    "simplified": "ਆਪਣਾ ਹੁਨਰ ਦੱਸੋ।",
+    "chips": [
+      { "value": "welding", "label": "ਵੈਲਡਿੰਗ", "icon": "⚡" },
+      { "value": "electrical", "label": "ਇਲੈਕਟ੍ਰੀਸ਼ੀਅਨ", "icon": "💡" },
+      { "value": "stitching", "label": "ਸਿਲਾਈ / ਟੇਲਰਿੰਗ", "icon": "✂️" }
+    ]
+  },
+  "EXPERIENCE": {
+    "prompt": "ਕੰਮ ਦਾ ਕਿੰਨੇ ਸਾਲਾਂ ਦਾ ਤਜ਼ਰਬਾ ਹੈ?",
+    "simplified": "ਤਜ਼ਰਬੇ ਦੇ ਸਾਲ ਚੁਣੋ।",
+    "chips": [
+      { "value": "0", "label": "ਕੋਈ ਤਜ਼ਰਬਾ ਨਹੀਂ (ਫਰੈਸ਼ਰ)", "icon": "🌱" },
+      { "value": "1", "label": "1 ਸਾਲ", "icon": "⭐" },
+      { "value": "2", "label": "2 ਸਾਲ", "icon": "⭐⭐" }
+    ]
+  },
+  "INTERESTS": {
+    "prompt": "ਤੁਸੀਂ ਕਿਹੜਾ ਨਵਾਂ ਹੁਨਰ ਸਿੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "simplified": "ਆਪਣੀ ਪਸੰਦ ਦਾ ਖੇਤਰ ਦੱਸੋ।",
+    "chips": [
+      { "value": "welding", "label": "ਵੈਲਡਿੰਗ ਟੈਕਨੀਸ਼ੀਅਨ", "icon": "⚡" },
+      { "value": "electrical", "label": "ਇਲੈਕਟ੍ਰੀਕਲ", "icon": "💡" }
+    ]
+  },
+  "CONSTRAINTS": {
+    "prompt": "ਸਫ਼ਰ ਜਾਂ ਸਮੇਂ ਦੀ ਕੋਈ ਰੁਕਾਵਟ ਹੈ?",
+    "simplified": "ਕੋਈ ਦਿੱਕਤ ਹੈ ਤਾਂ ਦੱਸੋ।",
+    "chips": [
+      { "value": "none", "label": "ਕੋਈ ਰੁਕਾਵਟ ਨਹੀਂ", "icon": "✅" }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "ਕੰਮ ਲਈ ਕਿੰਨੀ ਦੂਰ ਜਾ ਸਕਦੇ ਹੋ?",
+    "simplified": "ਸਫ਼ਰ ਦੀ ਹੱਦ ਚੁਣੋ।",
+    "chips": [
+      { "value": "10", "label": "10 ਕਿਲੋਮੀਟਰ", "icon": "🚲" },
+      { "value": "25", "label": "25 ਕਿਲੋਮੀਟਰ", "icon": "🛵" }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "ਤੁਸੀਂ ਨੌਕਰੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਜਾਂ ਆਪਣਾ ਕੰਮ?",
+    "simplified": "ਕੰਮ ਦੀ ਪਸੰਦ ਚੁਣੋ।",
+    "chips": [
+      { "value": "wage_employment", "label": "ਨੌਕਰੀ (ਤਨਖਾਹ ਵਾਲੀ)", "icon": "💼" },
+      { "value": "self_employment", "label": "ਸਵੈ-ਰੋਜ਼ਗਾਰ (ਆਪਣਾ ਕੰਮ)", "icon": "🏪" }
+    ]
+  }
+}

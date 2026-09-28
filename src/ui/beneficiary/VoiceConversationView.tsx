@@ -1,6 +1,8 @@
 import React from 'react';
 import { ConversationEvent, LanguageCode, Session } from '../../core/types';
 import { NaturalVoiceView } from './NaturalVoiceView';
+import { SkillCard } from '../components/SkillCard';
+import { OpportunityMap } from '../components/OpportunityMap';
 import { t } from '../../core/i18n';
 
 interface VoiceConversationViewProps {
@@ -33,6 +35,42 @@ export const VoiceConversationView: React.FC<VoiceConversationViewProps> = ({
     { id: 6, name: t('stepTraining', lang), active: Boolean(profile.selected_trade_id), done: profile.placement_status === 'IN_TRAINING' || profile.placement_status === 'PLACED' },
     { id: 7, name: t('stepPlacement', lang), active: Boolean(profile.placement_status), done: profile.placement_status === 'PLACED' }
   ];
+
+  if (state === 'ENDED') {
+    return (
+      <div className="voice-conversation-viewport" style={{ maxWidth: '600px', margin: '40px auto', padding: '16px 20px' }}>
+        <div style={{ background: '#FFFFFF', borderRadius: '16px', padding: '36px 24px', border: '1px solid #E2E8F0', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>🛑</div>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px' }}>
+            {lang === 'en' ? 'Conversation Ended' : lang === 'hi' ? 'बातचीत समाप्त हो गई' : 'संभाषण समाप्त झाले'}
+          </h2>
+          <p style={{ color: '#64748B', fontSize: '0.95rem', marginBottom: '24px' }}>
+            {lang === 'en' ? 'Your information has been saved.' : lang === 'hi' ? 'आपकी जानकारी सहेज ली गई है।' : 'आपली माहिती जतन केली गेली आहे.'}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px', margin: '0 auto' }}>
+            <button
+              type="button"
+              className="btn-primary"
+              style={{ padding: '12px 20px', fontWeight: 700 }}
+              onClick={() => onEvent({ type: 'RESTART' })}
+            >
+              🔄 {lang === 'en' ? 'Start Again' : lang === 'hi' ? 'पुनः प्रारंभ करें' : 'पुन्हा सुरू करा'}
+            </button>
+            <button
+              type="button"
+              className="btn-secondary"
+              style={{ padding: '10px 16px' }}
+              onClick={() => onNavigate('/beneficiary')}
+            >
+              {lang === 'en' ? 'Go to Dashboard' : lang === 'hi' ? 'डैशबोर्ड पर जाएं' : 'डॅशबोर्डवर जा'}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const userLocation = profile.lat && profile.lng ? { lat: profile.lat, lng: profile.lng, label: profile.district || 'Location' } : null;
 
   return (
     <div className="voice-conversation-viewport" style={{ maxWidth: '1100px', margin: '0 auto', padding: '16px 20px', minHeight: '85vh' }}>
@@ -71,7 +109,7 @@ export const VoiceConversationView: React.FC<VoiceConversationViewProps> = ({
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
         {/* Main Natural Voice Interface View */}
         <div className="voice-main-stage">
           <NaturalVoiceView
@@ -84,42 +122,20 @@ export const VoiceConversationView: React.FC<VoiceConversationViewProps> = ({
 
         {/* Right Sidebar: Real-time Profile Intelligence */}
         <div className="voice-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* Live Profile Slot Extraction Card */}
-          <div className="dash-card" style={{ background: '#FFFFFF', borderRadius: '14px', padding: '18px', border: '1px solid #E2E8F0' }}>
-            <h4 style={{ margin: '0 0 12px', fontSize: '0.95rem', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {t('liveExtractedTitle', lang)}
-            </h4>
+          {/* Live Skill Card */}
+          <SkillCard profile={profile} lang={lang} isCompact />
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelName', lang)}</span>
-                <strong>{profile.name || profile.first_name || '—'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelDistrict', lang)}</span>
-                <strong>{profile.district ? `📍 ${profile.district}, ${profile.state || 'Maharashtra'}` : '—'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelEducation', lang)}</span>
-                <strong>{profile.education_level ? `🎓 ${profile.education_level}` : '—'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelWork', lang)}</span>
-                <strong>{profile.family_occupation || profile.current_livelihood || '—'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelSkills', lang)}</span>
-                <strong>
-                  {profile.skills_interests && profile.skills_interests.length > 0
-                    ? profile.skills_interests.join(', ')
-                    : '—'}
-                </strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: '#F8FAFC', borderRadius: '6px' }}>
-                <span style={{ color: '#64748B' }}>{t('liveLabelEmployPref', lang)}</span>
-                <strong>{profile.employment_preference || '—'}</strong>
-              </div>
-            </div>
+          {/* Regional Map Preview */}
+          <div style={{ background: '#FFFFFF', borderRadius: '14px', padding: '16px', border: '1px solid #E2E8F0' }}>
+            <h4 style={{ margin: '0 0 10px', fontSize: '0.9rem', color: '#0F172A' }}>
+              🗺️ {lang === 'mr' ? 'स्थानिक नकाशा' : lang === 'hi' ? 'स्थानीय नक्शा' : 'Regional Map'}
+            </h4>
+            <OpportunityMap
+              userLocation={userLocation}
+              radiusKm={profile.travel_radius_km || 25}
+              height={200}
+              lang={lang}
+            />
           </div>
 
           {/* Quick Action Buttons to Next Stages */}

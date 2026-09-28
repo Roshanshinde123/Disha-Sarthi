@@ -1,0 +1,120 @@
+{
+  "LANDING": {
+    "prompt": "ନମସ୍କାର! ଦିଶା ସାରଥିରେ ଆପଣଙ୍କୁ ସ୍ୱାଗତ।",
+    "simplified": "ଦିଶା ସାରଥି ଆରମ୍ଭ କରିବା ପାଇଁ ତଳେ କ୍ଲିକ୍ କରନ୍ତୁ।",
+    "chips": [
+      { "value": "start", "label": "କଥାବାର୍ତ୍ତା ଆରମ୍ଭ କରନ୍ତୁ", "icon": "🎙️" },
+      { "value": "about", "label": "ଦିଶା ସାରଥି ବିଷୟରେ", "icon": "ℹ️" }
+    ]
+  },
+  "LANG_SELECT": {
+    "prompt": "ଦୟାକରି ଆପଣଙ୍କର ପସନ୍ଦର ଭାଷା ବାଛନ୍ତୁ।",
+    "simplified": "ଆପଣ କେଉଁ ଭାଷାରେ କଥା ହେବାକୁ ଚାହାଁନ୍ତି?",
+    "chips": [
+      { "value": "od", "label": "ଓଡ଼ିଆ (Odia)", "icon": "🇮🇳" },
+      { "value": "hi", "label": "हिंदी (Hindi)", "icon": "🇮🇳" },
+      { "value": "en", "label": "English", "icon": "🌐" }
+    ]
+  },
+  "GREETING": {
+    "prompt": "ନମସ୍କାର! ମୁଁ ଆପଣଙ୍କର ଦକ୍ଷତା ଓ ନିଯୁକ୍ତି ସୁଯୋଗ ଖୋଜିବାରେ ସାହାଯ୍ୟ କରିବି।",
+    "simplified": "ଆସନ୍ତୁ ଆପଣଙ୍କର ଦକ୍ଷତା ଯୋଜନା ଆରମ୍ଭ କରିବା?",
+    "chips": [
+      { "value": "continue", "label": "ହଁ, ଆରମ୍ଭ କରନ୍ତୁ", "icon": "👍" },
+      { "value": "help", "label": "ଏହା କିପରି କାମ କରେ?", "icon": "❓" }
+    ]
+  },
+  "CONSENT": {
+    "prompt": "ଦକ୍ଷତା ପରାମର୍ଶ ପାଇଁ କିଛି ସାଧାରଣ ସୂଚନା ସେୟାର କରିବାକୁ ସହମତ କି?",
+    "simplified": "ଆପଣଙ୍କ ତଥ୍ୟ ସୁରକ୍ଷିତ ରହିବ। ଆପଣ ସହମତ କି?",
+    "chips": [
+      { "value": "yes", "label": "ହଁ, ସହମତ", "icon": "✅" },
+      { "value": "no", "label": "ନାହିଁ", "icon": "❌" }
+    ]
+  },
+  "LOCATION": {
+    "prompt": "ଆପଣ କେଉଁ ଜିଲ୍ଲାରେ ରୁହନ୍ତି?",
+    "simplified": "ପାଖ ପ୍ରଶିକ୍ଷଣ କେନ୍ଦ୍ର ଖୋଜିବା ପାଇଁ ଜିଲ୍ଲା କୁହନ୍ତୁ।",
+    "chips": [
+      { "value": "gps_detect", "label": "ମୋର GPS ସ୍ଥାନ ବ୍ୟବହାର କରନ୍ତୁ", "icon": "📍" },
+      { "value": "pune", "label": "ପୁଣେ", "icon": "📍" }
+    ]
+  },
+  "BACKGROUND": {
+    "prompt": "ଆପଣଙ୍କର ଶିକ୍ଷାଗତ ଯୋଗ୍ୟତା କେତେ?",
+    "simplified": "ଶିକ୍ଷା ସ୍ତର ବାଛନ୍ତୁ।",
+    "chips": [
+      { "value": "primary", "label": "ପ୍ରାଥମିକ (Primary)", "icon": "🎒" },
+      { "value": "middle", "label": "ଅଷ୍ଟମ ଶ୍ରେଣୀ (8th Pass)", "icon": "📚" },
+      { "value": "secondary", "label": "ଦଶମ ଶ୍ରେଣୀ (10th Pass)", "icon": "🎓" },
+      { "value": "higher_secondary", "label": "ଦ୍ୱାଦଶ ଶ୍ରେଣୀ (12th Pass)", "icon": "🏛️" },
+      { "value": "iti_diploma", "label": "ITI / ଡିପ୍ଲୋମା", "icon": "🔧" },
+      { "value": "graduate", "label": "ସ୍ନାତକ (Graduate)", "icon": "📜" }
+    ]
+  },
+  "FAMILY_OCCUPATION": {
+    "prompt": "ଆପଣଙ୍କ ପରିବାରର ମୁଖ୍ୟ ବୃତ୍ତି କ'ଣ?",
+    "simplified": "ଚାଷ କିମ୍ବା ଅନ୍ୟ କୌଣସି କାମ କରନ୍ତି କି?",
+    "chips": [
+      { "value": "farming", "label": "ଚାଷ / କୃଷି", "icon": "🌾" },
+      { "value": "welding", "label": "ୱେଲ୍ଡିଂ / ୱାର୍କସପ୍", "icon": "⚡" }
+    ]
+  },
+  "CURRENT_LIVELIHOOD": {
+    "prompt": "ଆପଣ ବର୍ତ୍ତମାନ କ'ଣ କାମ କରୁଛନ୍ତି?",
+    "simplified": "ବର୍ତ୍ତମାନର କାମ କୁହନ୍ତୁ।",
+    "chips": [
+      { "value": "unemployed", "label": "ବର୍ତ୍ତମାନ କାମ ନାହିଁ", "icon": "🌱" },
+      { "value": "daily_wage", "label": "ଦୈନିକ ମଜୁରି", "icon": "🔨" }
+    ]
+  },
+  "SKILLS_INPUT": {
+    "prompt": "ଆପଣଙ୍କର କେଉଁ କାମରେ ଦକ୍ଷତା ଅଛି?",
+    "simplified": "ଜଣାଥିବା ହୁନର କୁହନ୍ତୁ।",
+    "chips": [
+      { "value": "welding", "label": "ୱେଲ୍ଡିଂ", "icon": "⚡" },
+      { "value": "electrical", "label": "ଇଲେକ୍ଟ୍ରିସିଆନ୍", "icon": "💡" },
+      { "value": "stitching", "label": "ସିଲେଇ", "icon": "✂️" }
+    ]
+  },
+  "EXPERIENCE": {
+    "prompt": "କେତେ ବର୍ଷର କାର୍ଯ୍ୟ ଅଭିଜ୍ଞତା ଅଛି?",
+    "simplified": "ଅଭିଜ୍ଞତା ବର୍ଷ ବାଛନ୍ତୁ।",
+    "chips": [
+      { "value": "0", "label": "ଅଭିଜ୍ଞତା ନାହିଁ (ଫ୍ରେସର)", "icon": "🌱" },
+      { "value": "1", "label": "୧ ବର୍ଷ", "icon": "⭐" },
+      { "value": "2", "label": "୨ ବର୍ଷ", "icon": "⭐⭐" }
+    ]
+  },
+  "INTERESTS": {
+    "prompt": "କେଉଁ ନୂଆ କୌଶଳ ଶିଖିବାକୁ ଚାହାଁନ୍ତି?",
+    "simplified": "ପସନ୍ଦର କ୍ଷେତ୍ର ବାଛନ୍ତୁ।",
+    "chips": [
+      { "value": "welding", "label": "ୱେଲ୍ଡିଂ ଟେକ୍ନିସିଆନ୍", "icon": "⚡" },
+      { "value": "electrical", "label": "ଇଲେକ୍ଟ୍ରିକାଲ୍", "icon": "💡" }
+    ]
+  },
+  "CONSTRAINTS": {
+    "prompt": "ଯାତାୟତ କିମ୍ବା ସମୟରେ କୌଣସି ଅସୁବିଧା ଅଛି କି?",
+    "simplified": "ଅସୁବିଧା ବିଷୟରେ ଜଣାନ୍ତୁ।",
+    "chips": [
+      { "value": "none", "label": "କୌଣସି ଅସୁବିଧା ନାହିଁ", "icon": "✅" }
+    ]
+  },
+  "TRAVEL_RADIUS": {
+    "prompt": "କେତେ କିଲୋମିଟର ପର୍ଯ୍ୟନ୍ତ ଯାଇପାରିବେ?",
+    "simplified": "ଦୂରତା ସୀମା ବାଛନ୍ତୁ।",
+    "chips": [
+      { "value": "10", "label": "୧୦ କିମି", "icon": "🚲" },
+      { "value": "25", "label": "୨୫ କିମି", "icon": "🛵" }
+    ]
+  },
+  "EMPLOYMENT_PREFERENCE": {
+    "prompt": "ଚାକିରି କରିବାକୁ ଚାହାଁନ୍ତି ନା ନିଜ ବ୍ୟବସାୟ?",
+    "simplified": "କାର୍ଯ୍ୟ ପସନ୍ଦ ବାଛନ୍ତୁ।",
+    "chips": [
+      { "value": "wage_employment", "label": "ଚାକିରି (ଦରମା)", "icon": "💼" },
+      { "value": "self_employment", "label": "ସ୍ୱରୋଜଗାର (ବ୍ୟବସାୟ)", "icon": "🏪" }
+    ]
+  }
+}
