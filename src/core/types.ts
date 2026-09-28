@@ -343,7 +343,7 @@ export interface Session {
 export interface DistrictCentroid {
   key: string;
   name: string;
-  name_local: Record<LanguageCode, string>;
+  name_local: Partial<Record<LanguageCode, string>>;
   state: string;
   lat: number;
   lng: number;
@@ -353,7 +353,7 @@ export interface NSQFTrade {
   id: string;
   qp_code: string;
   name_en: string;
-  name_local: Record<LanguageCode, string>;
+  name_local: Partial<Record<LanguageCode, string>>;
   sector: string;
   ssc: string;
   nsqf_level: number;
@@ -384,8 +384,8 @@ export interface TrainingCenter {
 
 export interface SchemeInfo {
   id: string;
-  name: Record<LanguageCode, string>;
-  short_desc: Record<LanguageCode, string>;
+  name: Partial<Record<LanguageCode, string>>;
+  short_desc: Partial<Record<LanguageCode, string>>;
   max_subsidy_loan: string;
   target_group: string;
   link: string;
